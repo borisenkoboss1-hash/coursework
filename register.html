@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div><a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a></div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#f26522"/><rect x="8" y="6" width="10" height="28" rx="2" fill="white"/><rect x="22" y="6" width="10" height="28" rx="2" fill="white"/><circle cx="19" cy="20" r="2" fill="#f26522"/></svg>
+                    <div><div class="лого-текст">дверь<span>.рф</span></div><div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div></div>
+                </a>
+                <div class="иконки-шапки" style="margin-left:auto;">
+                    <a href="cart.html" class="иконка-ссылка"><span>🛒</span><span class="текст-иконки">Корзина</span><span class="счетчик" id="счетчик-корзины">0</span></a>
+                    <a href="favorites.html" class="иконка-ссылка"><span>♡</span><span class="текст-иконки">Избранное</span><span class="счетчик" id="счетчик-избранного">0</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="контейнер">
+        <div class="крошки"><a href="index.html">Главная</a><span>›</span><span>Регистрация</span></div>
+    </div>
+
+    <div class="авт-страница">
+        <div class="авт-карточка">
+
+            <!-- Переключатель: вход / регистрация -->
+            <div class="авт-табы">
+                <a href="login.html" class="авт-таб">Вход</a>
+                <div class="авт-таб active">Регистрация</div>
+            </div>
+
+            <h1 class="авт-заголовок">Создать аккаунт</h1>
+
+            <form id="форма-регистрации" novalidate>
+
+                <!-- Имя -->
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Имя и фамилия *</label>
+                    <input type="text" id="рег-имя" class="поле-ввода" placeholder="Иван Петров" autocomplete="name">
+                    <div class="ошибка-поля" id="ошибка-имя"></div>
+                </div>
+
+                <!-- Email -->
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Email *</label>
+                    <input type="email" id="рег-email" class="поле-ввода" placeholder="ivan@mail.ru" autocomplete="email">
+                    <div class="ошибка-поля" id="ошибка-email"></div>
+                </div>
+
+                <!-- Телефон -->
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Телефон *</label>
+                    <input type="tel" id="рег-телефон" class="поле-ввода" placeholder="+7 (999) 000-00-00" autocomplete="tel">
+                    <div class="ошибка-поля" id="ошибка-телефон"></div>
+                </div>
+
+                <!-- Пароль -->
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Пароль *</label>
+                    <div class="поле-с-иконкой">
+                        <input type="password" id="рег-пароль" class="поле-ввода" placeholder="Минимум 6 символов" autocomplete="new-password">
+                        <button type="button" class="кнопка-показать" id="показать-пароль">👁</button>
+                    </div>
+                    <!-- Индикатор силы пароля -->
+                    <div class="сила-пароля" id="сила-пароля">
+                        <div class="сила-полоска" id="сила-полоска"></div>
+                    </div>
+                    <div class="сила-текст" id="сила-текст"></div>
+                    <div class="ошибка-поля" id="ошибка-пароль"></div>
+                </div>
+
+                <!-- Подтверждение пароля -->
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Подтвердите пароль *</label>
+                    <div class="поле-с-иконкой">
+                        <input type="password" id="рег-пароль2" class="поле-ввода" placeholder="Повторите пароль" autocomplete="new-password">
+                        <button type="button" class="кнопка-показать" id="показать-пароль2">👁</button>
+                    </div>
+                    <div class="ошибка-поля" id="ошибка-пароль2"></div>
+                </div>
+
+                <!-- Чекбокс согласия -->
+                <div class="поле-группа">
+                    <label class="чекбокс-лейбл">
+                        <input type="checkbox" id="рег-согласие">
+                        <span>Я согласен с <a href="#" class="ссылка-авт">политикой конфиденциальности</a> и <a href="#" class="ссылка-авт">условиями использования</a></span>
+                    </label>
+                    <div class="ошибка-поля" id="ошибка-согласие"></div>
+                </div>
+
+                <button type="submit" class="кнопка-авт" id="кнопка-регистрации">
+                    Зарегистрироваться
+                </button>
+
+            </form>
+
+            <div class="авт-разделитель"><span>или</span></div>
+
+            <p class="авт-ссылка-низ">
+                Уже есть аккаунт? <a href="login.html" class="ссылка-авт">Войти</a>
+            </p>
+
+        </div>
+    </div>
+
+    <div id="контейнер-уведомлений"></div>
+    <script src="js/common.js"></script>
+    <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О компании — Дверь.рф (версия для слабовидящих)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessible.css">
+    <style>
+        .а11й-цифры-сетка {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        @media (max-width: 700px) {
+            .а11й-цифры-сетка { grid-template-columns: repeat(2, 1fr); }
+        }
+        .а11й-цифра-карточка {
+            text-align: center;
+            padding: 24px;
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 12px;
+        }
+        .а11й-цифра-число {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--оранжевый);
+        }
+        .а11й-преимущества-сетка {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 30px 0;
+        }
+        @media (max-width: 900px) {
+            .а11й-преимущества-сетка { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 500px) {
+            .а11й-преимущества-сетка { grid-template-columns: 1fr; }
+        }
+        .а11й-преимущество {
+            padding: 24px;
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 12px;
+            text-align: center;
+        }
+        .а11й-преимущество-иконка { font-size: 2.5rem; margin-bottom: 12px; }
+        .а11й-о-нас-раскладка {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+            align-items: center;
+        }
+        @media (max-width: 700px) {
+            .а11й-о-нас-раскладка { grid-template-columns: 1fr; }
+        }
+        .а11й-карта {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 2px solid var(--рамка);
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body class="а11й-режим">
+
+    <!-- ПАНЕЛЬ УПРАВЛЕНИЯ ДОСТУПНОСТЬЮ -->
+    <div class="а11й-панель" role="toolbar">
+        <div class="контейнер а11й-панель-внутри">
+            <span class="а11й-панель-лого">дверь.рф</span>
+            <span class="а11й-разделитель">|</span>
+            <span>Версия для слабовидящих — О компании</span>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="шрифт-меньше">А−</button>
+                <select class="а11й-селект" id="выбор-шрифта">
+                    <option value="14">14px</option>
+                    <option value="16" selected>16px</option>
+                    <option value="20">20px</option>
+                    <option value="24">24px</option>
+                </select>
+                <button class="а11й-кн" id="шрифт-больше">А+</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн тема-кн" data-тема="normal">Обычная</button>
+                <button class="а11й-кн тема-кн" data-тема="dark">Тёмная</button>
+                <button class="а11й-кн тема-кн" data-тема="contrast">Контраст</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="интервал-норм">Норм</button>
+                <button class="а11й-кн" id="интервал-широк">Широкий</button>
+            </div>
+
+            <div class="а11й-группа" style="margin-left:auto;">
+                <a href="about.html" class="а11й-ссылка">← Обычная версия</a>
+                <button class="а11й-кн" id="а11й-сброс">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="а11й-шапка">
+        <div class="контейнер а11й-шапка-внутри">
+            <a href="accessible.html" class="а11й-лого">дверь<span>.рф</span></a>
+            <div class="а11й-контакты">
+                <a href="tel:+78442250300" class="а11й-телефон">📞 +7 (844) 225-03-00</a>
+                <span>Пн–Вс: 9:00 – 19:00</span>
+            </div>
+             <div style="display: flex; gap: 16px; align-items: center;">
+            <a href="accessible-profile.html" class="а11й-кн" style="background: none; border: 2px solid var(--оранжевый);">👤 Профиль</a>
+            <a href="accessible-cart.html" class="а11й-корзина-кн">🛒 Корзина (<span id="счетчик-корзины">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="а11й-nav">
+        <div class="контейнер">
+            <ul class="а11й-nav-список">
+                <li><a href="accessible.html" class="а11й-nav-ссылка">Главная</a></li>
+                <li><a href="accessible-catalog.html?cat=entrance" class="а11й-nav-ссылка">Входные двери</a></li>
+                <li><a href="accessible-catalog.html?cat=interior" class="а11й-nav-ссылка">Межкомнатные</a></li>
+                <li><a href="accessible-catalog.html?cat=hardware" class="а11й-nav-ссылка">Фурнитура</a></li>
+                <li><a href="accessible-delivery.html" class="а11й-nav-ссылка">Доставка</a></li>
+                <li><a href="accessible-about.html" class="а11й-nav-ссылка active">О нас</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="контейнер">
+        <div style="display: flex; gap: 8px; padding: 14px 0; font-size: 0.9rem;">
+            <a href="accessible.html" style="color: var(--текст-светлый);">Главная</a>
+            <span>›</span>
+            <span style="color: var(--оранжевый);">О компании</span>
+        </div>
+    </div>
+
+    <!-- ГЕРОЙ -->
+    <div style="background: linear-gradient(135deg, #2c3e50, #1a1a2e); padding: 50px 0; color: white;">
+        <div class="контейнер">
+            <h1 style="font-size: 2rem;">О компании <span style="color: var(--оранжевый);">Дверь.рф</span></h1>
+            <p style="max-width: 600px; margin-top: 16px;">Мы работаем с 2010 года и за это время установили более 15 000 дверей. Наша миссия — помочь каждому клиенту найти идеальную дверь.</p>
+        </div>
+    </div>
+
+    <!-- ЦИФРЫ -->
+    <div class="контейнер">
+        <div class="а11й-цифры-сетка">
+            <div class="а11й-цифра-карточка"><div class="а11й-цифра-число">15 лет</div><div>на рынке</div></div>
+            <div class="а11й-цифра-карточка"><div class="а11й-цифра-число">15 000+</div><div>установленных дверей</div></div>
+            <div class="а11й-цифра-карточка"><div class="а11й-цифра-число">500+</div><div>моделей в каталоге</div></div>
+            <div class="а11й-цифра-карточка"><div class="а11й-цифра-число">4.9 ★</div><div>средняя оценка</div></div>
+        </div>
+    </div>
+
+    <!-- О НАС -->
+    <div class="контейнер">
+        <div class="а11й-о-нас-раскладка">
+            <div>
+                <h2 class="а11й-секция-заголовок" style="margin-top: 0;">Наша история</h2>
+                <p>Компания «Дверь.рф» основана в 2010 году командой энтузиастов, влюблённых в качественные двери. Начав с небольшого шоурума, мы выросли в одного из крупнейших поставщиков дверей в регионе.</p>
+                <p style="margin-top: 16px;">Мы работаем напрямую с производителями России, что позволяет нам предлагать конкурентные цены без посредников.</p>
+                <p style="margin-top: 16px;">Сегодня в нашем ассортименте — более 500 моделей межкомнатных и входных дверей, а также широкий выбор фурнитуры.</p>
+            </div>
+            <div>
+    <div style="background: var(--фон-серый); border-radius: 12px; padding: 20px; text-align: center; border: 2px solid var(--рамка);">
+        <img src="images/slider/7.jpg" alt="Наш шоурум в Волгограде" style="width:100%; max-width:400px; height:auto; border-radius:8px; margin-bottom:10px;">
+        <p style="margin-top: 12px;">Наш шоурум в Волгограде</p>
+    </div>
+</div>
+        </div>
+    </div>
+
+    <!-- ПРЕИМУЩЕСТВА -->
+    <div style="background: var(--фон-серый); padding: 48px 0;">
+        <div class="контейнер">
+            <h2 class="а11й-секция-заголовок" style="text-align: center;">Почему выбирают нас</h2>
+            <div class="а11й-преимущества-сетка">
+                <div class="а11й-преимущество">
+                    <div class="а11й-преимущество-иконка">🏆</div>
+                    <h3>Официальный дилер</h3>
+                    <p>Более 20 производителей. Все товары сертифицированы</p>
+                </div>
+                <div class="а11й-преимущество">
+                    <div class="а11й-преимущество-иконка">🔧</div>
+                    <h3>Собственная установка</h3>
+                    <p>Сертифицированные специалисты с опытом от 5 лет</p>
+                </div>
+                <div class="а11й-преимущество">
+                    <div class="а11й-преимущество-иконка">🛡️</div>
+                    <h3>Гарантия до 10 лет</h3>
+                    <p>Бесплатный выезд мастера при любых проблемах</p>
+                </div>
+                <div class="а11й-преимущество">
+                    <div class="а11й-преимущество-иконка">💳</div>
+                    <h3>Рассрочка 0%</h3>
+                    <p>На 12 месяцев без процентов и переплат</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- КАРТА -->
+    <div class="контейнер">
+        <h2 class="а11й-секция-заголовок">Мы на карте</h2>
+        <div class="а11й-карта">
+            <iframe src="https://yandex.ru/map-widget/v1/?ll=44.518259%2C48.707103&z=16&pt=44.518259,48.707103,pm2rdm" width="100%" height="360" frameborder="0"></iframe>
+        </div>
+        <div style="display: flex; gap: 24px; flex-wrap: wrap; margin: 16px 0 40px;">
+            <div>📍 <strong>г. Волгоград, ул. Каннуникова 6/1</strong></div>
+            <div>📞 <strong>+7 (844) 225-03-00</strong></div>
+            <div>🕐 <strong>Пн–Вс: 9:00 – 19:00</strong></div>
+        </div>
+    </div>
+
+    <!-- ФОРМА ЗАЯВКИ -->
+    <div class="контейнер">
+        <div class="а11й-форма-заявки" style="background: var(--фон-серый); border-radius: 12px; padding: 32px; margin-bottom: 40px;">
+            <h2>Пригласите специалиста на замер!</h2>
+            <p style="margin: 10px 0 20px;">Заполните форму — мы перезвоним в течение 30 минут. Замер бесплатен.</p>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                <input type="text" id="а11й-об-имя" class="а11й-форма-поле" placeholder="Ваше имя *">
+                <input type="tel" id="а11й-об-телефон" class="а11й-форма-поле" placeholder="Телефон *">
+                <input type="text" id="а11й-об-адрес" class="а11й-форма-поле" placeholder="Адрес">
+                <button class="а11й-кнопка-заявка" id="а11й-об-отправить">Записаться на замер</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer class="а11й-подвал">
+        <div class="контейнер">
+            <div class="а11й-подвал-ссылки">
+                <a href="accessible.html">Главная</a>
+                <a href="accessible-catalog.html">Каталог</a>
+                <a href="accessible-about.html">О компании</a>
+                <a href="accessible-delivery.html">Доставка</a>
+                <a href="accessible-cart.html">Корзина</a>
+            </div>
+            <div class="а11й-подвал-низ">
+                <span>© 2025 Дверь.рф — Версия для слабовидящих</span>
+                <a href="about.html">Обычная версия сайта</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessible.js"></script>
+    <script>
+        document.getElementById('а11й-об-отправить')?.addEventListener('click', () => {
+            const имя = document.getElementById('а11й-об-имя')?.value.trim();
+            const тел = document.getElementById('а11й-об-телефон')?.value.trim();
+            if (!имя || !тел) {
+                уведомление('Заполните имя и телефон', 'ошибка');
+                return;
+            }
+            уведомление('Спасибо! Мы свяжемся с вами.', 'успех');
+            ['а11й-об-имя', 'а11й-об-телефон', 'а11й-об-адрес'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.value = '';
+            });
+        });
+
+        function обновитьСчетчикКорзины() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const сумма = корзина.reduce((s, i) => s + (i.quantity || 1), 0);
+            const счетчик = document.getElementById('счетчик-корзины');
+            if (счетчик) счетчик.textContent = сумма;
+        }
+        обновитьСчетчикКорзины();
+    </script>
+</body>
+</html>

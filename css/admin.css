@@ -1,0 +1,393 @@
+/* ========================================================
+   admin.css — стили для ПАНЕЛИ АДМИНИСТРАТОРА
+   
+   ЧТО ЭТОТ ФАЙЛ ДЕЛАЕТ:
+   - Оформляет страницу, куда заходит администратор магазина
+   - Делает таблицы с товарами, заказами, пользователями
+   - Добавляет кнопки для редактирования и удаления
+   ======================================================== */
+
+/* Убираем отступы у тела страницы */
+body { margin: 0; }
+
+
+/* ===== 1. ШАПКА АДМИНИСТРАТОРА ===== */
+/* Тёмная полоса вверху с названием и выходом */
+.адм-шапка {
+    background: #1a1a1a;        /* тёмный фон */
+    padding: 12px 0;            /* отступы сверху/снизу */
+    position: sticky;           /* прилипает к верху при скролле */
+    top: 0;
+    z-index: 100;               /* поверх всего */
+    border-bottom: 1px solid #2a2a2a;  /* чуть светлая граница снизу */
+}
+
+/* Внутренности шапки — всё в одну строку */
+.адм-шапка-внутри {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  /* лого слева, выход справа */
+    gap: 16px;
+}
+
+/* Правая часть шапки (обычно кнопка "Выйти") */
+.адм-шапка-правая { 
+    display: flex; 
+    align-items: center; 
+    gap: 16px; 
+}
+
+
+/* ===== 2. ОСНОВНАЯ РАСКЛАДКА: МЕНЮ СЛЕВА + КОНТЕНТ СПРАВА ===== */
+.адм-раскладка {
+    display: grid;
+    grid-template-columns: 220px 1fr;  /* меню 220px, контент — всё остальное */
+    min-height: calc(100vh - 54px);     /* высота на весь экран минус шапка */
+}
+
+/* На мобилках (ширина меньше 768px) — меню сверху, контент снизу */
+@media (max-width: 768px) { 
+    .адм-раскладка { 
+        grid-template-columns: 1fr;   /* одна колонка вместо двух */
+    } 
+}
+
+
+/* ===== 3. БОКОВОЕ МЕНЮ (САЙДБАР) ===== */
+.адм-сайдбар {
+    background: var(--фон-серый);     /* фон из темы */
+    border-right: 1px solid var(--рамка);  /* граница справа */
+    padding: 20px 0;
+}
+
+/* Ссылки в меню друг под другом */
+.адм-сайдбар nav { 
+    display: flex; 
+    flex-direction: column; 
+}
+
+/* Одна ссылка в меню */
+.адм-ссылка {
+    padding: 12px 20px;      /* отступы внутри */
+    font-size: 14px;
+    color: var(--текст);
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 3px solid transparent;  /* скрытая полоска слева */
+    transition: 0.2s;                    /* плавное изменение */
+    display: block;
+}
+
+/* При наведении на ссылку */
+.адм-ссылка:hover { 
+    background: var(--фон); 
+    color: var(--оранжевый); 
+}
+
+/* Активная ссылка (где мы сейчас находимся) */
+.адм-ссылка.active {
+    border-left-color: var(--оранжевый);  /* оранжевая полоска слева */
+    background: var(--фон);
+    color: var(--оранжевый);
+    font-weight: 600;                     /* жирный шрифт */
+}
+
+
+/* ===== 4. ОСНОВНОЙ КОНТЕНТ ===== */
+/* Область справа, где отображаются таблицы и формы */
+.адм-контент { 
+    padding: 28px; 
+    background: var(--фон); 
+}
+
+/* Каждый раздел (товары, заказы, пользователи) */
+.адм-раздел { }
+
+/* Скрытый раздел (не показываем) */
+.адм-раздел.скрыт { display: none; }
+
+/* Заголовок раздела */
+.адм-заголовок { 
+    font-size: 22px; 
+    font-weight: 700; 
+    margin-bottom: 20px; 
+}
+
+/* Блок с заголовком и кнопкой "Добавить" в одной строке */
+.адм-заголовок-блок {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+/* Убираем нижний отступ у заголовка внутри блока */
+.адм-заголовок-блок .адм-заголовок { margin-bottom: 0; }
+
+
+/* ===== 5. КАРТОЧКИ СТАТИСТИКИ НА ГЛАВНОЙ АДМИНКИ ===== */
+/* 4 карточки: Товары, Заказы, Пользователи, Выручка */
+.адм-карточки {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);  /* 4 колонки равной ширины */
+    gap: 16px;
+}
+
+/* На планшетах (меньше 900px) — 2 колонки */
+@media (max-width: 900px) { 
+    .адм-карточки { 
+        grid-template-columns: repeat(2, 1fr); 
+    } 
+}
+
+/* Одна карточка статистики */
+.адм-карточка-стат {
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+    transition: 0.2s;
+}
+
+/* При наведении — тень */
+.адм-карточка-стат:hover { 
+    box-shadow: 0 4px 16px rgba(0,0,0,0.08); 
+}
+
+/* Иконка (эмодзи) в карточке */
+.стат-иконка { font-size: 32px; margin-bottom: 8px; }
+
+/* Крупное число (например 156 товаров) */
+.стат-число { font-size: 28px; font-weight: 700; margin-bottom: 4px; }
+
+/* Подпись под числом */
+.стат-назв { font-size: 12px; color: var(--текст-светлый); }
+
+
+/* ===== 6. ОБЩИЙ БЛОК (карточка с контентом) ===== */
+.адм-блок {
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    padding: 20px;
+}
+.адм-блок h3 { font-size: 15px; font-weight: 600; }
+
+
+/* ===== 7. ПОЛЯ ФИЛЬТРОВ (поиск, сортировка) ===== */
+.адм-фильтры {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+}
+
+/* Поле поиска */
+.адм-поиск {
+    flex: 1;                     /* занимает всё свободное место */
+    min-width: 200px;
+    padding: 9px 14px;
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    outline: none;
+}
+
+/* При фокусе на поле поиска — оранжевая граница */
+.адм-поиск:focus { border-color: var(--оранжевый); }
+
+/* Выпадающий список (сортировка, фильтр) */
+.адм-селект {
+    padding: 9px 12px;
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    cursor: pointer;
+    outline: none;
+}
+
+
+/* ===== 8. ТАБЛИЦА (для товаров, заказов, пользователей) ===== */
+/* Обёртка для горизонтальной прокрутки на мобилках */
+.адм-таблица-обёртка {
+    overflow-x: auto;       /* если не влезает — появится скролл */
+    border-radius: 8px;
+    border: 1px solid var(--рамка);
+}
+
+/* Сама таблица */
+.адм-таблица {
+    width: 100%;
+    border-collapse: collapse;  /* убираем двойные границы */
+    font-size: 13px;
+}
+
+/* Заголовки столбцов */
+.адм-таблица th {
+    background: var(--фон-серый);
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    color: var(--текст-светлый);
+    text-transform: uppercase;   /* ЗАГЛАВНЫМИ БУКВАМИ */
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--рамка);
+    white-space: nowrap;         /* чтобы текст не переносился */
+}
+
+/* Ячейки таблицы */
+.адм-таблица td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--рамка);
+    vertical-align: middle;
+}
+
+/* У последней строки убираем нижнюю границу */
+.адм-таблица tr:last-child td { border-bottom: none; }
+
+/* При наведении на строку — подсветка */
+.адм-таблица tr:hover td { background: var(--фон-серый); }
+
+
+/* ===== 9. БЕЙДЖИ (цветные метки статусов) ===== */
+/* Это маленькие цветные кружки/прямоугольники с текстом */
+.бейдж {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;          /* скруглённые углы */
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* Есть в наличии — зелёный */
+.бейдж-есть   { background: #eafaf1; color: #27ae60; }
+
+/* Нет в наличии — красный */
+.бейдж-нет    { background: #fdf0f0; color: #e74c3c; }
+
+/* Администратор — оранжевый */
+.бейдж-админ  { background: #fef3e2; color: #e67e22; }
+
+/* Обычный пользователь — голубой */
+.бейдж-польз  { background: #eaf4fd; color: #2980b9; }
+
+/* Заказ выполнен — зелёный */
+.бейдж-выполн { background: #eafaf1; color: #27ae60; }
+
+/* Заказ ожидает — жёлтый */
+.бейдж-ожидан { background: #fef9e7; color: #f39c12; }
+
+
+/* ===== 10. КНОПКИ ДЕЙСТВИЙ В ТАБЛИЦЕ ===== */
+/* Кнопки "Редактировать" и "Удалить" в каждой строке */
+.адм-действия { 
+    display: flex; 
+    gap: 6px; 
+}
+
+/* Общий стиль для кнопок в админке */
+.адм-кн {
+    padding: 4px 10px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    transition: 0.15s;
+}
+
+/* Кнопка РЕДАКТИРОВАТЬ */
+.адм-кн-ред { 
+    background: var(--фон-серый); 
+    color: var(--текст); 
+    border: 1px solid var(--рамка); 
+}
+.адм-кн-ред:hover { 
+    border-color: var(--оранжевый); 
+    color: var(--оранжевый); 
+}
+
+/* Кнопка УДАЛИТЬ */
+.адм-кн-удал { 
+    background: #fdf0f0; 
+    color: #e74c3c; 
+    border: 1px solid #fad7d7; 
+}
+.адм-кн-удал:hover { 
+    background: #e74c3c; 
+    color: white; 
+}
+
+
+/* ===== 11. КНОПКА "ДОБАВИТЬ" ===== */
+/* Большая оранжевая кнопка вверху таблицы */
+.адм-кнопка-добавить {
+    padding: 9px 18px;
+    background: var(--оранжевый);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.адм-кнопка-добавить:hover { background: #d9561a; }  /* темнее при наведении */
+
+
+/* ===== 12. ПОЛЯ ВВОДА В МОДАЛЬНЫХ ОКНАХ ===== */
+/* Когда админ добавляет или редактирует товар */
+.адм-лейбл { 
+    display: block; 
+    font-size: 12px; 
+    font-weight: 600; 
+    margin-bottom: 5px; 
+    color: var(--текст-светлый); 
+}
+
+.адм-поле {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 13px;
+    outline: none;
+    box-sizing: border-box;  /* чтобы padding не увеличивал ширину */
+}
+.адм-поле:focus { border-color: var(--оранжевый); }
+
+
+/* ===== 13. ПОЛОСКА КАТЕГОРИИ НА ДАШБОРДЕ ===== */
+/* Показывает, сколько товаров в каждой категории */
+.кат-строка { margin-bottom: 10px; }
+
+/* Надпись: "Входные двери — 45 шт" */
+.кат-лейбл { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 13px; 
+    margin-bottom: 3px; 
+}
+
+/* Серая полоска-фон */
+.кат-полоска { 
+    height: 8px; 
+    background: var(--рамка); 
+    border-radius: 4px; 
+    overflow: hidden; 
+}
+
+/* Оранжевая заполненная часть полоски */
+.кат-заполнение { 
+    height: 100%; 
+    background: var(--оранжевый); 
+    border-radius: 4px; 
+    transition: width 0.5s;  /* анимация при изменении ширины */
+}

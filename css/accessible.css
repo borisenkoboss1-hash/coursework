@@ -1,0 +1,687 @@
+/* ========================================================
+   accessible.css — стили версии для слабовидящих
+   По требованиям методички: крупный шрифт, высокий
+   контраст, увеличенные элементы, чёткие границы
+   ======================================================== */
+
+/* ---------- ОСНОВНЫЕ НАСТРОЙКИ ---------- */
+html { font-size: 16px; }
+
+/* Отключаем вылетание */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+/* ---------- ЦВЕТОВЫЕ ТЕМЫ ---------- */
+body.тема-контраст {
+    --текст:          #000000;
+    --текст-светлый:  #333333;
+    --фон:            #FFFFFF;
+    --фон-серый:      #F0F0F0;
+    --рамка:          #000000;
+    --оранжевый:      #CC4400;
+}
+
+body.тема-тёмная {
+    --текст:          #FFFFFF;
+    --текст-светлый:  #DDDDDD;
+    --фон:            #000000;
+    --фон-серый:      #1A1A1A;
+    --рамка:          #FFFFFF;
+    --оранжевый:      #FF8844;
+}
+
+body.тема-сепия {
+    --текст:          #2C1A0E;
+    --текст-светлый:  #5C3A1E;
+    --фон:            #F5E6CC;
+    --фон-серый:      #EDD9B0;
+    --рамка:          #8B5A2B;
+    --оранжевый:      #B8520A;
+}
+
+/* Широкий межбуквенный интервал */
+body.интервал-широкий { 
+    letter-spacing: 0.08em; 
+    word-spacing: 0.15em; 
+}
+
+/* Скрытый элемент для скринридеров */
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ---------- ПАНЕЛЬ УПРАВЛЕНИЯ ---------- */
+.а11й-панель {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 10px 0;
+    border-bottom: 3px solid var(--оранжевый);
+    position: sticky;
+    top: 0;
+    z-index: 200;
+}
+
+.а11й-панель-внутри {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.875rem;
+}
+
+.а11й-панель-лого { 
+    font-weight: 900; 
+    font-size: 1.1rem; 
+    color: var(--оранжевый); 
+}
+
+.а11й-разделитель { color: #555; }
+.а11й-группа { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.а11й-метка { color: #aaa; white-space: nowrap; }
+
+.а11й-кн {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: inherit;
+    transition: 0.15s;
+    white-space: nowrap;
+}
+
+.а11й-кн:hover,
+.а11й-кн:focus { 
+    background: var(--оранжевый); 
+    border-color: var(--оранжевый); 
+    outline: 2px solid white; 
+}
+
+.а11й-кн.active { 
+    background: var(--оранжевый); 
+    border-color: var(--оранжевый); 
+}
+
+.а11й-селект {
+    background: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px 8px;
+    border-radius: 4px;
+    font-size: inherit;
+    cursor: pointer;
+}
+
+.а11й-ссылка { 
+    color: #aaa; 
+    text-decoration: underline; 
+    font-size: 0.85rem; 
+}
+.а11й-ссылка:hover { color: #fff; }
+
+/* ---------- ШАПКА ---------- */
+.а11й-шапка {
+    background: var(--фон);
+    border-bottom: 3px solid var(--оранжевый);
+    padding: 16px 0;
+}
+
+.а11й-шапка-внутри {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.а11й-лого {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--текст);
+    text-decoration: none;
+}
+
+.а11й-лого span { color: var(--оранжевый); }
+
+.а11й-контакты { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 4px; 
+}
+
+.а11й-телефон {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--оранжевый);
+    text-decoration: none;
+}
+.а11й-телефон:hover { text-decoration: underline; }
+
+.а11й-корзина-кн {
+    padding: 10px 20px;
+    background: var(--оранжевый);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1rem;
+}
+.а11й-корзина-кн:hover { opacity: 0.85; }
+
+/* ---------- МЕНЮ НАВИГАЦИИ ---------- */
+.а11й-nav {
+    background: var(--фон-серый);
+    border-bottom: 2px solid var(--рамка);
+}
+
+.а11й-nav-список {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-wrap: wrap;
+}
+
+.а11й-nav-ссылка {
+    display: block;
+    padding: 14px 18px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--текст);
+    text-decoration: none;
+    border-bottom: 4px solid transparent;
+    transition: 0.2s;
+}
+
+.а11й-nav-ссылка:hover,
+.а11й-nav-ссылка:focus { 
+    color: var(--оранжевый); 
+    border-bottom-color: var(--оранжевый); 
+    outline: 2px solid var(--оранжевый); 
+}
+
+.а11й-nav-ссылка.active { 
+    color: var(--оранжевый); 
+    border-bottom-color: var(--оранжевый); 
+}
+
+/* ---------- ПОИСК ---------- */
+.а11й-поиск-блок {
+    background: var(--оранжевый);
+    padding: 40px 0;
+}
+
+.а11й-поиск-заголовок {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.а11й-поиск-форма {
+    display: flex;
+    gap: 12px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.а11й-поиск-поле {
+    flex: 1;
+    padding: 14px 20px;
+    font-size: 1.2rem;
+    border: 3px solid white;
+    border-radius: 6px;
+    outline: none;
+    background: white;
+    color: #333;
+}
+
+.а11й-поиск-кн {
+    padding: 14px 28px;
+    background: #1a1a1a;
+    color: white;
+    border: 3px solid white;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+/* ---------- ЗАГОЛОВКИ ---------- */
+.а11й-секция-заголовок {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin: 40px 0 20px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid var(--оранжевый);
+}
+
+/* ---------- КАТЕГОРИИ ---------- */
+.а11й-категории {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.а11й-категория {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    padding: 28px 20px;
+    background: var(--фон-серый);
+    border: 3px solid var(--рамка);
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--текст);
+    transition: 0.2s;
+}
+
+.а11й-категория:hover,
+.а11й-категория:focus {
+    border-color: var(--оранжевый);
+    background: var(--фон);
+    outline: 3px solid var(--оранжевый);
+}
+
+.а11й-кат-иконка { font-size: 3rem; }
+.а11й-кат-назв { font-size: 1.2rem; font-weight: 700; }
+.а11й-кат-описание { font-size: 0.9rem; color: var(--текст-светлый); }
+
+/* ---------- СПИСОК ТОВАРОВ ---------- */
+.а11й-список-товаров {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+.а11й-товар-строка {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 16px;
+    border: 2px solid var(--рамка);
+    border-radius: 8px;
+    background: var(--фон);
+    text-decoration: none;
+    color: var(--текст);
+    transition: 0.2s;
+}
+
+.а11й-товар-фото {
+    width: 80px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid var(--рамка);
+    flex-shrink: 0;
+    background: var(--фон-серый);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.а11й-товар-фото img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    border-radius: 5px; 
+}
+
+.а11й-товар-инфо { flex: 1; }
+.а11й-товар-бренд { font-size: 0.85rem; color: var(--текст-светлый); text-transform: uppercase; }
+.а11й-товар-назв { font-size: 1.15rem; font-weight: 700; margin: 6px 0; }
+.а11й-товар-цена { font-size: 1.3rem; font-weight: 900; color: var(--оранжевый); }
+
+.а11й-товар-кн {
+    padding: 10px 20px;
+    background: var(--оранжевый);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* ---------- КНОПКА "ВЕСЬ КАТАЛОГ" ---------- */
+.а11й-кн-большой {
+    display: inline-block;
+    padding: 14px 32px;
+    background: var(--оранжевый);
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 700;
+    border: 3px solid var(--оранжевый);
+    transition: 0.2s;
+}
+
+.а11й-кн-большой:hover,
+.а11й-кн-большой:focus { 
+    background: transparent; 
+    color: var(--оранжевый); 
+    outline: 3px solid var(--оранжевый); 
+}
+
+/* ---------- КОНТАКТЫ ---------- */
+.а11й-контакты-блок {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.а11й-контакт {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 20px 24px;
+    border: 2px solid var(--рамка);
+    border-radius: 8px;
+    background: var(--фон-серый);
+    min-width: 260px;
+    flex: 1;
+}
+
+.а11й-кон-иконка { font-size: 2rem; flex-shrink: 0; }
+.а11й-кон-метка { font-size: 0.9rem; color: var(--текст-светлый); }
+.а11й-кон-значение { font-size: 1.1rem; font-weight: 700; color: var(--текст); text-decoration: none; }
+
+/* ---------- ПОДВАЛ ---------- */
+.а11й-подвал {
+    background: var(--фон-серый);
+    border-top: 3px solid var(--рамка);
+    padding: 28px 0;
+    margin-top: 48px;
+}
+
+.а11й-подвал-ссылки {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 16px;
+}
+
+.а11й-подвал-ссылки a {
+    color: var(--текст);
+    font-size: 1.05rem;
+    font-weight: 600;
+    text-decoration: underline;
+}
+.а11й-подвал-ссылки a:hover { color: var(--оранжевый); }
+
+.а11й-подвал-низ {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 0.9rem;
+    color: var(--текст-светлый);
+}
+
+.а11й-подвал-низ a { color: var(--оранжевый); }
+
+/* Обводка для фокуса */
+.а11й-режим *:focus {
+    outline: 3px solid var(--оранжевый) !important;
+    outline-offset: 2px !important;
+}
+
+/* ========================================================
+   АДАПТАЦИЯ ДЛЯ ПЛАНШЕТА (900px)
+   ======================================================== */
+@media (max-width: 900px) {
+    .а11й-шапка-внутри {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .а11й-панель-внутри {
+        justify-content: center;
+        gap: 6px;
+    }
+    
+    .а11й-метка {
+        display: none;
+    }
+    
+    .а11й-кн {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+    }
+    
+    .а11й-селект {
+        font-size: 0.7rem;
+        padding: 3px 5px;
+    }
+    
+    .а11й-панель-лого {
+        font-size: 0.8rem;
+    }
+    
+    .а11й-разделитель {
+        display: none;
+    }
+    
+    .а11й-nav-список {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    
+    .а11й-nav-ссылка {
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+    
+    .а11й-лого {
+        font-size: 1.5rem;
+    }
+    
+    .а11й-телефон {
+        font-size: 1.1rem;
+    }
+    
+    .а11й-категории {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .а11й-категория {
+        flex-direction: row;
+        text-align: left;
+        gap: 16px;
+        padding: 16px;
+        align-items: center;
+    }
+    
+    .а11й-кат-иконка {
+        font-size: 1.8rem;
+    }
+    
+    .а11й-кат-назв {
+        font-size: 0.95rem;
+    }
+    
+    .а11й-кат-описание {
+        font-size: 0.75rem;
+    }
+    
+    .а11й-товар-строка {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .а11й-товар-фото {
+        width: 100%;
+        max-width: 120px;
+        margin: 0 auto;
+    }
+    
+    .а11й-товар-кн {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .а11й-поиск-форма {
+        flex-direction: column;
+        padding: 0 20px;
+    }
+    
+    .а11й-поиск-заголовок {
+        font-size: 1.2rem;
+    }
+    
+    .а11й-контакты-блок {
+        flex-direction: column;
+    }
+    
+    .а11й-кн-большой {
+        display: block;
+        text-align: center;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    .а11й-подвал-ссылки {
+        justify-content: center;
+    }
+    
+    .а11й-подвал-низ {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНА (600px)
+   ======================================================== */
+@media (max-width: 600px) {
+    .контейнер {
+        padding: 0 16px;
+    }
+    
+    .а11й-товар-фото {
+        max-width: 90px;
+        height: auto;
+    }
+    
+    .а11й-товар-бренд {
+        font-size: 0.7rem;
+    }
+    
+    .а11й-товар-назв {
+        font-size: 0.9rem;
+    }
+    
+    .а11й-товар-цена {
+        font-size: 1rem;
+    }
+    
+    .а11й-товар-кн {
+        max-width: 160px;
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+    
+    .а11й-контакт {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px;
+    }
+    
+    .а11й-кон-иконка {
+        font-size: 1.5rem;
+    }
+    
+    .а11й-кн-большой {
+        font-size: 0.9rem;
+        padding: 10px 16px;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ ДЛЯ МАЛЕНЬКОГО ТЕЛЕФОНА (400px)
+   ======================================================== */
+@media (max-width: 400px) {
+    .контейнер {
+        padding: 0 12px;
+    }
+    
+    .а11й-кн {
+        padding: 3px 6px;
+        font-size: 0.65rem;
+    }
+    
+    .а11й-товар-фото {
+        max-width: 80px;
+    }
+    
+    .а11й-товар-назв {
+        font-size: 0.85rem;
+    }
+    
+    .а11й-товар-кн {
+        max-width: 140px;
+        padding: 6px 10px;
+        font-size: 0.8rem;
+    }
+    
+    .а11й-кн-большой {
+        font-size: 0.85rem;
+        padding: 8px 12px;
+    }
+}
+
+/* ========================================================
+   ПРОФИЛЬ ДЛЯ ТЕЛЕФОНА
+   ======================================================== */
+@media (max-width: 600px) {
+    .а11й-профиль-раскладка {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .а11й-профиль-сайдбар {
+        width: 100%;
+    }
+    
+    .а11й-профиль-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .а11й-проф-ссылка {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+}

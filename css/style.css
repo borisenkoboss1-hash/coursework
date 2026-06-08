@@ -1,0 +1,733 @@
+/* ========================================================
+   style.css — общие стили для ВСЕХ страниц сайта
+   ======================================================== */
+
+/* ---------- CSS-ПЕРЕМЕННЫЕ (цвета тем) ---------- */
+body {
+    --оранжевый: #f26522;
+    --текст: #333;
+    --текст-светлый: #777;
+    --фон: #fff;
+    --фон-серый: #f5f5f5;
+    --рамка: #e0e0e0;
+    --фон-шапки: #1a1a1a;
+    --фон-подвала: #1a1a1a;
+    --звезда: #f39c12;
+}
+body[data-theme="dark"] {
+    --текст: #e0e0e0;
+    --текст-светлый: #aaa;
+    --фон: #121212;
+    --фон-серый: #1e1e1e;
+    --рамка: #333;
+    --фон-шапки: #0d0d0d;
+    --фон-подвала: #0d0d0d;
+}
+/* Режим слабовидящих */
+body[data-a11y="true"] { font-size: 1.15rem; }
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', Arial, sans-serif;
+    color: var(--текст);
+    background: var(--фон);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* ---------- КОНТЕЙНЕР ---------- */
+.контейнер {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ---------- КНОПКИ ---------- */
+.кнопка-оранжевая {
+    background: var(--оранжевый);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+.кнопка-оранжевая:hover { background: #d9561a; }
+
+/* ---------- ШАПКА ---------- */
+.шапка {
+    background: var(--фон-шапки);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.верх-шапки {
+    background: #111;
+    padding: 8px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+.внутри-верха {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 11px;
+    color: #aaa;
+}
+.телефон { color: white; font-weight: bold; text-decoration: none; font-size: 13px; }
+.кнопки-настроек { display: flex; gap: 8px; }
+.кнопка-настройки {
+    background: none;
+    border: 1px solid #444;
+    border-radius: 4px;
+    padding: 3px 8px;
+    color: #aaa;
+    font-size: 11px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.кнопка-настройки:hover { border-color: var(--оранжевый); color: var(--оранжевый); }
+.кнопка-настройки.active { background: var(--оранжевый); border-color: var(--оранжевый); color: white; }
+
+.главная-шапка { padding: 12px 0; }
+.внутри-главной {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+.лого {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: white;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.лого-текст { font-size: 18px; font-weight: bold; }
+.лого-текст span { color: var(--оранжевый); }
+.лого-подпись { font-size: 9px; color: #888; }
+
+/* Поиск */
+.поиск { flex: 1; position: relative; max-width: 520px; min-width: 200px; }
+.поле-поиска {
+    width: 100%;
+    padding: 10px 44px 10px 16px;
+    background: #2a2a2a;
+    border: 1px solid #3a3a3a;
+    border-radius: 4px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+}
+.поле-поиска:focus { border-color: var(--оранжевый); }
+.кнопка-поиска {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* Иконки в шапке */
+.иконки-шапки { display: flex; gap: 20px; flex-shrink: 0; }
+.иконка-ссылка {
+    position: relative;
+    color: #ccc;
+    font-size: 22px;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    transition: color 0.2s;
+}
+.иконка-ссылка:hover { color: var(--оранжевый); }
+.текст-иконки { font-size: 11px; }
+.счетчик {
+    position: absolute;
+    top: -8px;
+    right: -12px;
+    background: var(--оранжевый);
+    border-radius: 50%;
+    min-width: 18px;
+    height: 18px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+}
+
+/* ---------- МЕНЮ НАВИГАЦИИ ---------- */
+.меню {
+    background: var(--фон);
+    border-bottom: 1px solid var(--рамка);
+}
+.ссылки-меню { display: flex; flex-wrap: wrap; }
+.ссылка-меню {
+    padding: 14px 16px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--текст);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+.ссылка-меню.active,
+.ссылка-меню:hover { color: var(--оранжевый); border-bottom-color: var(--оранжевый); }
+
+/* Бургер (мобильные) */
+.бургер {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 4px;
+}
+.бургер span { width: 24px; height: 2px; background: white; transition: 0.3s; }
+
+/* ---------- МОБИЛЬНОЕ МЕНЮ ---------- */
+.моб-оверлей {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+}
+.моб-меню {
+    position: fixed;
+    top: 0;
+    right: -280px;
+    width: 280px;
+    height: 100%;
+    background: var(--фон);
+    z-index: 201;
+    transition: right 0.3s;
+    padding: 20px;
+    overflow-y: auto;
+}
+.моб-меню.открыто { right: 0; }
+.моб-меню a {
+    display: block;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--рамка);
+    color: var(--текст);
+    text-decoration: none;
+    font-size: 15px;
+}
+.моб-меню a:hover { color: var(--оранжевый); }
+
+/* ---------- ПОДВАЛ ---------- */
+.подвал {
+    background: var(--фон-подвала);
+    color: #ccc;
+    margin-top: 64px;
+    padding: 48px 0 32px;
+}
+.сетка-подвала {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+}
+.подвал h4 { color: white; font-size: 13px; margin-bottom: 16px; }
+.ссылки-подвала { display: flex; flex-direction: column; gap: 8px; }
+.ссылки-подвала a,
+.ссылки-подвала span { font-size: 13px; color: #ccc; text-decoration: none; }
+.ссылки-подвала a:hover { color: var(--оранжевый); }
+.низ-подвала {
+    padding-top: 24px;
+    border-top: 1px solid #2a2a2a;
+    margin-top: 24px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 13px;
+}
+
+/* ---------- МОДАЛЬНОЕ ОКНО ---------- */
+.модалка {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+.модалка.active { visibility: visible; opacity: 1; }
+.модалка-внутри {
+    background: var(--фон);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 420px;
+    position: relative;
+}
+.модалка-внутри h3 { margin-bottom: 16px; font-size: 20px; }
+.модалка-внутри input {
+    width: 100%;
+    margin: 8px 0;
+    padding: 10px 14px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+.модалка-внутри input:focus { border-color: var(--оранжевый); }
+.закрыть-модалку {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--текст-светлый);
+}
+
+/* ---------- УВЕДОМЛЕНИЯ ---------- */
+#контейнер-уведомлений {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+.уведомление {
+    background: #333;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 13px;
+    animation: появление 0.3s;
+    max-width: 280px;
+}
+.уведомление.успех { background: #27ae60; }
+.уведомление.ошибка { background: #e74c3c; }
+@keyframes появление {
+    from { opacity: 0; transform: translateX(100%); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ---------- КНОПКА НАВЕРХ ---------- */
+#кнопка-наверх {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 44px;
+    height: 44px;
+    background: var(--оранжевый);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s;
+    font-size: 20px;
+    z-index: 50;
+}
+#кнопка-наверх.visible { opacity: 1; visibility: visible; }
+
+/* ---------- ПРЕЛОАДЕР ---------- */
+#прелоадер {
+    position: fixed;
+    inset: 0;
+    background: var(--фон);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    transition: opacity 0.3s;
+}
+#прелоадер.hidden { opacity: 0; pointer-events: none; }
+.спиннер {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--рамка);
+    border-top-color: var(--оранжевый);
+    border-radius: 50%;
+    animation: вращение 1s linear infinite;
+}
+@keyframes вращение { to { transform: rotate(360deg); } }
+
+/* ---------- АДАПТАЦИЯ ---------- */
+/* ---------- АДАПТАЦИЯ ---------- */
+/* ---------- АДАПТАЦИЯ ---------- */
+
+/* ПЛАНШЕТЫ (до 900px) */
+@media (max-width: 900px) {
+    .внутри-главной {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    .лого { order: 1; }
+    .бургер { display: flex; order: 2; }
+    .поиск { order: 3; width: 100%; margin-top: 10px; }
+    .иконки-шапки { 
+        order: 4; 
+        display: flex; 
+        gap: 15px; 
+        justify-content: flex-end; 
+    }
+    .ссылки-меню { display: none; }
+    .иконка-ссылка { 
+        font-size: 18px; 
+        min-width: 40px; 
+        text-align: center;
+    }
+    .текст-иконки { 
+        font-size: 9px; 
+        display: block;
+    }
+    .счетчик { 
+        top: -5px; 
+        right: -8px; 
+        min-width: 16px; 
+        height: 16px; 
+        font-size: 9px;
+    }
+}
+
+/* ПЛАНШЕТЫ (до 768px) */
+@media (max-width: 768px) {
+    .сетка-подвала { grid-template-columns: 1fr 1fr; }
+    .иконки-шапки { gap: 12px; }
+    .иконка-ссылка { font-size: 16px; min-width: 35px; }
+    .текст-иконки { font-size: 8px; }
+}
+
+/* ТЕЛЕФОНЫ (до 480px) */
+@media (max-width: 480px) {
+    .сетка-подвала { grid-template-columns: 1fr; }
+    .верх-шапки { display: none; }
+    #кнопка-наверх { bottom: 16px; right: 16px; }
+    .иконки-шапки { gap: 10px; }
+    .иконка-ссылка { font-size: 18px; min-width: 30px; }
+    .текст-иконки { display: none; }
+    .счетчик { 
+        top: -8px; 
+        right: -10px; 
+        min-width: 16px; 
+        height: 16px; 
+        font-size: 9px;
+    }
+}
+
+/* ОЧЕНЬ МАЛЕНЬКИЕ ТЕЛЕФОНЫ (до 380px) */
+@media (max-width: 380px) {
+    .иконки-шапки { gap: 5px; }
+    .иконка-ссылка { font-size: 16px; min-width: 28px; }
+    .счетчик { top: -6px; right: -8px; min-width: 14px; height: 14px; font-size: 8px; }
+}
+
+/* ---------- ССЫЛКА НА ВЕРСИЮ ДЛЯ СЛАБОВИДЯЩИХ В ПОДВАЛЕ ---------- */
+.ссылка-доступности {
+    color: #888;
+    font-size: 12px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: color 0.2s;
+}
+.ссылка-доступности:hover { color: var(--оранжевый); }
+
+/* ---------- ВСПЛЫВАЮЩИЕ ОКНА (POPUPS) ---------- */
+/* Маленькое всплывающее окно при наведении на иконку в шапке */
+.popup-контейнер { position: relative; }
+.popup {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    padding: 12px 16px;
+    min-width: 220px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+    z-index: 200;
+    font-size: 13px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4px);
+    transition: opacity 0.2s, transform 0.2s, visibility 0.2s;
+    color: var(--текст);
+}
+.popup.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+.popup::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 14px;
+    border: 6px solid transparent;
+    border-bottom-color: var(--рамка);
+    border-top: none;
+}
+.popup-строка {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--рамка);
+    gap: 10px;
+}
+.popup-строка:last-child { border-bottom: none; }
+.popup-назв {
+    font-size: 12px;
+    color: var(--текст-светлый);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 130px;
+}
+.popup-цена { font-weight: 700; font-size: 13px; flex-shrink: 0; }
+.popup-итого {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 2px solid var(--рамка);
+}
+.popup-кнопка {
+    display: block;
+    width: 100%;
+    padding: 9px;
+    background: var(--оранжевый);
+    color: white;
+    text-align: center;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 13px;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+.popup-кнопка:hover { background: #d9561a; }
+.popup-пусто {
+    text-align: center;
+    color: var(--текст-светлый);
+    padding: 10px 0;
+    font-size: 13px;
+}
+
+/* ---------- АНИМАЦИЯ HOVER ДЛЯ ИКОНОК ШАПКИ ---------- */
+.иконка-ссылка {
+    transition: color 0.2s, transform 0.2s;
+}
+.иконка-ссылка:hover { transform: translateY(-2px); }
+
+/* ---------- ПЛАВАЮЩАЯ КНОПКА ЗАМЕРА ---------- */
+.плавающая-кнопка {
+    position: fixed;
+    bottom: 90px;
+    right: 30px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    z-index: 50;
+    box-shadow: 0 4px 16px rgba(39,174,96,0.4);
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+}
+.плавающая-кнопка:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 22px rgba(39,174,96,0.5);
+}
+@media (max-width: 480px) {
+    .плавающая-кнопка { bottom: 70px; right: 16px; padding: 10px 14px; font-size: 13px; }
+}
+
+/* ---------- ЗАГЛУШКА ЕСЛИ ФОТО НЕ ЗАГРУЗИЛОСЬ ---------- */
+.фото-заглушка-цвет {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    gap: 8px;
+    background: linear-gradient(135deg, #f5f5f5, #e8e8e8);
+}
+body[data-theme="dark"] .фото-заглушка-цвет {
+    background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+}
+.фото-заглушка-цвет span {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+
+
+/* Добавьте в начало файла после * { ... } */
+html, body {
+    overflow-x: hidden;
+    max-width: 100%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Для всех контейнеров на мобильных */
+@media (max-width: 768px) {
+    .контейнер {
+        padding: 0 16px;
+        overflow-x: hidden;
+    }
+    
+    .сетка, .а11й-категории, .а11й-товары-сетка {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 480px) {
+    .контейнер {
+        padding: 0 12px;
+    }
+}
+
+
+
+/* ========================================================
+   АДАПТАЦИЯ ДЛЯ СТРАНИЦЫ "О КОМПАНИИ" (about.html)
+   ======================================================== */
+
+/* ПЛАНШЕТЫ (до 768px) */
+@media (max-width: 768px) {
+    .о-нас-раскладка {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .форма-раскладка {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+    }
+    
+    .форма-раскладка .форма-поле {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .преим-сетка {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+}
+
+/* ТЕЛЕФОНЫ (до 480px) */
+@media (max-width: 480px) {
+    /* Контейнеры */
+    .контейнер {
+        padding: 0 16px;
+        overflow-x: hidden;
+    }
+    
+    /* Блок с формой */
+    .форма-раскладка {
+        padding: 0;
+    }
+    
+    .форма-раскладка h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+    
+    /* Поля ввода */
+    .форма-поле {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+        box-sizing: border-box;
+    }
+    
+    /* Кнопка */
+    .кнопка-оранжевая {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+    }
+    
+    /* Преимущества */
+    .преим-сетка {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Карточки преимуществ */
+    .преим-карточка {
+        padding: 16px;
+    }
+    
+    /* Изображение в блоке */
+    .форма-раскладка img {
+        width: 100%;
+        height: auto;
+        max-width: 280px;
+    }
+    
+    /* Заголовки */
+    .о-нас-текст h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+    
+    .о-нас-текст p {
+        font-size: 14px;
+        text-align: center;
+    }
+    
+    /* Карта */
+    iframe {
+        width: 100%;
+        height: 250px;
+    }
+    
+    /* Контактные данные под картой */
+    .контейнер > div[style*="display:flex"] {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 12px;
+    }
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог дверей — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+
+    <!-- ПРЕЛОАДЕР -->
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <!-- ==================== ШАПКА (та же что на главной) ==================== -->
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div>
+                    <a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a>
+                    <span style="margin-left:16px;">Пн–Вс: 9:00 – 19:00</span>
+                </div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" data-lang="ru">RU</button>
+                    <button class="кнопка-настройки" data-lang="en">EN</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="4" fill="#f26522"/>
+                        <rect x="8" y="6" width="10" height="28" rx="2" fill="white"/>
+                        <rect x="22" y="6" width="10" height="28" rx="2" fill="white"/>
+                        <circle cx="19" cy="20" r="2" fill="#f26522"/>
+                    </svg>
+                    <div>
+                        <div class="лого-текст">дверь<span>.рф</span></div>
+                        <div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div>
+                    </div>
+                </a>
+                <div class="поиск">
+                    <input type="text" class="поле-поиска" placeholder="Поиск по каталогу..." id="поле-поиска">
+                    <span class="кнопка-поиска" id="кнопка-поиска">🔍</span>
+                </div>
+                <div class="иконки-шапки">
+                    <a href="#" class="иконка-ссылка" id="ссылка-вход">
+                        <span>👤</span><span class="текст-иконки">Войти</span>
+                    </a>
+                    <a href="favorites.html" class="иконка-ссылка">
+                        <span>♡</span><span class="текст-иконки">Избранное</span>
+                        <span class="счетчик" id="счетчик-избранного">0</span>
+                    </a>
+                    <a href="cart.html" class="иконка-ссылка">
+                        <span>🛒</span><span class="текст-иконки">Корзина</span>
+                        <span class="счетчик" id="счетчик-корзины">0</span>
+                    </a>
+                </div>
+                <!-- Бургер для мобильных -->
+                <div class="бургер" id="бургер"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- НАВИГАЦИЯ -->
+    <div class="меню">
+        <div class="контейнер">
+            <div class="ссылки-меню" id="ссылки-меню">
+                <a href="index.html" class="ссылка-меню">Все двери</a>
+                <a href="catalog.html?cat=entrance" class="ссылка-меню" data-cat="entrance">Входные двери</a>
+                <a href="catalog.html?cat=interior" class="ссылка-меню" data-cat="interior">Межкомнатные</a>
+                <a href="catalog.html?cat=hardware" class="ссылка-меню" data-cat="hardware">Фурнитура</a>
+                <a href="delivery.html" class="ссылка-меню">Доставка и установка</a>
+                <a href="about.html" class="ссылка-меню">О нас</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Мобильное меню -->
+    <div class="моб-оверлей" id="моб-оверлей"></div>
+    <div class="моб-меню" id="моб-меню">
+        <a href="index.html">Все двери</a>
+        <a href="catalog.html?cat=entrance">Входные двери</a>
+        <a href="catalog.html?cat=interior">Межкомнатные</a>
+        <a href="catalog.html?cat=hardware">Фурнитура</a>
+        <a href="about.html">О нас</a>
+    </div>
+
+    <!-- ==================== ХЛЕБНЫЕ КРОШКИ ==================== -->
+    <div class="контейнер">
+        <div class="крошки">
+            <a href="index.html">Главная</a>
+            <span>›</span>
+            <span id="крошка-категория">Каталог</span>
+        </div>
+    </div>
+
+    <!-- ==================== ЗАГОЛОВОК + СОРТИРОВКА ==================== -->
+    <div class="контейнер">
+        <div class="шапка-каталога">
+            <h1 id="заголовок-каталога">Входные двери</h1>
+            <div class="сортировка">
+                <label>Сортировка:</label>
+                <select id="сортировка" class="селект">
+                    <option value="default">По умолчанию</option>
+                    <option value="price-asc">Цена: по возрастанию</option>
+                    <option value="price-desc">Цена: по убыванию</option>
+                    <option value="rating">По рейтингу</option>
+                    <option value="name">По названию</option>
+                </select>
+                <!-- Кнопки переключения вид: сетка / список -->
+                <button class="кнопка-вида active" id="вид-сетка" title="Сетка">⊞</button>
+                <button class="кнопка-вида" id="вид-список" title="Список">☰</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка фильтров для мобильных (появляется только на узких экранах) -->
+    <div class="контейнер">
+        <button class="кнопка-моб-фильтры" id="открыть-фильтры">
+            ⚙ Фильтры
+        </button>
+    </div>
+
+    <!-- ==================== ОСНОВНАЯ ЧАСТЬ: ФИЛЬТРЫ + ТОВАРЫ ==================== -->
+    <div class="контейнер">
+        <div class="раскладка-каталога">
+
+            <!-- ---- ЛЕВАЯ КОЛОНКА: ФИЛЬТРЫ ---- -->
+            <aside class="фильтры">
+
+                <!-- Фильтр по подкатегории (подпункты меню слева) -->
+                <div class="фильтр-блок" id="блок-подкатегорий">
+                    <h3 class="фильтр-заголовок">Входные двери России</h3>
+                    <!-- Список будет заполнен через JS -->
+                    <div id="список-подкатегорий"></div>
+                </div>
+
+                <!-- Цвет / исполнение -->
+                <div class="фильтр-блок">
+                    <h3 class="фильтр-заголовок">Цвет / исполнение</h3>
+                    <div class="цвета-фильтра" id="цвета-фильтра">
+                        <!-- Заполнится через JS -->
+                    </div>
+                    <!-- Теги выбранных цветов -->
+                    <div class="выбранные-цвета" id="выбранные-цвета"></div>
+                </div>
+
+                <!-- Фильтр по цене (ползунок) -->
+                <div class="фильтр-блок">
+                    <h3 class="фильтр-заголовок">Цена, ₽</h3>
+                    <div class="ползунок-цены">
+                        <div class="поля-цены">
+                            <input type="number" id="цена-от" class="поле-цены" placeholder="от" value="0">
+                            <span>—</span>
+                            <input type="number" id="цена-до" class="поле-цены" placeholder="до" value="100000">
+                        </div>
+                        <input type="range" id="ползунок-до" min="0" max="100000" value="100000" class="ползунок">
+                    </div>
+                    <button class="кнопка-оранжевая" id="применить-цену" style="width:100%; margin-top:8px;">Применить</button>
+                </div>
+
+                <!-- Фильтр по производителю (чекбоксы) -->
+                <!--div class="фильтр-блок">
+                    <h3 class="фильтр-заголовок">Производитель</h3>
+                    <div id="список-брендов"></div>
+                </div-->
+
+                <!-- Фильтр по размеру -->
+                <!--div class="фильтр-блок">
+                    <h3 class="фильтр-заголовок">Размер двери</h3>
+                    <div class="чекбоксы">
+                        <label><input type="checkbox" name="размер" value="2050"> 860×2050 мм</label>
+                        <label><input type="checkbox" name="размер" value="2100"> 900×2100 мм</label>
+                        <label><input type="checkbox" name="размер" value="2000"> 800×2000 мм</label>
+                    </div>
+                </div-->
+
+                <!-- Кнопка сброса фильтров -->
+                <button class="кнопка-сброса-фильтров" id="сбросить-фильтры">Сбросить фильтры</button>
+            </aside>
+
+            <!-- ---- ПРАВАЯ КОЛОНКА: ТОВАРЫ ---- -->
+            <div class="правая-колонка">
+
+                <!-- Информация: сколько товаров найдено -->
+                <div class="инфо-результатов">
+                    <span id="счётчик-товаров">Загрузка...</span>
+                </div>
+
+                <!-- Сетка товаров -->
+                <div id="сетка-товаров" class="сетка"></div>
+
+                <!-- ---- ПАГИНАЦИЯ ---- -->
+                <div class="пагинация" id="пагинация"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <div class="подвал">
+        <div class="контейнер">
+            <div class="сетка-подвала">
+                <div>
+                    <h4>Каталог</h4>
+                    <div class="ссылки-подвала">
+                        <a href="catalog.html?cat=entrance">Входные двери</a>
+                        <a href="catalog.html?cat=interior">Межкомнатные двери</a>
+                        <a href="catalog.html?cat=hardware">Фурнитура</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Информация</h4>
+                    <div class="ссылки-подвала">
+                        <a href="about.html">О магазине</a>
+                        <a href="delivery.html">Доставка и установка</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Контакты</h4>
+                    <div class="ссылки-подвала">
+                        <span>📞 +7 (844) 225-03-00</span>
+                        <span>📍 г. Волгоград, ул. Каннуникова 6/1</span>
+                    </div>
+                </div>
+                <div>
+                    <h4>Режим работы</h4>
+                    <div class="ссылки-подвала">
+                        <span>🕐 Пн–Вс: 9:00 – 19:00</span>
+                    </div>
+                </div>
+            </div>
+            <div class="низ-подвала">
+                <div>© 2025 Дверь.рф — Все права защищены</div>
+                <button id="кнопка-сброса" style="background:none; border:none; color:#666; cursor:pointer;">Сбросить настройки</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Кнопка наверх -->
+    <div id="кнопка-наверх" title="Наверх">↑</div>
+    <!-- Уведомления -->
+    <div id="контейнер-уведомлений"></div>
+
+    <!-- Модалка входа -->
+    <div id="модалка-входа" class="модалка">
+        <div class="модалка-внутри">
+            <h3>Вход</h3>
+            <input type="email" id="email-входа" placeholder="Email">
+            <input type="password" id="пароль-входа" placeholder="Пароль">
+            <button class="кнопка-оранжевая" id="кнопка-входа">Войти</button>
+            <button id="закрыть-модалку" style="margin-left:10px;">Отмена</button>
+            <p style="margin-top:12px; font-size:13px;">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <!-- Подключаем общий JS и JS каталога -->
+    <script src="js/common.js"></script>
+    <script src="js/catalog.js"></script>
+    <!-- ПЛАВАЮЩАЯ КНОПКА ЗАМЕРА -->
+    <button class="плавающая-кнопка" id="кнопка-замер" title="Заказать бесплатный замер">📐 Замер</button>
+
+    <!-- МОДАЛКА ЗАМЕРА -->
+    <div id="модалка-замера" class="модалка">
+        <div class="модалка-внутри">
+            <button class="закрыть-модалку" id="закрыть-замер">✕</button>
+            <h3>Бесплатный замер</h3>
+            <p style="color:var(--текст-светлый);font-size:13px;margin:8px 0 16px;">Специалист приедет, снимет размеры и поможет выбрать дверь</p>
+            <input type="text" id="замер-имя" placeholder="Ваше имя *" style="width:100%;padding:10px;border:1px solid var(--рамка);border-radius:4px;background:var(--фон);color:var(--текст);margin-bottom:10px;">
+            <input type="tel" id="замер-тел" placeholder="Телефон *" style="width:100%;padding:10px;border:1px solid var(--рамка);border-radius:4px;background:var(--фон);color:var(--текст);margin-bottom:10px;">
+            <input type="text" id="замер-адрес" placeholder="Адрес" style="width:100%;padding:10px;border:1px solid var(--рамка);border-radius:4px;background:var(--фон);color:var(--текст);margin-bottom:16px;">
+            <button class="кнопка-оранжевая" id="отправить-замер" style="width:100%;">Записаться на замер</button>
+        </div>
+    </div>
+
+
+
+
+
+
+    
+</body>
+</html>

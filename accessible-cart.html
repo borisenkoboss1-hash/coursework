@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — Дверь.рф (версия для слабовидящих)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessible.css">
+    <style>
+        .а11й-корзина-раскладка {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        @media (max-width: 800px) {
+            .а11й-корзина-раскладка { grid-template-columns: 1fr; }
+        }
+        
+        .а11й-корзина-шапка {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+            padding: 12px;
+            background: var(--оранжевый);
+            color: white;
+            font-weight: 700;
+            border-radius: 8px 8px 0 0;
+            gap: 10px;
+        }
+        @media (max-width: 600px) {
+            .а11й-корзина-шапка { display: none; }
+        }
+        
+        .а11й-корзина-строка {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr 0.5fr;
+            align-items: center;
+            gap: 10px;
+            padding: 16px;
+            border-bottom: 2px solid var(--рамка);
+            background: var(--фон);
+        }
+        @media (max-width: 600px) {
+            .а11й-корзина-строка {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                text-align: center;
+            }
+        }
+        
+        .а11й-корзина-фото {
+            width: 80px;
+            height: 100px;
+            background: var(--фон-серый);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .а11й-корзина-фото img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .а11й-корзина-инфо {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .а11й-корзина-название {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--текст);
+            text-decoration: none;
+        }
+        .а11й-корзина-бренд {
+            font-size: 0.85rem;
+            color: var(--текст-светлый);
+        }
+        .а11й-корзина-цена {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--оранжевый);
+        }
+        
+        .а11й-счетчик {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+        }
+        .а11й-счетчик-кнопка {
+            width: 36px;
+            height: 36px;
+            background: var(--оранжевый);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .а11й-счетчик-значение {
+            width: 60px;
+            padding: 8px;
+            text-align: center;
+            font-size: 1rem;
+            border: 2px solid var(--рамка);
+            border-radius: 6px;
+            background: var(--фон);
+            color: var(--текст);
+        }
+        
+        .а11й-кнопка-удалить {
+            background: none;
+            border: 2px solid #e74c3c;
+            color: #e74c3c;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .а11й-кнопка-удалить:hover {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .а11й-итог-блок {
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 12px;
+            padding: 24px;
+            position: sticky;
+            top: 20px;
+        }
+        .а11й-итог-строка {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            font-size: 1rem;
+        }
+        .а11й-итог-финал {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--оранжевый);
+            border-top: 2px solid var(--рамка);
+            margin-top: 8px;
+            padding-top: 12px;
+        }
+        .а11й-промокод {
+            display: flex;
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .а11й-промокод-поле {
+            flex: 1;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--рамка);
+            border-radius: 6px;
+            background: var(--фон);
+            color: var(--текст);
+        }
+        .а11й-кнопка-промокод {
+            padding: 12px 20px;
+            background: var(--оранжевый);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .а11й-кнопка-оформить {
+            width: 100%;
+            padding: 16px;
+            background: var(--оранжевый);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin: 16px 0;
+        }
+        
+        .а11й-пустая-страница {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .а11й-пустая-иконка {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="а11й-режим">
+
+    <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+    <div class="а11й-панель" role="toolbar">
+        <div class="контейнер а11й-панель-внутри">
+            <span class="а11й-панель-лого">дверь.рф</span>
+            <span class="а11й-разделитель">|</span>
+            <span>Версия для слабовидящих — Корзина</span>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="шрифт-меньше">А−</button>
+                <select class="а11й-селект" id="выбор-шрифта">
+                    <option value="14">14px</option>
+                    <option value="16" selected>16px</option>
+                    <option value="20">20px</option>
+                    <option value="24">24px</option>
+                </select>
+                <button class="а11й-кн" id="шрифт-больше">А+</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн тема-кн" data-тема="normal">Обычная</button>
+                <button class="а11й-кн тема-кн" data-тема="dark">Тёмная</button>
+                <button class="а11й-кн тема-кн" data-тема="contrast">Контраст</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="интервал-норм">Норм</button>
+                <button class="а11й-кн" id="интервал-широк">Широкий</button>
+            </div>
+
+            <div class="а11й-группа" style="margin-left:auto;">
+                <a href="cart.html" class="а11й-ссылка">← Обычная версия</a>
+                <button class="а11й-кн" id="а11й-сброс">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="а11й-шапка">
+        <div class="контейнер а11й-шапка-внутри">
+            <a href="accessible.html" class="а11й-лого">дверь<span>.рф</span></a>
+            <div class="а11й-контакты">
+                <a href="tel:+78442250300" class="а11й-телефон">📞 +7 (844) 225-03-00</a>
+                <span>Пн–Вс: 9:00 – 19:00</span>
+            </div>
+             <div style="display: flex; gap: 16px; align-items: center;">
+            <a href="accessible-profile.html" class="а11й-кн" style="background: none; border: 2px solid var(--оранжевый);">👤 Профиль</a>
+            <a href="accessible-cart.html" class="а11й-корзина-кн" style="background: var(--оранжевый);">🛒 Корзина (<span id="счетчик-корзины">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="а11й-nav">
+        <div class="контейнер">
+            <ul class="а11й-nav-список">
+                <li><a href="accessible.html" class="а11й-nav-ссылка">Главная</a></li>
+                <li><a href="accessible-catalog.html?cat=entrance" class="а11й-nav-ссылка">Входные двери</a></li>
+                <li><a href="accessible-catalog.html?cat=interior" class="а11й-nav-ссылка">Межкомнатные</a></li>
+                <li><a href="accessible-catalog.html?cat=hardware" class="а11й-nav-ссылка">Фурнитура</a></li>
+                <li><a href="accessible-delivery.html" class="а11й-nav-ссылка">Доставка</a></li>
+                <li><a href="accessible-about.html" class="а11й-nav-ссылка">О нас</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="контейнер">
+        <div style="display: flex; gap: 8px; padding: 14px 0;">
+            <a href="accessible.html" style="color: var(--текст-светлый);">Главная</a>
+            <span>›</span>
+            <span style="color: var(--оранжевый);">Корзина</span>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="контейнер">
+        <h1 style="font-size: 1.8rem; margin-bottom: 24px;">Корзина <span id="заголовок-кол"></span></h1>
+
+        <!-- Состояние: не залогинен -->
+        <div id="блок-не-залогинен" class="а11й-пустая-страница" style="display:none">
+            <div class="а11й-пустая-иконка">🔐</div>
+            <div style="font-size: 1.2rem; margin-bottom: 20px;">Войдите в аккаунт, чтобы увидеть корзину</div>
+            <button class="а11й-кн" id="кнопка-войти-корзина" style="background: var(--оранжевый); padding: 12px 24px;">Войти</button>
+        </div>
+
+        <!-- Состояние: корзина пуста -->
+        <div id="блок-пусто" class="а11й-пустая-страница" style="display:none">
+            <div class="а11й-пустая-иконка">🛒</div>
+            <div style="font-size: 1.2rem; margin-bottom: 20px;">Корзина пуста</div>
+            <a href="accessible-catalog.html" class="а11й-кн" style="background: var(--оранжевый); padding: 12px 24px; text-decoration: none;">Перейти в каталог</a>
+        </div>
+
+        <!-- Состояние: есть товары -->
+        <div id="блок-корзина" style="display:none">
+            <div class="а11й-корзина-раскладка">
+                
+                <div>
+                    <div class="а11й-корзина-шапка">
+                        <span>Товар</span>
+                        <span>Цена</span>
+                        <span>Количество</span>
+                        <span>Сумма</span>
+                        <span></span>
+                    </div>
+                    <div id="список-корзины"></div>
+                </div>
+
+                <div class="а11й-итог-блок">
+                    <h2 style="margin-bottom: 16px;">Итого</h2>
+                    <div class="а11й-итог-строка">
+                        <span>Товаров:</span>
+                        <span id="итог-кол">0</span>
+                    </div>
+                    <div class="а11й-итог-строка">
+                        <span>Стоимость товаров:</span>
+                        <span id="итог-сумма">0 ₽</span>
+                    </div>
+                    <div class="а11й-итог-строка" id="строка-скидка">
+                        <span>Скидка:</span>
+                        <span id="итог-скидка" style="color: #27ae60;">0 ₽</span>
+                    </div>
+                    <div class="а11й-итог-строка">
+                        <span>Доставка:</span>
+                        <span id="итог-доставка">Бесплатно</span>
+                    </div>
+                    <div class="а11й-итог-финал">
+                        <span>К оплате:</span>
+                        <span id="итог-итого">0 ₽</span>
+                    </div>
+
+                    <div class="а11й-промокод">
+                        <input type="text" id="поле-промокода" class="а11й-промокод-поле" placeholder="Промокод">
+                        <button class="а11й-кнопка-промокод" id="кнопка-промокода">Применить</button>
+                    </div>
+
+                    <button class="а11й-кнопка-оформить" id="кнопка-оформить">Оформить заказ</button>
+
+                    <a href="accessible-catalog.html" style="display: block; text-align: center; color: var(--текст-светлый);">← Продолжить покупки</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛКА ОФОРМЛЕНИЯ -->
+    <div id="модалка-заказа" class="модалка" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; justify-content: center; align-items: center;">
+        <div class="модалка-внутри" style="background: var(--фон); padding: 30px; border-radius: 12px; max-width: 500px; width: 90%;">
+            <button id="закрыть-заказ" style="float: right; background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
+            <h3 style="font-size: 1.5rem;">Оформление заказа</h3>
+            <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 12px;">
+                <input type="text" id="заказ-имя" placeholder="Имя и фамилия *" style="padding: 12px; border: 2px solid var(--рамка); border-radius: 6px; background: var(--фон); color: var(--текст);">
+                <input type="tel" id="заказ-телефон" placeholder="Телефон *" style="padding: 12px; border: 2px solid var(--рамка); border-radius: 6px; background: var(--фон); color: var(--текст);">
+                <input type="email" id="заказ-email" placeholder="Email" style="padding: 12px; border: 2px solid var(--рамка); border-radius: 6px; background: var(--фон); color: var(--текст);">
+                <input type="text" id="заказ-адрес" placeholder="Адрес доставки *" style="padding: 12px; border: 2px solid var(--рамка); border-radius: 6px; background: var(--фон); color: var(--текст);">
+                <textarea id="заказ-комментарий" placeholder="Комментарий" style="padding: 12px; border: 2px solid var(--рамка); border-radius: 6px; background: var(--фон); color: var(--текст); min-height: 80px;"></textarea>
+            </div>
+            <div style="margin-top: 20px; padding: 12px; background: var(--фон-серый); border-radius: 8px;">
+                Итого: <strong id="модалка-итого">0 ₽</strong>
+            </div>
+            <button class="а11й-кнопка-оформить" id="подтвердить-заказ" style="margin-top: 16px;">Подтвердить заказ</button>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer class="а11й-подвал">
+        <div class="контейнер">
+            <div class="а11й-подвал-ссылки">
+                <a href="accessible.html">Главная</a>
+                <a href="accessible-catalog.html">Каталог</a>
+                <a href="accessible-about.html">О компании</a>
+                <a href="accessible-delivery.html">Доставка</a>
+                <a href="accessible-cart.html">Корзина</a>
+            </div>
+            <div class="а11й-подвал-низ">
+                <span>© 2025 Дверь.рф — Версия для слабовидящих</span>
+                <a href="cart.html">Обычная версия сайта</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessible.js"></script>
+    <script>
+        // ==================== ЛОГИКА КОРЗИНЫ ДЛЯ СЛАБОВИДЯЩИХ ====================
+        
+        let всеТоварыКорзина = [];
+        let скидкаПромокодКорзина = 0;
+        const ПРОМОКОДЫ_КОРЗИНА = { 'DVERI10': 10, 'SALE20': 20, 'НОВЫЙ15': 15 };
+
+        async function загрузитьКорзинуДанные() {
+            const польз = получитьПользователя?.() || localStorage.getItem('user');
+            
+            if (!польз && !localStorage.getItem('user')) {
+                document.getElementById('блок-не-залогинен').style.display = 'block';
+                return;
+            }
+            
+            try {
+                const resp = await fetch('data/products.json');
+                всеТоварыКорзина = await resp.json();
+                отрисоватьКорзинуДанные();
+            } catch(e) {
+                console.error(e);
+            }
+        }
+        
+        function отрисоватьКорзинуДанные() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            
+            if (корзина.length === 0) {
+                document.getElementById('блок-пусто').style.display = 'block';
+                document.getElementById('блок-корзина').style.display = 'none';
+                document.getElementById('заголовок-кол').textContent = '';
+                return;
+            }
+            
+            document.getElementById('блок-корзина').style.display = 'block';
+            document.getElementById('заголовок-кол').textContent = `(${корзина.length})`;
+            
+            const список = document.getElementById('список-корзины');
+            список.innerHTML = '';
+            
+            корзина.forEach(запись => {
+                const товар = всеТоварыКорзина.find(т => т.id === запись.idТовара);
+                if (!товар) return;
+                const кол = запись.количество || 1;
+                
+                const строка = document.createElement('div');
+                строка.className = 'а11й-корзина-строка';
+                строка.setAttribute('data-id', товар.id);
+                строка.innerHTML = `
+                    <div style="display: flex; gap: 16px; align-items: center;">
+                        <div class="а11й-корзина-фото">
+                            <img src="${товар.image}" alt="${товар.name}" onerror="this.style.display='none'">
+                        </div>
+                        <div class="а11й-корзина-инфо">
+                            <div class="а11й-корзина-бренд">${товар.brand}</div>
+                            <a href="accessible-product.html?id=${товар.id}" class="а11й-корзина-название">${товар.name}</a>
+                        </div>
+                    </div>
+                    <div class="а11й-корзина-цена">${форматЦены(товар.price)}</div>
+                    <div class="а11й-счетчик">
+                        <button class="а11й-счетчик-кнопка" data-минус="${товар.id}">−</button>
+                        <input type="number" class="а11й-счетчик-значение" value="${кол}" min="1" max="99" data-кол="${товар.id}">
+                        <button class="а11й-счетчик-кнопка" data-плюс="${товар.id}">+</button>
+                    </div>
+                    <div class="а11й-корзина-цена" id="сумма-${товар.id}">${форматЦены(товар.price * кол)}</div>
+                    <button class="а11й-кнопка-удалить" data-удалить="${товар.id}">✕ Удалить</button>
+                `;
+                список.appendChild(строка);
+            });
+            
+            навеситьОбработчикиКорзиныДанные();
+            пересчитатьИтогКорзина();
+        }
+        
+        function навеситьОбработчикиКорзиныДанные() {
+            document.querySelectorAll('[data-минус]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = +btn.getAttribute('data-минус');
+                    изменитьКоличествоКорзина(id, -1);
+                });
+            });
+            document.querySelectorAll('[data-плюс]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = +btn.getAttribute('data-плюс');
+                    изменитьКоличествоКорзина(id, 1);
+                });
+            });
+            document.querySelectorAll('[data-кол]').forEach(inp => {
+                inp.addEventListener('change', () => {
+                    const id = +inp.getAttribute('data-кол');
+                    const val = Math.max(1, Math.min(99, +inp.value || 1));
+                    inp.value = val;
+                    установитьКоличествоКорзина(id, val);
+                });
+            });
+            document.querySelectorAll('[data-удалить]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = +btn.getAttribute('data-удалить');
+                    удалитьИзКорзины?.(id);
+                    отрисоватьКорзинуДанные();
+                });
+            });
+        }
+        
+        function изменитьКоличествоКорзина(id, дельта) {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const запись = корзина.find(з => з.idТовара === id);
+            if (!запись) return;
+            запись.количество = Math.max(1, (запись.количество || 1) + дельта);
+            localStorage.setItem('корзина', JSON.stringify(корзина));
+            
+            const поле = document.querySelector(`[data-кол="${id}"]`);
+            if (поле) поле.value = запись.количество;
+            const товар = всеТоварыКорзина.find(т => т.id === id);
+            const суммаЭл = document.getElementById(`сумма-${id}`);
+            if (товар && суммаЭл) суммаЭл.textContent = форматЦены(товар.price * запись.количество);
+            пересчитатьИтогКорзина();
+            обновитьСчетчикКорзиныОбщий();
+        }
+        
+        function установитьКоличествоКорзина(id, значение) {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const запись = корзина.find(з => з.idТовара === id);
+            if (!запись) return;
+            запись.количество = значение;
+            localStorage.setItem('корзина', JSON.stringify(корзина));
+            const товар = всеТоварыКорзина.find(т => т.id === id);
+            const суммаЭл = document.getElementById(`сумма-${id}`);
+            if (товар && суммаЭл) суммаЭл.textContent = форматЦены(товар.price * значение);
+            пересчитатьИтогКорзина();
+            обновитьСчетчикКорзиныОбщий();
+        }
+        
+        function пересчитатьИтогКорзина() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            let сумма = 0;
+            let кол = 0;
+            
+            корзина.forEach(запись => {
+                const товар = всеТоварыКорзина.find(т => т.id === запись.idТовара);
+                if (товар) {
+                    const кол_шт = запись.количество || 1;
+                    кол += кол_шт;
+                    сумма += товар.price * кол_шт;
+                }
+            });
+            
+            const скидка = Math.round(сумма * скидкаПромокодКорзина / 100);
+            const итого = сумма - скидка;
+            const доставка = итого >= 5000 ? 0 : 600;
+            
+            document.getElementById('итог-кол').textContent = кол + ' шт.';
+            document.getElementById('итог-сумма').textContent = форматЦены(сумма);
+            document.getElementById('итог-скидка').textContent = скидка > 0 ? '−' + форматЦены(скидка) : '0 ₽';
+            document.getElementById('итог-доставка').textContent = доставка === 0 ? 'Бесплатно' : форматЦены(доставка);
+            document.getElementById('итог-итого').textContent = форматЦены(итого + доставка);
+            
+            const модалкаИтого = document.getElementById('модалка-итого');
+            if (модалкаИтого) модалкаИтого.textContent = форматЦены(итого + доставка);
+        }
+        
+        function обновитьСчетчикКорзиныОбщий() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const сумма = корзина.reduce((s, i) => s + (i.quantity || i.количество || 1), 0);
+            const счетчик = document.getElementById('счетчик-корзины');
+            if (счетчик) счетчик.textContent = сумма;
+        }
+        
+        // Инициализация промокода
+        document.getElementById('кнопка-промокода')?.addEventListener('click', () => {
+            const код = document.getElementById('поле-промокода').value.trim().toUpperCase();
+            if (ПРОМОКОДЫ_КОРЗИНА[код]) {
+                скидкаПромокодКорзина = ПРОМОКОДЫ_КОРЗИНА[код];
+                уведомление(`Промокод применён! Скидка ${скидкаПромокодКорзина}%`);
+                пересчитатьИтогКорзина();
+            } else {
+                уведомление('Неверный промокод', 'ошибка');
+            }
+        });
+        
+        // Инициализация оформления заказа
+        const модалка = document.getElementById('модалка-заказа');
+        document.getElementById('кнопка-оформить')?.addEventListener('click', () => {
+            if (модалка) модалка.style.display = 'flex';
+        });
+        document.getElementById('закрыть-заказ')?.addEventListener('click', () => {
+            if (модалка) модалка.style.display = 'none';
+        });
+        document.getElementById('подтвердить-заказ')?.addEventListener('click', () => {
+            const имя = document.getElementById('заказ-имя')?.value.trim();
+            const тел = document.getElementById('заказ-телефон')?.value.trim();
+            if (!имя || !тел) {
+                уведомление('Заполните имя и телефон', 'ошибка');
+                return;
+            }
+            localStorage.removeItem('корзина');
+            if (модалка) модалка.style.display = 'none';
+            уведомление('Заказ оформлен! Мы свяжемся с вами.');
+            отрисоватьКорзинуДанные();
+            обновитьСчетчикКорзиныОбщий();
+        });
+        
+        document.getElementById('кнопка-войти-корзина')?.addEventListener('click', () => {
+            открытьМодалкуВхода?.();
+        });
+        
+        // Запуск
+        document.addEventListener('DOMContentLoaded', () => {
+            загрузитьКорзинуДанные();
+            обновитьСчетчикКорзиныОбщий();
+        });
+    </script>
+</body>
+</html>

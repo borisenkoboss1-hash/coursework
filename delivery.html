@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Доставка и установка — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/pages.css">
+</head>
+<body>
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div><a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a><span style="margin-left:16px;">Пн–Вс: 9:00 – 19:00</span></div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" data-lang="ru">RU</button>
+                    <button class="кнопка-настройки" data-lang="en">EN</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#f26522"/><rect x="8" y="6" width="10" height="28" rx="2" fill="white"/><rect x="22" y="6" width="10" height="28" rx="2" fill="white"/><circle cx="19" cy="20" r="2" fill="#f26522"/></svg>
+                    <div><div class="лого-текст">дверь<span>.рф</span></div><div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div></div>
+                </a>
+                <div class="поиск"><input type="text" class="поле-поиска" placeholder="Поиск по каталогу..."><span class="кнопка-поиска">🔍</span></div>
+                <div class="иконки-шапки">
+                    <a href="#" class="иконка-ссылка" id="ссылка-вход"><span>👤</span><span class="текст-иконки">Войти</span></a>
+                    <a href="favorites.html" class="иконка-ссылка"><span>♡</span><span class="текст-иконки">Избранное</span><span class="счетчик" id="счетчик-избранного">0</span></a>
+                    <a href="cart.html" class="иконка-ссылка"><span>🛒</span><span class="текст-иконки">Корзина</span><span class="счетчик" id="счетчик-корзины">0</span></a>
+                </div>
+                <div class="бургер" id="бургер"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="меню"><div class="контейнер"><div class="ссылки-меню">
+        <a href="index.html" class="ссылка-меню">Все двери</a>
+        <a href="catalog.html?cat=entrance" class="ссылка-меню">Входные двери</a>
+        <a href="catalog.html?cat=interior" class="ссылка-меню">Межкомнатные</a>
+        <a href="catalog.html?cat=hardware" class="ссылка-меню">Фурнитура</a>
+        <a href="delivery.html" class="ссылка-меню active">Доставка и установка</a>
+        <a href="about.html" class="ссылка-меню">О нас</a>
+    </div></div></div>
+
+    <div class="моб-оверлей" id="моб-оверлей"></div>
+    <div class="моб-меню" id="моб-меню">
+        <a href="index.html">Все двери</a><a href="catalog.html?cat=entrance">Входные двери</a>
+        <a href="catalog.html?cat=interior">Межкомнатные</a><a href="about.html">О нас</a>
+    </div>
+
+    <div class="контейнер">
+        <div class="крошки"><a href="index.html">Главная</a><span>›</span><span>Доставка и установка</span></div>
+    </div>
+
+    <!-- ГЕРОЙ -->
+    <div class="страница-герой" style="background:linear-gradient(135deg,#1a3a2a,#0d2218);">
+        <div class="контейнер">
+            <div class="герой-контент">
+                <h1>Доставка и <span style="color:var(--оранжевый)">установка</span></h1>
+                <p>Доставляем и устанавливаем двери по Волгограду и области. Собственный автопарк, опытные монтажники, работаем без выходных.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ТАРИФЫ ДОСТАВКИ -->
+    <div class="контейнер">
+        <h2 style="margin:40px 0 24px;">Стоимость доставки</h2>
+        <div class="тарифы-сетка">
+            <div class="тариф-карточка тариф-бесплатный">
+                <div class="тариф-иконка">🚚</div>
+                <div class="тариф-цена">Бесплатно</div>
+                <div class="тариф-назв">При заказе от 5 000 ₽</div>
+                <div class="тариф-описание">Доставка в пределах Волгограда в день заказа или на следующий день</div>
+            </div>
+            <div class="тариф-карточка">
+                <div class="тариф-иконка">📦</div>
+                <div class="тариф-цена">600 ₽</div>
+                <div class="тариф-назв">Стандартная доставка</div>
+                <div class="тариф-описание">При заказе до 5 000 ₽. Доставка по городу в удобное для вас время</div>
+            </div>
+            <div class="тариф-карточка">
+                <div class="тариф-иконка">🏘️</div>
+                <div class="тариф-цена">от 900 ₽</div>
+                <div class="тариф-назв">Пригород (до 30 км)</div>
+                <div class="тариф-описание">Доставка в пригороды Волгограда. Стоимость зависит от расстояния</div>
+            </div>
+            <div class="тариф-карточка">
+                <div class="тариф-иконка">🏙️</div>
+                <div class="тариф-цена">договорная</div>
+                <div class="тариф-назв">Другие регионы</div>
+                <div class="тариф-описание">Доставка по России транспортными компаниями. Уточняйте стоимость</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЭТАПЫ УСТАНОВКИ -->
+    <div style="background:var(--фон-серый); padding:48px 0; margin:48px 0;">
+        <div class="контейнер">
+            <h2 style="text-align:center; margin-bottom:32px;">Как проходит установка</h2>
+            <div class="этапы">
+                <div class="этап">
+                    <div class="этап-номер">1</div>
+                    <h3>Замер</h3>
+                    <p>Мастер приезжает и снимает точные размеры проёма. Замер — бесплатно в радиусе 5 км</p>
+                </div>
+                <div class="этап-стрелка">→</div>
+                <div class="этап">
+                    <div class="этап-номер">2</div>
+                    <h3>Заказ</h3>
+                    <p>Выбираете дверь в каталоге или вместе с менеджером. Оформляете заказ</p>
+                </div>
+                <div class="этап-стрелка">→</div>
+                <div class="этап">
+                    <div class="этап-номер">3</div>
+                    <h3>Доставка</h3>
+                    <p>Доставляем дверь в удобное время. Заносим на любой этаж</p>
+                </div>
+                <div class="этап-стрелка">→</div>
+                <div class="этап">
+                    <div class="этап-номер">4</div>
+                    <h3>Установка</h3>
+                    <p>Устанавливаем за 1–3 часа. Убираем строительный мусор. Принимаете работу</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ЦЕНЫ НА УСТАНОВКУ -->
+    <div class="контейнер">
+        <h2 style="margin-bottom:24px;">Цены на установку</h2>
+        <div class="цены-таблица">
+            <div class="цены-строка цены-шапка">
+                <span>Вид работы</span><span>Цена</span>
+            </div>
+            <div class="цены-строка"><span>Установка входной двери</span><span>от 2 500 ₽</span></div>
+            <div class="цены-строка"><span>Установка межкомнатной двери</span><span>от 1 800 ₽</span></div>
+            <div class="цены-строка"><span>Замер (в радиусе 5 км)</span><span>Бесплатно</span></div>
+            <div class="цены-строка"><span>Вынос старой двери</span><span>500 ₽</span></div>
+            <div class="цены-строка"><span>Подъём на этаж (за пролёт)</span><span>200 ₽</span></div>
+            <div class="цены-строка"><span>Расширение / сужение проёма</span><span>от 3 000 ₽</span></div>
+        </div>
+    </div>
+
+    <!-- ФОРМА ЗАЯВКИ -->
+    <div style="background:var(--фон-серый); padding:48px 0; margin:48px 0 0;">
+        <div class="контейнер">
+            <div class="форма-раскладка">
+                <div>
+                    <h2>Записаться на замер</h2>
+                    <p style="color:var(--текст-светлый); margin-top:10px; line-height:1.6;">Оставьте заявку — перезвоним за 30 минут и согласуем удобное время.</p>
+                    <div style="margin-top:20px; display:flex; flex-direction:column; gap:10px;">
+                        <input type="text" id="дел-имя"   class="форма-поле" placeholder="Ваше имя">
+                        <input type="tel"  id="дел-тел"   class="форма-поле" placeholder="Телефон">
+                        <input type="text" id="дел-адрес" class="форма-поле" placeholder="Адрес объекта">
+                        <button class="кнопка-оранжевая" id="дел-отправить">Записаться на замер</button>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;justify-content:center;">
+                    <div style="font-size:100px;">🔧</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="подвал">
+        <div class="контейнер">
+            <div class="сетка-подвала">
+                <div><h4>Каталог</h4><div class="ссылки-подвала"><a href="catalog.html?cat=entrance">Входные двери</a><a href="catalog.html?cat=interior">Межкомнатные</a><a href="catalog.html?cat=hardware">Фурнитура</a></div></div>
+                <div><h4>Информация</h4><div class="ссылки-подвала"><a href="about.html">О магазине</a><a href="delivery.html">Доставка</a></div></div>
+                <div><h4>Контакты</h4><div class="ссылки-подвала"><span>📞 +7 (844) 225-03-00</span><span>📍 г. Волгоград, ул. Каннуникова 6/1</span></div></div>
+                <div><h4>Режим работы</h4><div class="ссылки-подвала"><span>🕐 Пн–Вс: 9:00 – 19:00</span></div></div>
+            </div>
+            <div class="низ-подвала"><div>© 2025 Дверь.рф</div><button id="кнопка-сброса" style="background:none;border:none;color:#666;cursor:pointer;">Сбросить настройки</button></div>
+        </div>
+    </div>
+
+    <div id="кнопка-наверх">↑</div>
+    <div id="контейнер-уведомлений"></div>
+    <div id="модалка-входа" class="модалка">
+        <div class="модалка-внутри">
+            <button class="закрыть-модалку" id="закрыть-модалку">✕</button>
+            <h3>Вход</h3>
+            <input type="email" id="email-входа" placeholder="Email">
+            <input type="password" id="пароль-входа" placeholder="Пароль">
+            <button class="кнопка-оранжевая" id="кнопка-входа" style="width:100%;margin-top:8px;">Войти</button>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script>
+        document.getElementById('дел-отправить').addEventListener('click', () => {
+            const имя = document.getElementById('дел-имя').value.trim();
+            const тел = document.getElementById('дел-тел').value.trim();
+            if (!имя || !тел) { уведомление('Заполните имя и телефон', 'ошибка'); return; }
+            уведомление('Заявка принята! Перезвоним через 30 минут.', 'успех');
+            ['дел-имя','дел-тел','дел-адрес'].forEach(id => document.getElementById(id).value = '');
+        });
+    </script>
+</body>
+</html>

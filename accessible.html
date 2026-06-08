@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дверь.рф — версия для слабовидящих</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessible.css">
+</head>
+<body class="а11й-режим">
+
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <!-- ПАНЕЛЬ УПРАВЛЕНИЯ ДОСТУПНОСТЬЮ (вверху страницы) -->
+    <div class="а11й-панель" id="а11й-панель" role="toolbar" aria-label="Настройки доступности">
+        <div class="контейнер а11й-панель-внутри">
+
+            <span class="а11й-панель-лого">дверь.рф</span>
+            <span class="а11й-разделитель">|</span>
+            <span>Версия для слабовидящих</span>
+
+            <!-- Размер шрифта -->
+            <div class="а11й-группа" role="group" aria-label="Размер шрифта">
+                <span class="а11й-метка">Размер шрифта:</span>
+                <button class="а11й-кн" id="шрифт-меньше" aria-label="Уменьшить шрифт" title="Уменьшить">А−</button>
+                <select class="а11й-селект" id="выбор-шрифта" aria-label="Выбрать размер шрифта">
+                    <option value="14">Мелкий (14px)</option>
+                    <option value="16" selected>Обычный (16px)</option>
+                    <option value="20">Крупный (20px)</option>
+                    <option value="24">Очень крупный (24px)</option>
+                    <option value="28">Огромный (28px)</option>
+                </select>
+                <button class="а11й-кн" id="шрифт-больше" aria-label="Увеличить шрифт" title="Увеличить">А+</button>
+            </div>
+
+            <!-- Цветовая схема -->
+            <div class="а11й-группа" role="group" aria-label="Цветовая схема">
+                <span class="а11й-метка">Тема:</span>
+                <button class="а11й-кн тема-кн" data-тема="normal"   aria-pressed="true">Обычная</button>
+                <button class="а11й-кн тема-кн" data-тема="dark"     aria-pressed="false">Тёмная</button>
+                <button class="а11й-кн тема-кн" data-тема="contrast" aria-pressed="false">Контраст</button>
+                <button class="а11й-кн тема-кн" data-тема="sepia"    aria-pressed="false">Сепия</button>
+            </div>
+
+            <!-- Межбуквенный интервал -->
+            <div class="а11й-группа">
+                <span class="а11й-метка">Интервал:</span>
+                <button class="а11й-кн" id="интервал-норм">Нормальный</button>
+                <button class="а11й-кн" id="интервал-широк">Широкий</button>
+            </div>
+
+            <!-- Ссылки -->
+            <div class="а11й-группа" style="margin-left:auto;">
+                <a href="index.html" class="а11й-ссылка">← Обычная версия</a>
+                <button class="а11й-кн" id="а11й-сброс">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА УПРОЩЁННАЯ -->
+    <header class="а11й-шапка" role="banner">
+        <div class="контейнер а11й-шапка-внутри">
+            <a href="accessible.html" class="а11й-лого" aria-label="Дверь.рф — главная страница">
+                дверь<span>.рф</span>
+            </a>
+            <div class="а11й-контакты">
+                <a href="tel:+78442250300" class="а11й-телефон" aria-label="Позвонить нам">
+                    📞 +7 (844) 225-03-00
+                </a>
+                <span>Пн–Вс: 9:00 – 19:00</span>
+            </div>
+            <div style="display: flex; gap: 16px; align-items: center;">
+            <a href="accessible-profile.html" class="а11й-кн" style="background: none; border: 2px solid var(--оранжевый);">👤 Профиль</a>
+            <a href="accessible-cart.html" class="а11й-корзина-кн">🛒 Корзина (<span id="счетчик-корзины">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="а11й-nav" role="navigation" aria-label="Основная навигация">
+        <div class="контейнер">
+            <ul class="а11й-nav-список" role="list">
+               <li><a href="accessible-catalog.html?cat=entrance" class="а11й-nav-ссылка">Входные двери</a></li>
+<li><a href="accessible-catalog.html?cat=interior" class="а11й-nav-ссылка">Межкомнатные</a></li>
+<li><a href="accessible-catalog.html?cat=hardware" class="а11й-nav-ссылка">Фурнитура</a></li>
+<li><a href="accessible-delivery.html" class="а11й-nav-ссылка">Доставка</a></li>
+<li><a href="accessible-about.html" class="а11й-nav-ссылка">О нас</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ГЛАВНЫЙ КОНТЕНТ -->
+    <main id="основной-контент" role="main">
+
+        <!-- ПОИСК (большой и заметный) -->
+        <div class="а11й-поиск-блок" role="search" aria-label="Поиск по каталогу">
+            <div class="контейнер">
+                <h1 class="а11й-поиск-заголовок">Найдите нужную дверь</h1>
+                <div class="а11й-поиск-форма">
+                    <label for="а11й-поле-поиска" class="visually-hidden">Поиск по каталогу</label>
+                    <input type="search"
+                           id="а11й-поле-поиска"
+                           class="а11й-поиск-поле"
+                           placeholder="Введите название, бренд или артикул..."
+                           aria-label="Поиск по каталогу">
+                    <button class="а11й-поиск-кн" id="а11й-поиск-кн" aria-label="Искать">
+                        🔍 Найти
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- КАТЕГОРИИ -->
+        <section class="контейнер" aria-label="Категории товаров">
+            <h2 class="а11й-секция-заголовок">Категории товаров</h2>
+            <div class="а11й-категории" role="list">
+                <a href="catalog.html?cat=entrance" class="а11й-категория" role="listitem">
+                    <span class="а11й-кат-иконка" aria-hidden="true">🚪</span>
+                    <span class="а11й-кат-назв">Входные двери</span>
+                    <span class="а11й-кат-описание">Металлические входные двери для квартир и домов</span>
+                </a>
+                <a href="catalog.html?cat=interior" class="а11й-категория" role="listitem">
+                    <span class="а11й-кат-иконка" aria-hidden="true">🚪</span>
+                    <span class="а11й-кат-назв">Межкомнатные двери</span>
+                    <span class="а11й-кат-описание">Деревянные и МДФ двери для комнат</span>
+                </a>
+                <a href="catalog.html?cat=hardware" class="а11й-категория" role="listitem">
+                    <span class="а11й-кат-иконка" aria-hidden="true">🔑</span>
+                    <span class="а11й-кат-назв">Фурнитура</span>
+                    <span class="а11й-кат-описание">Ручки, замки, петли и аксессуары</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- ПОПУЛЯРНЫЕ ТОВАРЫ -->
+        <section class="контейнер" aria-label="Популярные товары">
+            <h2 class="а11й-секция-заголовок">Популярные товары</h2>
+            <div id="а11й-товары" class="а11й-список-товаров" role="list">
+                <div style="text-align:center; padding:40px; color:var(--текст-светлый);">Загрузка товаров...</div>
+            </div>
+            <div style="text-align:center; margin-top:20px;">
+               <a href="accessible-catalog.html" class="а11й-кн-большой">Смотреть весь каталог →</a>
+            </div>
+        </section>
+
+        <!-- КОНТАКТЫ -->
+        <section class="контейнер" aria-label="Контакты и адрес">
+            <h2 class="а11й-секция-заголовок">Как с нами связаться</h2>
+            <div class="а11й-контакты-блок">
+                <div class="а11й-контакт">
+                    <span class="а11й-кон-иконка" aria-hidden="true">📞</span>
+                    <div>
+                        <div class="а11й-кон-метка">Телефон</div>
+                        <a href="tel:+78442250300" class="а11й-кон-значение">+7 (844) 225-03-00</a>
+                    </div>
+                </div>
+                <div class="а11й-контакт">
+                    <span class="а11й-кон-иконка" aria-hidden="true">📍</span>
+                    <div>
+                        <div class="а11й-кон-метка">Адрес</div>
+                        <div class="а11й-кон-значение">г. Волгоград, ул. Каннуникова 6/1</div>
+                    </div>
+                </div>
+                <div class="а11й-контакт">
+                    <span class="а11й-кон-иконка" aria-hidden="true">🕐</span>
+                    <div>
+                        <div class="а11й-кон-метка">Режим работы</div>
+                        <div class="а11й-кон-значение">Пн–Вс: 9:00 – 19:00</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="а11й-подвал" role="contentinfo">
+        <div class="контейнер">
+            <div class="а11й-подвал-ссылки">
+                <a href="accessible.html">Главная</a>
+                <a href="catalog.html">Каталог</a>
+                <a href="about.html">О компании</a>
+                <a href="delivery.html">Доставка</a>
+                <a href="cart.html">Корзина</a>
+                <a href="login.html">Войти</a>
+            </div>
+            <div class="а11й-подвал-низ">
+                <span>© 2025 Дверь.рф</span>
+                <a href="index.html">Обычная версия сайта</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessible.js"></script>
+</body>
+</html>

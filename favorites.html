@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Избранное — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/catalog.css">
+</head>
+<body>
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div><a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a><span style="margin-left:16px;">Пн–Вс: 9:00 – 19:00</span></div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" data-lang="ru">RU</button>
+                    <button class="кнопка-настройки" data-lang="en">EN</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#f26522"/><rect x="8" y="6" width="10" height="28" rx="2" fill="white"/><rect x="22" y="6" width="10" height="28" rx="2" fill="white"/><circle cx="19" cy="20" r="2" fill="#f26522"/></svg>
+                    <div><div class="лого-текст">дверь<span>.рф</span></div><div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div></div>
+                </a>
+                <div class="поиск"><input type="text" class="поле-поиска" placeholder="Поиск по каталогу..."><span class="кнопка-поиска">🔍</span></div>
+                <div class="иконки-шапки">
+                    <a href="#" class="иконка-ссылка" id="ссылка-вход"><span>👤</span><span class="текст-иконки">Войти</span></a>
+                    <a href="favorites.html" class="иконка-ссылка" style="color:var(--оранжевый)"><span>♥</span><span class="текст-иконки">Избранное</span><span class="счетчик" id="счетчик-избранного">0</span></a>
+                    <a href="cart.html" class="иконка-ссылка"><span>🛒</span><span class="текст-иконки">Корзина</span><span class="счетчик" id="счетчик-корзины">0</span></a>
+                </div>
+                <div class="бургер" id="бургер"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="меню"><div class="контейнер"><div class="ссылки-меню">
+        <a href="index.html" class="ссылка-меню">Все двери</a>
+        <a href="catalog.html?cat=entrance" class="ссылка-меню">Входные двери</a>
+        <a href="catalog.html?cat=interior" class="ссылка-меню">Межкомнатные</a>
+        <a href="catalog.html?cat=hardware" class="ссылка-меню">Фурнитура</a>
+        <a href="delivery.html" class="ссылка-меню">Доставка и установка</a>
+        <a href="about.html" class="ссылка-меню">О нас</a>
+    </div></div></div>
+
+    <div class="моб-оверлей" id="моб-оверлей"></div>
+    <div class="моб-меню" id="моб-меню">
+        <a href="index.html">Все двери</a><a href="catalog.html?cat=entrance">Входные двери</a>
+        <a href="catalog.html?cat=interior">Межкомнатные</a><a href="catalog.html?cat=hardware">Фурнитура</a>
+    </div>
+
+    <div class="контейнер">
+        <div class="крошки"><a href="index.html">Главная</a><span>›</span><span>Избранное</span></div>
+    </div>
+
+    <div class="контейнер">
+        <h1 class="страница-заголовок">Избранное <span id="заголовок-кол"></span></h1>
+
+        <div id="блок-не-залогинен" class="пустая-страница" style="display:none">
+            <div class="пустая-иконка">🔐</div>
+            <div class="пустая-текст">Войдите в аккаунт, чтобы увидеть избранное</div>
+            <button class="кнопка-оранжевая" onclick="открытьМодалкуВхода()">Войти</button>
+        </div>
+
+        <div id="блок-пусто" class="пустая-страница" style="display:none">
+            <div class="пустая-иконка">♡</div>
+            <div class="пустая-текст">Вы ещё ничего не добавили в избранное</div>
+            <a href="catalog.html" class="кнопка-оранжевая" style="text-decoration:none;">Перейти в каталог</a>
+        </div>
+
+        <!-- Сетка избранных товаров — используем те же карточки что в каталоге -->
+        <div id="сетка-избранного" class="сетка" style="margin-bottom:60px;"></div>
+    </div>
+
+    <div class="подвал">
+        <div class="контейнер">
+            <div class="сетка-подвала">
+                <div><h4>Каталог</h4><div class="ссылки-подвала"><a href="catalog.html?cat=entrance">Входные двери</a><a href="catalog.html?cat=interior">Межкомнатные</a><a href="catalog.html?cat=hardware">Фурнитура</a></div></div>
+                <div><h4>Контакты</h4><div class="ссылки-подвала"><span>📞 +7 (844) 225-03-00</span><span>📍 г. Волгоград, ул. Каннуникова 6/1</span></div></div>
+                <div><h4>Режим работы</h4><div class="ссылки-подвала"><span>🕐 Пн–Вс: 9:00 – 19:00</span></div></div>
+                <div><h4>Информация</h4><div class="ссылки-подвала"><a href="about.html">О компании</a><a href="delivery.html">Доставка</a></div></div>
+            </div>
+            <div class="низ-подвала"><div>© 2025 Дверь.рф</div><button id="кнопка-сброса" style="background:none;border:none;color:#666;cursor:pointer;">Сбросить настройки</button></div>
+        </div>
+    </div>
+
+    <div id="кнопка-наверх">↑</div>
+    <div id="контейнер-уведомлений"></div>
+    <div id="модалка-входа" class="модалка">
+        <div class="модалка-внутри">
+            <button class="закрыть-модалку" id="закрыть-модалку">✕</button>
+            <h3>Вход</h3>
+            <input type="email" id="email-входа" placeholder="Email">
+            <input type="password" id="пароль-входа" placeholder="Пароль">
+            <button class="кнопка-оранжевая" id="кнопка-входа" style="width:100%;margin-top:8px;">Войти</button>
+            <p style="margin-top:12px;font-size:13px;">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/favorites.js"></script>
+</body>
+</html>

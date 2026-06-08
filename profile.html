@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+<body>
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <!-- ШАПКА -->
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div><a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a><span style="margin-left:16px;">Пн–Вс: 9:00 – 19:00</span></div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" data-lang="ru">RU</button>
+                    <button class="кнопка-настройки" data-lang="en">EN</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#f26522"/><rect x="8" y="6" width="10" height="28" rx="2" fill="white"/><rect x="22" y="6" width="10" height="28" rx="2" fill="white"/><circle cx="19" cy="20" r="2" fill="#f26522"/></svg>
+                    <div><div class="лого-текст">дверь<span>.рф</span></div><div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div></div>
+                </a>
+                <div class="поиск"><input type="text" class="поле-поиска" placeholder="Поиск по каталогу..."><span class="кнопка-поиска">🔍</span></div>
+                <div class="иконки-шапки">
+                    <a href="profile.html" class="иконка-ссылка" style="color:var(--оранжевый)" id="ссылка-вход">
+                        <span>👤</span><span class="текст-иконки" id="имя-в-шапке">Профиль</span>
+                    </a>
+                    <a href="favorites.html" class="иконка-ссылка"><span>♡</span><span class="текст-иконки">Избранное</span><span class="счетчик" id="счетчик-избранного">0</span></a>
+                    <a href="cart.html" class="иконка-ссылка"><span>🛒</span><span class="текст-иконки">Корзина</span><span class="счетчик" id="счетчик-корзины">0</span></a>
+                </div>
+                <div class="бургер" id="бургер"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="меню"><div class="контейнер"><div class="ссылки-меню">
+        <a href="index.html" class="ссылка-меню">Все двери</a>
+        <a href="catalog.html?cat=entrance" class="ссылка-меню">Входные двери</a>
+        <a href="catalog.html?cat=interior" class="ссылка-меню">Межкомнатные</a>
+        <a href="catalog.html?cat=hardware" class="ссылка-меню">Фурнитура</a>
+        <a href="delivery.html" class="ссылка-меню">Доставка и установка</a>
+        <a href="about.html" class="ссылка-меню">О нас</a>
+    </div></div></div>
+
+    <div class="моб-оверлей" id="моб-оверлей"></div>
+    <div class="моб-меню" id="моб-меню">
+        <a href="index.html">Все двери</a>
+        <a href="catalog.html?cat=entrance">Входные двери</a>
+        <a href="catalog.html?cat=interior">Межкомнатные</a>
+        <a href="about.html">О нас</a>
+    </div>
+
+    <div class="контейнер">
+        <div class="крошки"><a href="index.html">Главная</a><span>›</span><span>Личный кабинет</span></div>
+    </div>
+
+    <!-- Блок: не залогинен -->
+    <div id="блок-не-залогинен" style="display:none; text-align:center; padding:80px 20px;">
+        <div style="font-size:64px; margin-bottom:16px;">🔐</div>
+        <div style="font-size:18px; color:var(--текст-светлый); margin-bottom:24px;">Войдите в аккаунт, чтобы открыть личный кабинет</div>
+        <a href="login.html" class="кнопка-оранжевая" style="text-decoration:none;">Войти</a>
+        <span style="margin:0 12px; color:var(--текст-светлый);">или</span>
+        <a href="register.html" style="color:var(--оранжевый);">Зарегистрироваться</a>
+    </div>
+
+    <!-- Основной контент профиля -->
+    <div id="блок-профиль" style="display:none">
+        <div class="профиль-раскладка контейнер">
+
+            <!-- ЛЕВЫЙ САЙДБАР -->
+            <aside class="профиль-сайдбар">
+                <!-- Аватар и имя -->
+                <div class="профиль-аватар-блок">
+                    <div class="профиль-аватар" id="профиль-аватар">А</div>
+                    <div class="профиль-имя" id="профиль-имя">Загрузка...</div>
+                    <div class="профиль-email" id="профиль-email"></div>
+                    <div class="профиль-роль" id="профиль-роль"></div>
+                </div>
+                <!-- Навигация по разделам -->
+                <nav class="профиль-nav">
+                    <a class="проф-ссылка active" data-раздел="данные">👤 Мои данные</a>
+                    <a class="проф-ссылка" data-раздел="заказы">📦 Мои заказы</a>
+                    <a class="проф-ссылка" data-раздел="избранное">♡ Избранное</a>
+                    <a class="проф-ссылка" data-раздел="безопасность">🔒 Безопасность</a>
+                    <a class="проф-ссылка проф-выход" id="кнопка-выйти">🚪 Выйти</a>
+                </nav>
+            </aside>
+
+            <!-- ПРАВАЯ ЧАСТЬ: РАЗДЕЛЫ -->
+            <div class="профиль-контент">
+
+                <!-- ===== МОИ ДАННЫЕ ===== -->
+                <div id="раздел-данные" class="проф-раздел">
+                    <h2 class="проф-заголовок">Мои данные</h2>
+                    <form id="форма-профиля">
+                        <div class="проф-сетка">
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Имя и фамилия</label>
+                                <input type="text" id="проф-имя" class="поле-ввода" placeholder="Иван Петров">
+                                <div class="ошибка-поля" id="ошибка-проф-имя"></div>
+                            </div>
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Email</label>
+                                <input type="email" id="проф-email" class="поле-ввода" placeholder="ivan@mail.ru">
+                                <div class="ошибка-поля" id="ошибка-проф-email"></div>
+                            </div>
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Телефон</label>
+                                <input type="tel" id="проф-телефон" class="поле-ввода" placeholder="+7 (999) 000-00-00">
+                            </div>
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Дата регистрации</label>
+                                <input type="text" id="проф-дата" class="поле-ввода" readonly style="background:var(--фон-серый);">
+                            </div>
+                        </div>
+                        <div class="поле-группа" style="margin-top:4px;">
+                            <label class="поле-лейбл">Адрес доставки</label>
+                            <input type="text" id="проф-адрес" class="поле-ввода" placeholder="г. Волгоград, ул. Ленина, д. 1, кв. 1">
+                        </div>
+                        <div style="margin-top:20px; display:flex; gap:12px; flex-wrap:wrap;">
+                            <button type="submit" class="кнопка-оранжевая">Сохранить изменения</button>
+                            <button type="button" id="отмена-профиля" class="кнопка-контур">Отмена</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- ===== МОИ ЗАКАЗЫ ===== -->
+                <div id="раздел-заказы" class="проф-раздел скрыт">
+                    <h2 class="проф-заголовок">Мои заказы</h2>
+                    <div id="список-заказов"></div>
+                </div>
+
+                <!-- ===== ИЗБРАННОЕ ===== -->
+                <div id="раздел-избранное" class="проф-раздел скрыт">
+                    <h2 class="проф-заголовок">Избранное <span id="кол-избранного" style="font-size:14px; color:var(--текст-светлый); font-weight:400;"></span></h2>
+                    <div id="проф-сетка-избранного" class="проф-мини-сетка"></div>
+                    <div id="проф-пусто-избранное" style="display:none; padding:40px; text-align:center; color:var(--текст-светлый);">
+                        Вы ещё ничего не добавили в избранное.<br>
+                        <a href="catalog.html" style="color:var(--оранжевый);">Перейти в каталог →</a>
+                    </div>
+                </div>
+
+                <!-- ===== БЕЗОПАСНОСТЬ ===== -->
+                <div id="раздел-безопасность" class="проф-раздел скрыт">
+                    <h2 class="проф-заголовок">Безопасность</h2>
+                    <div class="безопасность-блок">
+                        <h3>Изменить пароль</h3>
+                        <div style="margin-top:16px; display:flex; flex-direction:column; gap:12px; max-width:400px;">
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Текущий пароль</label>
+                                <input type="password" id="тек-пароль" class="поле-ввода" placeholder="Введите текущий пароль">
+                                <div class="ошибка-поля" id="ошибка-тек-пароль"></div>
+                            </div>
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Новый пароль</label>
+                                <input type="password" id="нов-пароль" class="поле-ввода" placeholder="Минимум 6 символов">
+                                <div class="ошибка-поля" id="ошибка-нов-пароль"></div>
+                            </div>
+                            <div class="поле-группа">
+                                <label class="поле-лейбл">Подтвердите новый пароль</label>
+                                <input type="password" id="нов-пароль2" class="поле-ввода" placeholder="Повторите новый пароль">
+                                <div class="ошибка-поля" id="ошибка-нов-пароль2"></div>
+                            </div>
+                            <button class="кнопка-оранжевая" id="сменить-пароль" style="align-self:flex-start;">Сменить пароль</button>
+                        </div>
+                    </div>
+
+                    <div class="безопасность-блок" style="margin-top:32px;">
+                        <h3>Настройки уведомлений</h3>
+                        <div style="margin-top:14px; display:flex; flex-direction:column; gap:12px;">
+                            <label class="чекбокс-строка">
+                                <input type="checkbox" id="увед-заказы" checked>
+                                <span>Уведомления о статусе заказов</span>
+                            </label>
+                            <label class="чекбокс-строка">
+                                <input type="checkbox" id="увед-акции" checked>
+                                <span>Акции и специальные предложения</span>
+                            </label>
+                            <label class="чекбокс-строка">
+                                <input type="checkbox" id="увед-новинки">
+                                <span>Новинки каталога</span>
+                            </label>
+                        </div>
+                        <button class="кнопка-оранжевая" id="сохранить-увед" style="margin-top:16px;">Сохранить</button>
+                    </div>
+
+                    <div class="безопасность-блок опасная-зона" style="margin-top:32px;">
+                        <h3 style="color:#e74c3c;">⚠ Опасная зона</h3>
+                        <p style="font-size:13px; color:var(--текст-светлый); margin-top:8px;">После выхода все несохранённые данные будут потеряны.</p>
+                        <button class="кнопка-контур кнопка-красная" id="выйти-из-всех" style="margin-top:12px;">Выйти из всех устройств</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <div class="подвал">
+        <div class="контейнер">
+            <div class="сетка-подвала">
+                <div><h4>Каталог</h4><div class="ссылки-подвала"><a href="catalog.html?cat=entrance">Входные двери</a><a href="catalog.html?cat=interior">Межкомнатные</a><a href="catalog.html?cat=hardware">Фурнитура</a></div></div>
+                <div><h4>Информация</h4><div class="ссылки-подвала"><a href="about.html">О магазине</a><a href="delivery.html">Доставка</a></div></div>
+                <div><h4>Контакты</h4><div class="ссылки-подвала"><span>📞 +7 (844) 225-03-00</span><span>📍 г. Волгоград, ул. Каннуникова 6/1</span></div></div>
+                <div><h4>Режим работы</h4><div class="ссылки-подвала"><span>🕐 Пн–Вс: 9:00 – 19:00</span></div></div>
+            </div>
+            <div class="низ-подвала"><div>© 2025 Дверь.рф</div><button id="кнопка-сброса" style="background:none;border:none;color:#666;cursor:pointer;">Сбросить настройки</button></div>
+        </div>
+    </div>
+
+    <div id="кнопка-наверх">↑</div>
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

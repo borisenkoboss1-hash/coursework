@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div><a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a></div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none"><rect width="40" height="40" rx="4" fill="#f26522"/><rect x="8" y="6" width="10" height="28" rx="2" fill="white"/><rect x="22" y="6" width="10" height="28" rx="2" fill="white"/><circle cx="19" cy="20" r="2" fill="#f26522"/></svg>
+                    <div><div class="лого-текст">дверь<span>.рф</span></div><div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div></div>
+                </a>
+                <div class="иконки-шапки" style="margin-left:auto;">
+                    <a href="cart.html" class="иконка-ссылка"><span>🛒</span><span class="текст-иконки">Корзина</span><span class="счетчик" id="счетчик-корзины">0</span></a>
+                    <a href="favorites.html" class="иконка-ссылка"><span>♡</span><span class="текст-иконки">Избранное</span><span class="счетчик" id="счетчик-избранного">0</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="контейнер">
+        <div class="крошки"><a href="index.html">Главная</a><span>›</span><span>Вход</span></div>
+    </div>
+
+    <div class="авт-страница">
+        <div class="авт-карточка">
+
+            <div class="авт-табы">
+                <div class="авт-таб active">Вход</div>
+                <a href="register.html" class="авт-таб">Регистрация</a>
+            </div>
+
+            <h1 class="авт-заголовок">Войти в аккаунт</h1>
+
+            <!-- Подсказка с тестовыми данными -->
+            <!--div style="background:var(--фон-серый);border-radius:6px;padding:12px;margin-bottom:20px;font-size:12px;color:var(--текст-светлый);">
+                💡 Тест: <strong>admin@dveri.rf</strong> / <strong>pass123</strong> (администратор)<br>
+                или <strong>m.alexandrov@mail.ru</strong> / <strong>pass123</strong> (пользователь)
+            </div-->
+
+            <form id="форма-входа" novalidate>
+
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Email *</label>
+                    <input type="email" id="вх-email" class="поле-ввода" placeholder="ivan@mail.ru" autocomplete="email">
+                    <div class="ошибка-поля" id="ошибка-вх-email"></div>
+                </div>
+
+                <div class="поле-группа">
+                    <label class="поле-лейбл">Пароль *</label>
+                    <div class="поле-с-иконкой">
+                        <input type="password" id="вх-пароль" class="поле-ввода" placeholder="Ваш пароль" autocomplete="current-password">
+                        <button type="button" class="кнопка-показать" id="показать-вх-пароль">👁</button>
+                    </div>
+                    <div class="ошибка-поля" id="ошибка-вх-пароль"></div>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+                    <label class="чекбокс-лейбл">
+                        <input type="checkbox" id="запомнить">
+                        <span>Запомнить меня</span>
+                    </label>
+                    <a href="#" class="ссылка-авт" style="font-size:13px;">Забыли пароль?</a>
+                </div>
+
+                <button type="submit" class="кнопка-авт" id="кнопка-входа-стр">Войти</button>
+
+            </form>
+
+            <div class="авт-разделитель"><span>или</span></div>
+
+            <p class="авт-ссылка-низ">
+                Нет аккаунта? <a href="register.html" class="ссылка-авт">Зарегистрироваться</a>
+            </p>
+
+        </div>
+    </div>
+
+    <div id="контейнер-уведомлений"></div>
+    <script src="js/common.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

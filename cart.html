@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина — Дверь.рф</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/cart.css">
+</head>
+<body>
+
+    <div id="прелоадер"><div class="спиннер"></div></div>
+
+    <!-- ШАПКА -->
+    <div class="шапка">
+        <div class="верх-шапки">
+            <div class="контейнер внутри-верха">
+                <div>📍 <strong>г. Волгоград</strong> ул. Каннуникова д 6/1</div>
+                <div>
+                    <a href="tel:+78442250300" class="телефон">📞 +7 (844) 225-03-00</a>
+                    <span style="margin-left:16px;">Пн–Вс: 9:00 – 19:00</span>
+                </div>
+                <div class="кнопки-настроек">
+                    <button class="кнопка-настройки" id="кнопка-темы">☾ Тёмная</button>
+                    <button class="кнопка-настройки" data-lang="ru">RU</button>
+                    <button class="кнопка-настройки" data-lang="en">EN</button>
+                    <button class="кнопка-настройки" id="кнопка-доступности">👁</button>
+                </div>
+            </div>
+        </div>
+        <div class="главная-шапка">
+            <div class="контейнер внутри-главной">
+                <a href="index.html" class="лого">
+                    <svg width="36" height="36" viewBox="0 0 40 40" fill="none">
+                        <rect width="40" height="40" rx="4" fill="#f26522"/>
+                        <rect x="8" y="6" width="10" height="28" rx="2" fill="white"/>
+                        <rect x="22" y="6" width="10" height="28" rx="2" fill="white"/>
+                        <circle cx="19" cy="20" r="2" fill="#f26522"/>
+                    </svg>
+                    <div>
+                        <div class="лого-текст">дверь<span>.рф</span></div>
+                        <div class="лого-подпись">Межкомнатные, входные двери и фурнитура</div>
+                    </div>
+                </a>
+                <div class="поиск">
+                    <input type="text" class="поле-поиска" placeholder="Поиск по каталогу...">
+                    <span class="кнопка-поиска">🔍</span>
+                </div>
+                <div class="иконки-шапки">
+                    <a href="#" class="иконка-ссылка" id="ссылка-вход">
+                        <span>👤</span><span class="текст-иконки">Войти</span>
+                    </a>
+                    <a href="favorites.html" class="иконка-ссылка">
+                        <span>♡</span><span class="текст-иконки">Избранное</span>
+                        <span class="счетчик" id="счетчик-избранного">0</span>
+                    </a>
+                    <a href="cart.html" class="иконка-ссылка" style="color:var(--оранжевый)">
+                        <span>🛒</span><span class="текст-иконки">Корзина</span>
+                        <span class="счетчик" id="счетчик-корзины">0</span>
+                    </a>
+                </div>
+                <div class="бургер" id="бургер"><span></span><span></span><span></span></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="меню">
+        <div class="контейнер">
+            <div class="ссылки-меню">
+                <a href="index.html" class="ссылка-меню">Все двери</a>
+                <a href="catalog.html?cat=entrance" class="ссылка-меню">Входные двери</a>
+                <a href="catalog.html?cat=interior" class="ссылка-меню">Межкомнатные</a>
+                <a href="catalog.html?cat=hardware" class="ссылка-меню">Фурнитура</a>
+                <a href="delivery.html" class="ссылка-меню">Доставка и установка</a>
+                <a href="about.html" class="ссылка-меню">О нас</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="моб-оверлей" id="моб-оверлей"></div>
+    <div class="моб-меню" id="моб-меню">
+        <a href="index.html">Все двери</a>
+        <a href="catalog.html?cat=entrance">Входные двери</a>
+        <a href="catalog.html?cat=interior">Межкомнатные</a>
+        <a href="catalog.html?cat=hardware">Фурнитура</a>
+    </div>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="контейнер">
+        <div class="крошки">
+            <a href="index.html">Главная</a>
+            <span>›</span>
+            <span>Корзина</span>
+        </div>
+    </div>
+
+    <!-- ==================== СОДЕРЖИМОЕ КОРЗИНЫ ==================== -->
+    <div class="контейнер">
+        <h1 class="страница-заголовок">Корзина <span id="заголовок-кол"></span></h1>
+
+        <!-- Состояние: не залогинен -->
+        <div id="блок-не-залогинен" class="пустая-страница" style="display:none">
+            <div class="пустая-иконка">🔐</div>
+            <div class="пустая-текст">Войдите в аккаунт, чтобы увидеть корзину</div>
+            <button class="кнопка-оранжевая" id="кнопка-войти-корзина">Войти</button>
+        </div>
+
+        <!-- Состояние: корзина пуста -->
+        <div id="блок-пусто" class="пустая-страница" style="display:none">
+            <div class="пустая-иконка">🛒</div>
+            <div class="пустая-текст">Корзина пуста</div>
+            <a href="catalog.html" class="кнопка-оранжевая" style="text-decoration:none;">Перейти в каталог</a>
+        </div>
+
+        <!-- Состояние: есть товары -->
+        <div id="блок-корзина" style="display:none">
+            <div class="корзина-раскладка">
+
+                <!-- Левая часть: список товаров -->
+                <div class="корзина-товары">
+
+                    <!-- Шапка таблицы (только desktop) -->
+                    <div class="корзина-шапка-таблицы">
+                        <div style="flex:1">Товар</div>
+                        <div style="width:100px; text-align:center">Цена</div>
+                        <div style="width:130px; text-align:center">Количество</div>
+                        <div style="width:100px; text-align:right">Сумма</div>
+                        <div style="width:36px"></div>
+                    </div>
+
+                    <!-- Список товаров в корзине -->
+                    <div id="список-корзины"></div>
+
+                </div>
+
+                <!-- Правая часть: итоги и оформление -->
+                <div class="корзина-итог">
+                    <div class="итог-блок">
+                        <h3>Итого</h3>
+
+                        <div class="итог-строка">
+                            <span>Товаров:</span>
+                            <span id="итог-кол">0</span>
+                        </div>
+                        <div class="итог-строка">
+                            <span>Стоимость товаров:</span>
+                            <span id="итог-сумма">0 ₽</span>
+                        </div>
+                        <div class="итог-строка" id="строка-скидка">
+                            <span>Скидка:</span>
+                            <span id="итог-скидка" style="color:#27ae60">0 ₽</span>
+                        </div>
+                        <div class="итог-строка">
+                            <span>Доставка:</span>
+                            <span id="итог-доставка">Бесплатно</span>
+                        </div>
+
+                        <div class="итог-разделитель"></div>
+
+                        <div class="итог-строка итог-финал">
+                            <span>К оплате:</span>
+                            <span id="итог-итого">0 ₽</span>
+                        </div>
+
+                        <!-- Промокод -->
+                        <div class="промокод-блок">
+                            <input type="text" id="поле-промокода" class="поле-промокода" placeholder="Введите промокод">
+                            <button id="кнопка-промокода" class="кнопка-промокода">Применить</button>
+                        </div>
+
+                        <button class="кнопка-оформить" id="кнопка-оформить">
+                            Оформить заказ
+                        </button>
+
+                        <a href="catalog.html" class="ссылка-продолжить">← Продолжить покупки</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== МОДАЛЬНОЕ ОКНО ОФОРМЛЕНИЯ ЗАКАЗА ==================== -->
+    <div id="модалка-заказа" class="модалка">
+        <div class="модалка-внутри" style="max-width:500px;">
+            <button class="закрыть-модалку" id="закрыть-заказ">✕</button>
+            <h3>Оформление заказа</h3>
+            <div style="margin-top:16px; display:flex; flex-direction:column; gap:10px;">
+                <input type="text"  id="заказ-имя"    placeholder="Имя и фамилия *" required>
+                <input type="tel"   id="заказ-телефон" placeholder="Телефон *" required>
+                <input type="email" id="заказ-email"   placeholder="Email">
+                <input type="text"  id="заказ-адрес"   placeholder="Адрес доставки *" required>
+                <select id="заказ-способ" style="padding:10px;border:1px solid var(--рамка);border-radius:4px;background:var(--фон);color:var(--текст);">
+                    <option value="delivery">Доставка по адресу</option>
+                    <option value="pickup">Самовывоз</option>
+                </select>
+                <textarea id="заказ-комментарий" placeholder="Комментарий к заказу"
+                    style="padding:10px;border:1px solid var(--рамка);border-radius:4px;background:var(--фон);color:var(--текст);resize:vertical;min-height:80px;"></textarea>
+            </div>
+            <div style="margin-top:16px; padding:12px; background:var(--фон-серый); border-radius:6px; font-size:13px;">
+                Итого к оплате: <strong id="модалка-итого">0 ₽</strong>
+            </div>
+            <button class="кнопка-оранжевая" id="подтвердить-заказ" style="width:100%;margin-top:12px;">Подтвердить заказ</button>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <div class="подвал">
+        <div class="контейнер">
+            <div class="сетка-подвала">
+                <div><h4>Каталог</h4><div class="ссылки-подвала"><a href="catalog.html?cat=entrance">Входные двери</a><a href="catalog.html?cat=interior">Межкомнатные</a><a href="catalog.html?cat=hardware">Фурнитура</a></div></div>
+                <div><h4>Информация</h4><div class="ссылки-подвала"><a href="about.html">О магазине</a><a href="delivery.html">Доставка</a></div></div>
+                <div><h4>Контакты</h4><div class="ссылки-подвала"><span>📞 +7 (844) 225-03-00</span><span>📍 г. Волгоград, ул. Каннуникова 6/1</span></div></div>
+                <div><h4>Режим работы</h4><div class="ссылки-подвала"><span>🕐 Пн–Вс: 9:00 – 19:00</span></div></div>
+            </div>
+            <div class="низ-подвала">
+                <div>© 2025 Дверь.рф</div>
+                <button id="кнопка-сброса" style="background:none;border:none;color:#666;cursor:pointer;">Сбросить настройки</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="кнопка-наверх">↑</div>
+    <div id="контейнер-уведомлений"></div>
+
+    <div id="модалка-входа" class="модалка">
+        <div class="модалка-внутри">
+            <button class="закрыть-модалку" id="закрыть-модалку">✕</button>
+            <h3>Вход</h3>
+            <input type="email" id="email-входа" placeholder="Email">
+            <input type="password" id="пароль-входа" placeholder="Пароль">
+            <button class="кнопка-оранжевая" id="кнопка-входа" style="width:100%;margin-top:8px;">Войти</button>
+            <p style="margin-top:12px;font-size:13px;">Нет аккаунта? <a href="register.html">Зарегистрироваться</a></p>
+        </div>
+    </div>
+
+    <script src="js/common.js"></script>
+    <script src="js/cart.js"></script>
+</body>
+</html>

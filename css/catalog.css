@@ -1,0 +1,592 @@
+/* ========================================================
+   catalog.css — стили ТОЛЬКО для страницы каталога
+   ======================================================== */
+
+/* ---------- ХЛЕБНЫЕ КРОШКИ ---------- */
+.крошки {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 0;
+    font-size: 13px;
+    color: var(--текст-светлый);
+}
+.крошки a {
+    color: var(--текст-светлый);
+    text-decoration: none;
+}
+.крошки a:hover { color: var(--оранжевый); }
+
+/* ---------- ШАПКА КАТАЛОГА (заголовок + сортировка) ---------- */
+.шапка-каталога {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+.шапка-каталога h1 {
+    font-size: 22px;
+    font-weight: 700;
+}
+.сортировка {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--текст-светлый);
+}
+.селект {
+    padding: 6px 10px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 13px;
+    cursor: pointer;
+}
+/* Кнопки вида: сетка / список */
+.кнопка-вида {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: var(--фон);
+    color: var(--текст-светлый);
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.кнопка-вида.active {
+    background: var(--оранжевый);
+    color: white;
+    border-color: var(--оранжевый);
+}
+
+/* ---------- РАСКЛАДКА: ФИЛЬТРЫ СЛЕВА + ТОВАРЫ СПРАВА ---------- */
+.раскладка-каталога {
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 24px;
+    align-items: start;
+    margin-bottom: 48px;
+}
+@media (max-width: 900px) {
+    .раскладка-каталога { grid-template-columns: 1fr; }
+    .фильтры { display: none; }        /* скрываем фильтры на мобильных */
+    .фильтры.открыты { display: block; }
+}
+
+/* ---------- БЛОК ФИЛЬТРОВ ---------- */
+.фильтры {
+    position: sticky;
+    top: 80px;    /* чтобы не уезжал при скролле за шапку */
+}
+.фильтр-блок {
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: var(--фон);
+}
+.фильтр-заголовок {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    cursor: pointer;           /* можно нажать чтобы свернуть */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.фильтр-заголовок::after {
+    content: '▾';
+    color: var(--текст-светлый);
+    font-size: 12px;
+}
+
+/* Список подкатегорий (левое меню) */
+.подкатегория-ссылка {
+    display: block;
+    font-size: 13px;
+    padding: 5px 0;
+    color: var(--текст);
+    text-decoration: none;
+    cursor: pointer;
+}
+.подкатегория-ссылка:hover,
+.подкатегория-ссылка.active {
+    color: var(--оранжевый);
+}
+
+/* Цветовые свотчи (дизайн) */
+.цвета-фильтра {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.цвет-свотч {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.цвет-свотч:hover,
+.цвет-свотч.active { border-color: var(--оранжевый); }
+
+/* Ценовой ползунок */
+.поля-цены {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+.поле-цены {
+    width: 80px;
+    padding: 6px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    font-size: 12px;
+    background: var(--фон);
+    color: var(--текст);
+}
+.ползунок {
+    width: 100%;
+    accent-color: var(--оранжевый);
+}
+
+/* Чекбоксы брендов / размеров */
+.чекбоксы {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.чекбоксы label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    cursor: pointer;
+}
+.чекбоксы input[type="checkbox"] {
+    accent-color: var(--оранжевый);
+    width: 15px;
+    height: 15px;
+}
+
+/* Кнопка сброса фильтров */
+.кнопка-сброса-фильтров {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: none;
+    color: var(--текст-светлый);
+    cursor: pointer;
+    font-size: 13px;
+    margin-top: 4px;
+}
+.кнопка-сброса-фильтров:hover {
+    border-color: var(--оранжевый);
+    color: var(--оранжевый);
+}
+
+/* ---------- ИНФОРМАЦИЯ: СКОЛЬКО ТОВАРОВ ---------- */
+.инфо-результатов {
+    font-size: 13px;
+    color: var(--текст-светлый);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--рамка);
+}
+
+/* ---------- СЕТКА КАРТОЧЕК ТОВАРОВ ---------- */
+.сетка {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+@media (max-width: 1100px) { .сетка { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px)  { .сетка { grid-template-columns: 1fr; } }
+
+/* Когда режим "список" (добавляется класс .список на #сетка-товаров) */
+#сетка-товаров.список {
+    grid-template-columns: 1fr;
+}
+#сетка-товаров.список .карточка {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+}
+#сетка-товаров.список .картинка-товара {
+    aspect-ratio: unset;
+    height: 180px;
+}
+
+/* ---------- КАРТОЧКА ТОВАРА ---------- */
+.карточка {
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.25s, transform 0.25s;
+    cursor: pointer;
+}
+.карточка:hover {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+    transform: translateY(-3px);
+}
+.картинка-товара {
+    background: var(--фон-серый);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.картинка-товара img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+.карточка:hover .картинка-товара img {
+    transform: scale(1.04);
+}
+/* Заглушка если нет фото */
+.заглушка-фото {
+    font-size: 60px;
+    color: var(--рамка);
+}
+
+/* Бейджи: скидка, новинка */
+.бейджи-товара {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 2;
+}
+.метка {
+    display: inline-block;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 700;
+    color: white;
+}
+.метка-скидка { background: var(--оранжевый); }
+.метка-новинка { background: #27ae60; }
+.метка-нет { background: #999; }
+
+/* Кнопка "В избранное" (сердечко) — появляется при наведении */
+.кнопка-избранного {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+    z-index: 2;
+}
+.карточка:hover .кнопка-избранного { opacity: 1; }
+.кнопка-избранного.в-избранном {
+    opacity: 1;
+    color: var(--оранжевый);
+}
+
+/* Информационная часть карточки */
+.инфо-товара {
+    padding: 12px;
+}
+.бренд {
+    font-size: 11px;
+    color: var(--текст-светлый);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.название-товара {
+    font-size: 13px;
+    font-weight: 500;
+    margin: 6px 0;
+    line-height: 1.4;
+    color: var(--текст);
+}
+.звезды {
+    font-size: 13px;
+    color: var(--звезда);
+}
+.отзывы-кол {
+    font-size: 11px;
+    color: var(--текст-светлый);
+    margin-left: 4px;
+}
+.цена-ряд {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+.цены {
+    display: flex;
+    flex-direction: column;
+}
+.цена-текущая {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--текст);
+}
+.цена-старая {
+    font-size: 11px;
+    color: var(--текст-светлый);
+    text-decoration: line-through;
+}
+
+/* Кнопка корзины (кружок) */
+.кнопка-корзины {
+    width: 34px;
+    height: 34px;
+    background: var(--оранжевый);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.2s;
+    flex-shrink: 0;
+}
+.кнопка-корзины:hover { background: #d9561a; }
+.кнопка-корзины.в-корзине { background: #555; }
+
+/* ---------- ПАГИНАЦИЯ ---------- */
+.пагинация {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+.стр-кнопка {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 13px;
+    background: var(--фон);
+    color: var(--текст);
+    transition: 0.2s;
+}
+.стр-кнопка:hover { border-color: var(--оранжевый); color: var(--оранжевый); }
+.стр-кнопка.active {
+    background: var(--оранжевый);
+    border-color: var(--оранжевый);
+    color: white;
+    font-weight: 700;
+}
+.стр-кнопка:disabled { opacity: 0.4; cursor: default; }
+
+/* ---------- КНОПКА ФИЛЬТРОВ НА МОБИЛЬНЫХ ---------- */
+.кнопка-моб-фильтры {
+    display: none;
+    width: 100%;
+    padding: 11px 16px;
+    background: var(--фон-серый);
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    color: var(--текст);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    margin: 8px 0;
+    text-align: left;
+    transition: 0.2s;
+}
+.кнопка-моб-фильтры:hover { border-color: var(--оранжевый); color: var(--оранжевый); }
+@media (max-width: 900px) { .кнопка-моб-фильтры { display: block; } }
+
+/* ---------- ВСПЛЫВАЮЩИЕ ПОДСКАЗКИ (TOOLTIPS) ---------- */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+.tooltip::after {
+    content: attr(data-tip);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+.tooltip::before {
+    content: '';
+    position: absolute;
+    bottom: calc(100% + 1px);
+    left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: #333;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 100;
+}
+.tooltip:hover::after,
+.tooltip:hover::before { opacity: 1; }
+
+/* Overlay для мобильных фильтров */
+.фильтр-оверлей {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 150;
+}
+.фильтр-оверлей.active { display: block; }
+@media (max-width: 900px) {
+    .фильтры.открыты {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 100%;
+        background: var(--фон);
+        z-index: 151;
+        overflow-y: auto;
+        padding: 16px;
+        border-right: 1px solid var(--рамка);
+        box-shadow: 4px 0 20px rgba(0,0,0,0.15);
+    }
+}
+
+/* ---------- ОБНОВЛЁННЫЕ ЦВЕТОВЫЕ СВОТЧИ ---------- */
+.цвета-фильтра {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+}
+.цвет-свотч {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+}
+.цвет-свотч:hover {
+    transform: scale(1.15);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+.цвет-свотч.active {
+    border-color: var(--оранжевый) !important;
+    box-shadow: 0 0 0 3px rgba(242,101,34,0.25);
+    transform: scale(1.1);
+}
+/* Подпись при наведении через title — используем tooltip */
+.цвет-свотч::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 6px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+}
+.цвет-свотч:hover::after { opacity: 1; }
+
+/* Выбранные цвета — показываем теги */
+.выбранные-цвета {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+}
+.тег-цвета {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 8px;
+    background: var(--фон-серый);
+    border: 1px solid var(--рамка);
+    border-radius: 12px;
+    font-size: 11px;
+    cursor: pointer;
+}
+.тег-цвета:hover { border-color: #e74c3c; color: #e74c3c; }
+
+/* ---------- ЦВЕТА НА КАРТОЧКЕ ТОВАРА ---------- */
+.карточка-цвета {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin: 6px 0;
+    flex-wrap: wrap;
+}
+.карточка-цвет-точка {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 1px solid var(--рамка);
+    background: #ccc;
+    display: inline-block;
+    cursor: default;
+    position: relative;
+}
+.карточка-цвет-точка::after {
+    content: attr(title);
+    position: absolute;
+    bottom: calc(100% + 4px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: #333;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 10px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.15s;
+    z-index: 10;
+}
+.карточка-цвет-точка:hover::after { opacity: 1; }

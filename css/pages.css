@@ -1,0 +1,227 @@
+/* ========================================================
+   pages.css — стили для about.html и delivery.html
+   ======================================================== */
+
+/* ---------- ХЛЕБНЫЕ КРОШКИ ---------- */
+.крошки { display:flex; align-items:center; gap:8px; padding:14px 0; font-size:13px; color:var(--текст-светлый); }
+.крошки a { color:var(--текст-светлый); text-decoration:none; }
+.крошки a:hover { color:var(--оранжевый); }
+
+/* ---------- ГЕРОЙ ---------- */
+.страница-герой { padding: 60px 0; color: white; margin-bottom: 0; }
+.герой-контент { max-width: 600px; }
+.герой-контент h1 { font-size: 36px; font-weight: 900; margin-bottom: 16px; }
+.герой-контент p { font-size: 16px; line-height: 1.7; color: rgba(255,255,255,0.8); }
+@media (max-width: 600px) { .герой-контент h1 { font-size: 26px; } }
+
+/* ---------- ЦИФРЫ ---------- */
+.цифры-сетка {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 40px 0;
+}
+@media (max-width: 768px) { .цифры-сетка { grid-template-columns: repeat(2,1fr); } }
+
+.цифра-карточка {
+    text-align: center;
+    padding: 24px 16px;
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    background: var(--фон);
+}
+.цифра-число { font-size: 32px; font-weight: 900; color: var(--оранжевый); }
+.цифра-назв  { font-size: 13px; color: var(--текст-светлый); margin-top: 6px; }
+
+/* ---------- О НАС (ИСТОРИЯ) ---------- */
+.о-нас-раскладка {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    margin: 40px 0;
+}
+@media (max-width: 768px) { .о-нас-раскладка { grid-template-columns: 1fr; } }
+.о-нас-текст h2 { font-size: 24px; margin-bottom: 16px; }
+.о-нас-текст p  { font-size: 14px; line-height: 1.7; color: var(--текст-светлый); }
+
+.фото-заглушка {
+    width: 100%;
+    aspect-ratio: 4/3;
+    background: var(--фон-серый);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: var(--рамка);
+    border: 1px solid var(--рамка);
+}
+.фото-заглушка span { font-size: 14px; margin-top: 12px; color: var(--текст-светлый); }
+
+/* ---------- ПРЕИМУЩЕСТВА СТРАНИЦЫ ---------- */
+.преим-сетка {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+@media (max-width: 900px) { .преим-сетка { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 500px) { .преим-сетка { grid-template-columns: 1fr; } }
+
+.преим-карточка {
+    background: var(--фон);
+    border-radius: 10px;
+    padding: 24px 20px;
+    border: 1px solid var(--рамка);
+}
+.преим-иконка-большая { font-size: 36px; margin-bottom: 12px; }
+.преим-карточка h3 { font-size: 15px; margin-bottom: 8px; }
+.преим-карточка p  { font-size: 13px; color: var(--текст-светлый); line-height: 1.6; }
+
+/* ---------- КОМАНДА ---------- */
+.команда-сетка {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin: 0 0 48px;
+}
+@media (max-width: 768px) { .команда-сетка { grid-template-columns: repeat(2,1fr); } }
+
+.команда-карточка {
+    text-align: center;
+    padding: 24px 16px;
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    background: var(--фон);
+    transition: 0.2s;
+}
+.команда-карточка:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.команда-аватар {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 12px;
+    overflow: hidden;
+    border-radius: 50%;
+    background: var(--фон-серый);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.команда-аватар img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+.команда-имя        { font-size: 14px; font-weight: 700; }
+.команда-должность  { font-size: 12px; color: var(--текст-светлый); margin-top: 4px; }
+
+/* ---------- ФОРМА РАСКЛАДКА ---------- */
+.форма-раскладка {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+@media (max-width: 768px) { .форма-раскладка { grid-template-columns: 1fr; } }
+
+.форма-раскладка h2 { font-size: 24px; margin-bottom: 4px; }
+
+.форма-поле {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.2s;
+}
+.форма-поле:focus { border-color: var(--оранжевый); }
+
+/* ---------- ТАРИФЫ ДОСТАВКИ ---------- */
+.тарифы-сетка {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+}
+@media (max-width: 900px) { .тарифы-сетка { grid-template-columns: repeat(2,1fr); } }
+@media (max-width: 500px) { .тарифы-сетка { grid-template-columns: 1fr; } }
+
+.тариф-карточка {
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    padding: 24px 20px;
+    background: var(--фон);
+    text-align: center;
+    transition: 0.2s;
+}
+.тариф-карточка:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.тариф-бесплатный { border-color: var(--оранжевый); background: #fff8f5; }
+body[data-theme="dark"] .тариф-бесплатный { background: #2a1a10; }
+
+.тариф-иконка    { font-size: 36px; margin-bottom: 12px; }
+.тариф-цена      { font-size: 22px; font-weight: 900; color: var(--оранжевый); margin-bottom: 6px; }
+.тариф-назв      { font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+.тариф-описание  { font-size: 12px; color: var(--текст-светлый); line-height: 1.5; }
+
+/* ---------- ЭТАПЫ УСТАНОВКИ ---------- */
+.этапы {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.этап {
+    flex: 1;
+    min-width: 160px;
+    max-width: 200px;
+    text-align: center;
+    padding: 20px 16px;
+    background: var(--фон);
+    border-radius: 10px;
+    border: 1px solid var(--рамка);
+}
+.этап-номер {
+    width: 44px; height: 44px;
+    background: var(--оранжевый);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 20px; font-weight: 900;
+    margin: 0 auto 12px;
+}
+.этап h3 { font-size: 14px; margin-bottom: 8px; }
+.этап p  { font-size: 12px; color: var(--текст-светлый); line-height: 1.5; }
+.этап-стрелка { font-size: 24px; color: var(--рамка); align-self: center; flex-shrink: 0; }
+@media (max-width: 700px) { .этап-стрелка { display: none; } }
+
+/* ---------- ТАБЛИЦА ЦЕН ---------- */
+.цены-таблица {
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 48px;
+}
+.цены-строка {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--рамка);
+    font-size: 14px;
+}
+.цены-строка:last-child { border-bottom: none; }
+.цены-строка:nth-child(even) { background: var(--фон-серый); }
+.цены-шапка {
+    background: var(--оранжевый) !important;
+    color: white;
+    font-weight: 700;
+    font-size: 13px;
+}
+.цены-строка span:last-child { font-weight: 700; color: var(--оранжевый); }
+.цены-шапка span:last-child { color: white; }

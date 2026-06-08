@@ -1,0 +1,196 @@
+/* ========================================================
+   auth.css — стили страниц регистрации и входа
+   ======================================================== */
+
+.авт-страница {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 40px 20px 80px;
+    min-height: calc(100vh - 200px);
+}
+
+.авт-карточка {
+    width: 100%;
+    max-width: 460px;
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 12px;
+    padding: 36px 40px;
+}
+@media (max-width: 520px) { .авт-карточка { padding: 24px 20px; } }
+
+/* ---------- ТАБЫ ВХОД / РЕГИСТРАЦИЯ ---------- */
+.авт-табы {
+    display: flex;
+    margin-bottom: 24px;
+    border-bottom: 2px solid var(--рамка);
+}
+.авт-таб {
+    padding: 10px 20px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--текст-светлый);
+    cursor: pointer;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: 0.2s;
+}
+.авт-таб:hover { color: var(--оранжевый); }
+.авт-таб.active { color: var(--оранжевый); border-bottom-color: var(--оранжевый); }
+
+.авт-заголовок {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+
+/* ---------- ПОЛЯ ФОРМЫ ---------- */
+.поле-группа { margin-bottom: 16px; }
+
+.поле-лейбл {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--текст);
+}
+
+.поле-ввода {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+.поле-ввода:focus {
+    border-color: var(--оранжевый);
+    box-shadow: 0 0 0 3px rgba(242,101,34,0.1);
+}
+.поле-ввода.ошибка { border-color: #e74c3c; }
+.поле-ввода.успех  { border-color: #27ae60; }
+
+/* Поле с кнопкой (показать пароль) */
+.поле-с-иконкой { position: relative; }
+.поле-с-иконкой .поле-ввода { padding-right: 44px; }
+.кнопка-показать {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--текст-светлый);
+    padding: 4px;
+}
+.кнопка-показать:hover { color: var(--оранжевый); }
+
+/* Сообщение об ошибке под полем */
+.ошибка-поля {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 4px;
+    min-height: 16px;
+}
+
+/* ---------- СИЛА ПАРОЛЯ ---------- */
+.сила-пароля {
+    height: 4px;
+    background: var(--рамка);
+    border-radius: 2px;
+    margin-top: 6px;
+    overflow: hidden;
+}
+.сила-полоска {
+    height: 100%;
+    width: 0;
+    border-radius: 2px;
+    transition: width 0.3s, background 0.3s;
+}
+.сила-текст {
+    font-size: 11px;
+    margin-top: 3px;
+    color: var(--текст-светлый);
+}
+
+/* ---------- ЧЕКБОКС СОГЛАСИЯ ---------- */
+.чекбокс-лейбл {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    line-height: 1.5;
+}
+.чекбокс-лейбл input[type="checkbox"] {
+    accent-color: var(--оранжевый);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    cursor: pointer;
+}
+.ссылка-авт { color: var(--оранжевый); text-decoration: none; }
+.ссылка-авт:hover { text-decoration: underline; }
+
+/* ---------- КНОПКА ОТПРАВКИ ---------- */
+.кнопка-авт {
+    width: 100%;
+    padding: 13px;
+    background: var(--оранжевый);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+    margin-top: 8px;
+}
+.кнопка-авт:hover { background: #d9561a; }
+.кнопка-авт:disabled { background: #ccc; cursor: not-allowed; }
+
+/* ---------- РАЗДЕЛИТЕЛЬ "или" ---------- */
+.авт-разделитель {
+    text-align: center;
+    position: relative;
+    margin: 20px 0;
+    color: var(--текст-светлый);
+    font-size: 13px;
+}
+.авт-разделитель::before,
+.авт-разделитель::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: calc(50% - 24px);
+    height: 1px;
+    background: var(--рамка);
+}
+.авт-разделитель::before { left: 0; }
+.авт-разделитель::after  { right: 0; }
+
+.авт-ссылка-низ {
+    text-align: center;
+    font-size: 14px;
+    color: var(--текст-светлый);
+}
+
+/* ---------- ХЛЕБНЫЕ КРОШКИ ---------- */
+.крошки {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 0;
+    font-size: 13px;
+    color: var(--текст-светлый);
+}
+.крошки a { color: var(--текст-светлый); text-decoration: none; }
+.крошки a:hover { color: var(--оранжевый); }

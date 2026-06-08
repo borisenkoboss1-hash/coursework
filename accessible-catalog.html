@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог — Дверь.рф (версия для слабовидящих)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessible.css">
+    <style>
+        /* Дополнительные стили для каталога в версии для слабовидящих */
+        .а11й-фильтры {
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+        .а11й-фильтр-группа {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--рамка);
+            padding-bottom: 12px;
+        }
+        .а11й-фильтр-группа:last-child {
+            border-bottom: none;
+        }
+        .а11й-фильтр-заголовок {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--текст);
+        }
+        .а11й-чекбокс-группа {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .а11й-чекбокс {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            cursor: pointer;
+            padding: 8px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .а11й-чекбокс:hover {
+            background: var(--фон);
+            border-color: var(--оранжевый);
+        }
+        .а11й-чекбокс input {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: var(--оранжевый);
+        }
+        .а11й-цена-блок {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .а11й-цена-поле {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .а11й-цена-поле label {
+            font-weight: 600;
+        }
+        .а11й-цена-поле input {
+            padding: 10px;
+            border: 2px solid var(--рамка);
+            border-radius: 4px;
+            font-size: 1rem;
+            width: 100px;
+            background: var(--фон);
+            color: var(--текст);
+        }
+        .а11й-сортировка {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+            padding: 12px;
+            background: var(--фон-серый);
+            border-radius: 8px;
+        }
+        .а11й-сортировка label {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .а11й-селект {
+            padding: 10px 16px;
+            font-size: 1rem;
+            border: 2px solid var(--рамка);
+            border-radius: 4px;
+            background: var(--фон);
+            color: var(--текст);
+            cursor: pointer;
+        }
+        .а11й-товары-счётчик {
+            font-size: 1rem;
+            margin-bottom: 16px;
+            padding: 8px;
+            background: var(--оранжевый);
+            color: white;
+            display: inline-block;
+            border-radius: 4px;
+        }
+        .а11й-товары-сетка {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .а11й-карточка {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            padding: 20px;
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            background: var(--фон);
+            text-decoration: none;
+            color: var(--текст);
+            transition: 0.2s;
+        }
+        .а11й-карточка:hover,
+        .а11й-карточка:focus {
+            border-color: var(--оранжевый);
+            outline: 3px solid var(--оранжевый);
+        }
+        .а11й-карточка-фото {
+            width: 120px;
+            height: 160px;
+            flex-shrink: 0;
+            background: var(--фон-серый);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .а11й-карточка-фото img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .а11й-карточка-инфо {
+            flex: 1;
+        }
+        .а11й-карточка-бренд {
+            font-size: 0.85rem;
+            color: var(--текст-светлый);
+            text-transform: uppercase;
+        }
+        .а11й-карточка-название {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+        .а11й-карточка-цена {
+            font-size: 1.3rem;
+            font-weight: 900;
+            color: var(--оранжевый);
+        }
+        .а11й-карточка-кнопка {
+            padding: 12px 24px;
+            background: var(--оранжевый);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+        .а11й-карточка-кнопка:hover {
+            opacity: 0.85;
+        }
+        .а11й-пагинация {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 32px;
+            flex-wrap: wrap;
+        }
+        .а11й-стр-кнопка {
+            padding: 10px 16px;
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        .а11й-стр-кнопка.active {
+            background: var(--оранжевый);
+            border-color: var(--оранжевый);
+            color: white;
+        }
+        .а11й-кнопка-сброса {
+            padding: 10px 20px;
+            background: none;
+            border: 2px solid var(--рамка);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 16px;
+            width: 100%;
+        }
+        .а11й-раскладка {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 24px;
+        }
+        @media (max-width: 800px) {
+            .а11й-раскладка { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="а11й-режим">
+
+    <!-- ПАНЕЛЬ УПРАВЛЕНИЯ ДОСТУПНОСТЬЮ -->
+    <div class="а11й-панель" role="toolbar" aria-label="Настройки доступности">
+        <div class="контейнер а11й-панель-внутри">
+            <span class="а11й-панель-лого">дверь.рф</span>
+            <span class="а11й-разделитель">|</span>
+            <span>Версия для слабовидящих — Каталог</span>
+
+            <div class="а11й-группа" role="group" aria-label="Размер шрифта">
+                <span class="а11й-метка">Размер шрифта:</span>
+                <button class="а11й-кн" id="шрифт-меньше">А−</button>
+                <select class="а11й-селект" id="выбор-шрифта">
+                    <option value="14">Мелкий (14px)</option>
+                    <option value="16" selected>Обычный (16px)</option>
+                    <option value="20">Крупный (20px)</option>
+                    <option value="24">Очень крупный (24px)</option>
+                    <option value="28">Огромный (28px)</option>
+                </select>
+                <button class="а11й-кн" id="шрифт-больше">А+</button>
+            </div>
+
+            <div class="а11й-группа" role="group" aria-label="Цветовая схема">
+                <span class="а11й-метка">Тема:</span>
+                <button class="а11й-кн тема-кн" data-тема="normal">Обычная</button>
+                <button class="а11й-кн тема-кн" data-тема="dark">Тёмная</button>
+                <button class="а11й-кн тема-кн" data-тема="contrast">Контраст</button>
+                <button class="а11й-кн тема-кн" data-тема="sepia">Сепия</button>
+            </div>
+
+            <div class="а11й-группа">
+                <span class="а11й-метка">Интервал:</span>
+                <button class="а11й-кн" id="интервал-норм">Нормальный</button>
+                <button class="а11й-кн" id="интервал-широк">Широкий</button>
+            </div>
+
+            <div class="а11й-группа" style="margin-left:auto;">
+                <a href="catalog.html" class="а11й-ссылка">← Обычная версия</a>
+                <button class="а11й-кн" id="а11й-сброс">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="а11й-шапка" role="banner">
+        <div class="контейнер а11й-шапка-внутри">
+            <a href="accessible.html" class="а11й-лого">дверь<span>.рф</span></a>
+            <div class="а11й-контакты">
+                <a href="tel:+78442250300" class="а11й-телефон">📞 +7 (844) 225-03-00</a>
+                <span>Пн–Вс: 9:00 – 19:00</span>
+            </div>
+             <div style="display: flex; gap: 16px; align-items: center;">
+            <a href="accessible-profile.html" class="а11й-кн" style="background: none; border: 2px solid var(--оранжевый);">👤 Профиль</a>
+            <a href="accessible-cart.html" class="а11й-корзина-кн">🛒 Корзина (<span id="счетчик-корзины">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="а11й-nav" role="navigation">
+        <div class="контейнер">
+            <ul class="а11й-nav-список">
+                <li><a href="accessible.html" class="а11й-nav-ссылка">Главная</a></li>
+                <li><a href="accessible-catalog.html?cat=entrance" class="а11й-nav-ссылка" id="нав-входные">Входные двери</a></li>
+                <li><a href="accessible-catalog.html?cat=interior" class="а11й-nav-ссылка" id="нав-межкомнатные">Межкомнатные</a></li>
+                <li><a href="accessible-catalog.html?cat=hardware" class="а11й-nav-ссылка" id="нав-фурнитура">Фурнитура</a></li>
+                <li><a href="accessible-delivery.html" class="а11й-nav-ссылка">Доставка</a></li>
+                <li><a href="accessible-about.html" class="а11й-nav-ссылка">О нас</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="контейнер" role="main">
+        <h1 id="заголовок-каталога" style="font-size: 1.8rem; margin: 20px 0;">Каталог дверей</h1>
+
+        <div class="а11й-раскладка">
+            <!-- ФИЛЬТРЫ -->
+            <aside class="а11й-фильтры">
+                <div class="а11й-фильтр-группа">
+                    <h2 class="а11й-фильтр-заголовок">💰 Цена, ₽</h2>
+                    <div class="а11й-цена-блок">
+                        <div class="а11й-цена-поле">
+                            <label>от</label>
+                            <input type="number" id="а11й-цена-от" value="0" step="1000">
+                        </div>
+                        <div class="а11й-цена-поле">
+                            <label>до</label>
+                            <input type="number" id="а11й-цена-до" value="100000" step="1000">
+                        </div>
+                        <button class="а11й-кн" id="а11й-применить-цену">Применить</button>
+                    </div>
+                </div>
+
+                <div class="а11й-фильтр-группа">
+                    <h2 class="а11й-фильтр-заголовок">🏭 Производитель</h2>
+                    <div class="а11й-чекбокс-группа" id="а11й-бренды"></div>
+                </div>
+
+                <div class="а11й-фильтр-группа">
+                    <h2 class="а11й-фильтр-заголовок">📏 Размер двери</h2>
+                    <div class="а11й-чекбокс-группа" id="а11й-размеры"></div>
+                </div>
+
+                <button class="а11й-кнопка-сброса" id="а11й-сбросить-фильтры">Сбросить все фильтры</button>
+            </aside>
+
+            <!-- ТОВАРЫ -->
+            <div>
+                <div class="а11й-сортировка">
+                    <label>Сортировать:</label>
+                    <select class="а11й-селект" id="а11й-сортировка">
+                        <option value="default">По умолчанию</option>
+                        <option value="price-asc">Цена: по возрастанию</option>
+                        <option value="price-desc">Цена: по убыванию</option>
+                        <option value="rating">По рейтингу</option>
+                        <option value="name">По названию</option>
+                    </select>
+                </div>
+
+                <div class="а11й-товары-счётчик" id="а11й-счётчик">Загрузка...</div>
+
+                <div id="а11й-товары" class="а11й-товары-сетка"></div>
+
+                <div id="а11й-пагинация" class="а11й-пагинация"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ПОДВАЛ -->
+    <footer class="а11й-подвал" role="contentinfo">
+        <div class="контейнер">
+            <div class="а11й-подвал-ссылки">
+                <a href="accessible.html">Главная</a>
+                <a href="accessible-catalog.html">Каталог</a>
+                <a href="accessible-about.html">О компании</a>
+                <a href="accessible-delivery.html">Доставка</a>
+                <a href="accessible-cart.html">Корзина</a>
+            </div>
+            <div class="а11й-подвал-низ">
+                <span>© 2025 Дверь.рф — Версия для слабовидящих</span>
+                <a href="catalog.html">Обычная версия сайта</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessible.js"></script>
+    <script>
+        // ==================== ЛОГИКА КАТАЛОГА ДЛЯ СЛАБОВИДЯЩИХ ====================
+        
+        let всеТоварыКаталог = [];
+        let отфильтрованныеКаталог = [];
+        let текущаяСтраницаКаталог = 1;
+        const ТОВАРОВ_НА_СТРАНИЦЕ = 10;
+        
+        let фильтрыКаталог = {
+            категория: 'all',
+            ценаОт: 0,
+            ценаДо: 100000,
+            бренды: [],
+            размеры: []
+        };
+        
+        // Загрузка товаров
+        async function загрузитьТоварыКаталог() {
+            try {
+                const resp = await fetch('data/products.json');
+                всеТоварыКаталог = await resp.json();
+                
+                const params = new URLSearchParams(window.location.search);
+                const кат = params.get('cat');
+                if (кат && кат !== 'all') {
+                    фильтрыКаталог.категория = кат;
+                    const заголовки = { entrance: 'Входные двери', interior: 'Межкомнатные двери', hardware: 'Фурнитура' };
+                    document.getElementById('заголовок-каталога').textContent = заголовки[кат] || 'Каталог дверей';
+                    
+                    document.querySelectorAll('.а11й-nav-ссылка').forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href')?.includes(`cat=${кат}`)) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+                
+                заполнитьФильтрыКаталог();
+                обновитьКаталогСтраницу();
+            } catch(e) {
+                console.error(e);
+                document.getElementById('а11й-товары').innerHTML = '<div style="padding:40px;text-align:center;">Ошибка загрузки товаров</div>';
+            }
+        }
+        
+        // Заполнение фильтров
+        function заполнитьФильтрыКаталог() {
+            let товарыДляФильтров = всеТоварыКаталог;
+            if (фильтрыКаталог.категория !== 'all') {
+                товарыДляФильтров = товарыДляФильтров.filter(т => т.category === фильтрыКаталог.категория);
+            }
+            
+            const бренды = [...new Set(товарыДляФильтров.map(т => т.brand))];
+            const брендыКонтейнер = document.getElementById('а11й-бренды');
+            if (брендыКонтейнер) {
+                брендыКонтейнер.innerHTML = бренды.map(б => `
+                    <label class="а11й-чекбокс">
+                        <input type="checkbox" value="${б}" class="бренд-чекбокс"> ${б}
+                    </label>
+                `).join('');
+                брендыКонтейнер.querySelectorAll('.бренд-чекбокс').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        фильтрыКаталог.бренды = [...брендыКонтейнер.querySelectorAll('.бренд-чекбокс:checked')].map(c => c.value);
+                        текущаяСтраницаКаталог = 1;
+                        обновитьКаталогСтраницу();
+                    });
+                });
+            }
+            
+            const размеры = ['860×2050 мм', '900×2100 мм', '800×2000 мм'];
+            const размерыКонтейнер = document.getElementById('а11й-размеры');
+            if (размерыКонтейнер) {
+                размерыКонтейнер.innerHTML = размеры.map(р => `
+                    <label class="а11й-чекбокс">
+                        <input type="checkbox" value="${р}" class="размер-чекбокс"> ${р}
+                    </label>
+                `).join('');
+                размерыКонтейнер.querySelectorAll('.размер-чекбокс').forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        фильтрыКаталог.размеры = [...размерыКонтейнер.querySelectorAll('.размер-чекбокс:checked')].map(c => c.value);
+                        текущаяСтраницаКаталог = 1;
+                        обновитьКаталогСтраницу();
+                    });
+                });
+            }
+        }
+        
+        function применитьФильтрыКаталог() {
+            отфильтрованныеКаталог = всеТоварыКаталог.filter(т => {
+                if (фильтрыКаталог.категория !== 'all' && т.category !== фильтрыКаталог.категория) return false;
+                if (т.price < фильтрыКаталог.ценаОт || т.price > фильтрыКаталог.ценаДо) return false;
+                if (фильтрыКаталог.бренды.length && !фильтрыКаталог.бренды.includes(т.brand)) return false;
+                return true;
+            });
+            
+            const сортировка = document.getElementById('а11й-сортировка')?.value || 'default';
+            if (сортировка === 'price-asc') отфильтрованныеКаталог.sort((a,b) => a.price - b.price);
+            if (сортировка === 'price-desc') отфильтрованныеКаталог.sort((a,b) => b.price - a.price);
+            if (сортировка === 'rating') отфильтрованныеКаталог.sort((a,b) => b.rating - a.rating);
+            if (сортировка === 'name') отфильтрованныеКаталог.sort((a,b) => a.name.localeCompare(b.name, 'ru'));
+        }
+        
+        function отрисоватьТоварыКаталог() {
+            const контейнер = document.getElementById('а11й-товары');
+            const счётчик = document.getElementById('а11й-счётчик');
+            счётчик.textContent = `Найдено: ${отфильтрованныеКаталог.length} товаров`;
+            
+            if (отфильтрованныеКаталог.length === 0) {
+                контейнер.innerHTML = '<div style="text-align:center;padding:40px;">Товаров не найдено</div>';
+                document.getElementById('а11й-пагинация').innerHTML = '';
+                return;
+            }
+            
+            const начало = (текущаяСтраницаКаталог - 1) * ТОВАРОВ_НА_СТРАНИЦЕ;
+            const страница = отфильтрованныеКаталог.slice(начало, начало + ТОВАРОВ_НА_СТРАНИЦЕ);
+            
+            контейнер.innerHTML = страница.map(т => `
+                <div class="а11й-карточка" data-id="${т.id}">
+                    <div class="а11й-карточка-фото">
+                        <img src="${т.image}" alt="${т.name}" onerror="this.style.display='none'">
+                    </div>
+                    <div class="а11й-карточка-инфо">
+                        <div class="а11й-карточка-бренд">${т.brand}</div>
+                        <div class="а11й-карточка-название">${т.name}</div>
+                        <div>${'★'.repeat(Math.floor(т.rating))}${т.rating % 1 ? '½' : ''} (${т.reviewCount})</div>
+                        <div class="а11й-карточка-цена">${форматЦены(т.price)}</div>
+                    </div>
+                    <button class="а11й-карточка-кнопка" data-добавить-корзина="${т.id}">В корзину</button>
+                </div>
+            `).join('');
+            
+            контейнер.querySelectorAll('[data-добавить-корзина]').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const id = +btn.getAttribute('data-добавить-корзина');
+                    добавитьВКорзину(id);
+                    обновитьСчетчикКорзины();
+                    уведомление('Товар добавлен в корзину');
+                });
+            });
+            
+            контейнер.querySelectorAll('.а11й-карточка').forEach(карт => {
+                карт.addEventListener('click', () => {
+                    window.location.href = `accessible-product.html?id=${карт.getAttribute('data-id')}`;
+                });
+            });
+            
+            отрисоватьПагинациюКаталог();
+        }
+        
+        function отрисоватьПагинациюКаталог() {
+            const всего = Math.ceil(отфильтрованныеКаталог.length / ТОВАРОВ_НА_СТРАНИЦЕ);
+            const контейнер = document.getElementById('а11й-пагинация');
+            if (всего <= 1) { контейнер.innerHTML = ''; return; }
+            
+            let html = '';
+            html += `<button class="а11й-стр-кнопка" id="а11й-стр-назад" ${текущаяСтраницаКаталог === 1 ? 'disabled' : ''}>‹ Назад</button>`;
+            for (let i = 1; i <= Math.min(всего, 7); i++) {
+                html += `<button class="а11й-стр-кнопка ${i === текущаяСтраницаКаталог ? 'active' : ''}" data-стр="${i}">${i}</button>`;
+            }
+            if (всего > 7) html += `<span>…</span><button class="а11й-стр-кнопка" data-стр="${всего}">${всего}</button>`;
+            html += `<button class="а11й-стр-кнопка" id="а11й-стр-вперед" ${текущаяСтраницаКаталог === всего ? 'disabled' : ''}>Вперед ›</button>`;
+            
+            контейнер.innerHTML = html;
+            
+            контейнер.querySelectorAll('[data-стр]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    текущаяСтраницаКаталог = +btn.getAttribute('data-стр');
+                    обновитьКаталогСтраницу();
+                    window.scrollTo({top: 0, behavior: 'smooth'});
+                });
+            });
+            document.getElementById('а11й-стр-назад')?.addEventListener('click', () => {
+                if (текущаяСтраницаКаталог > 1) { текущаяСтраницаКаталог--; обновитьКаталогСтраницу(); window.scrollTo({top:0}); }
+            });
+            document.getElementById('а11й-стр-вперед')?.addEventListener('click', () => {
+                const всего = Math.ceil(отфильтрованныеКаталог.length / ТОВАРОВ_НА_СТРАНИЦЕ);
+                if (текущаяСтраницаКаталог < всего) { текущаяСтраницаКаталог++; обновитьКаталогСтраницу(); window.scrollTo({top:0}); }
+            });
+        }
+        
+        function обновитьКаталогСтраницу() {
+            применитьФильтрыКаталог();
+            отрисоватьТоварыКаталог();
+        }
+        
+        function обновитьСчетчикКорзины() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const счетчик = document.getElementById('счетчик-корзины');
+            if (счетчик) счетчик.textContent = корзина.reduce((s, i) => s + i.quantity, 0);
+        }
+        
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            загрузитьТоварыКаталог();
+            обновитьСчетчикКорзины();
+            
+            document.getElementById('а11й-применить-цену')?.addEventListener('click', () => {
+                фильтрыКаталог.ценаОт = +document.getElementById('а11й-цена-от').value || 0;
+                фильтрыКаталог.ценаДо = +document.getElementById('а11й-цена-до').value || 100000;
+                текущаяСтраницаКаталог = 1;
+                обновитьКаталогСтраницу();
+            });
+            
+            document.getElementById('а11й-сбросить-фильтры')?.addEventListener('click', () => {
+                фильтрыКаталог.ценаОт = 0;
+                фильтрыКаталог.ценаДо = 100000;
+                фильтрыКаталог.бренды = [];
+                фильтрыКаталог.размеры = [];
+                document.getElementById('а11й-цена-от').value = 0;
+                document.getElementById('а11й-цена-до').value = 100000;
+                document.querySelectorAll('.бренд-чекбокс').forEach(cb => cb.checked = false);
+                document.querySelectorAll('.размер-чекбокс').forEach(cb => cb.checked = false);
+                текущаяСтраницаКаталог = 1;
+                обновитьКаталогСтраницу();
+                уведомление('Фильтры сброшены');
+            });
+            
+            document.getElementById('а11й-сортировка')?.addEventListener('change', () => {
+                текущаяСтраницаКаталог = 1;
+                обновитьКаталогСтраницу();
+            });
+        });
+    </script>
+</body>
+</html>

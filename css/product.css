@@ -1,0 +1,345 @@
+/* ========================================================
+   product.css — стили страницы карточки товара
+   ======================================================== */
+
+/* ---------- ХЛЕБНЫЕ КРОШКИ ---------- */
+.крошки {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 14px 0;
+    font-size: 13px;
+    color: var(--текст-светлый);
+}
+.крошки a { color: var(--текст-светлый); text-decoration: none; }
+.крошки a:hover { color: var(--оранжевый); }
+
+/* ---------- ГЛАВНЫЙ БЛОК ТОВАРА: ФОТО + ИНФО ---------- */
+.товар-главный {
+    display: grid;
+    grid-template-columns: 1fr 300px 1fr;
+    gap: 32px;
+    margin-bottom: 40px;
+}
+@media (max-width: 1000px) {
+    .товар-главный { grid-template-columns: 1fr 1fr; }
+    .товар-боковая { grid-column: 1 / -1; }
+}
+@media (max-width: 650px) {
+    .товар-главный { grid-template-columns: 1fr; }
+}
+
+/* ---------- ЛЕВАЯ ЧАСТЬ: ФОТОГАЛЕРЕЯ ---------- */
+.галерея { display: flex; flex-direction: column; gap: 12px; }
+
+.главное-фото {
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--фон-серый);
+    position: relative;
+}
+.главное-фото img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.главное-фото .заглушка-большая { font-size: 100px; color: var(--рамка); }
+
+/* Метка на фото */
+.метка-на-фото {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--оранжевый);
+    color: white;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Миниатюры */
+.миниатюры {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.миниатюра {
+    width: 64px;
+    height: 64px;
+    border-radius: 4px;
+    border: 2px solid var(--рамка);
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--фон-серый);
+}
+.миниатюра img { width: 100%; height: 100%; object-fit: cover; }
+.миниатюра:hover,
+.миниатюра.active { border-color: var(--оранжевый); }
+
+/* ---------- ЦЕНТРАЛЬНАЯ ЧАСТЬ: НАЗВАНИЕ, ЦЕНА, КНОПКИ ---------- */
+.товар-центр { display: flex; flex-direction: column; gap: 16px; }
+
+.товар-бренд { font-size: 11px; color: var(--текст-светлый); text-transform: uppercase; letter-spacing: 1px; }
+
+.товар-название { font-size: 20px; font-weight: 700; line-height: 1.3; }
+
+.товар-артикул { font-size: 12px; color: var(--текст-светлый); }
+
+/* Рейтинг + кол-во отзывов */
+.товар-рейтинг {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+.звезды-большие { color: var(--звезда); font-size: 18px; }
+.отзывы-ссылка { font-size: 13px; color: var(--оранжевый); text-decoration: none; cursor: pointer; }
+.отзывы-ссылка:hover { text-decoration: underline; }
+
+/* Наличие */
+.наличие { font-size: 13px; font-weight: 600; }
+.наличие.есть { color: #27ae60; }
+.наличие.нет { color: #e74c3c; }
+
+/* Выбор цвета/варианта */
+.вариант-заголовок { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+.варианты-цвета {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.вариант-цвет {
+    padding: 5px 12px;
+    border: 1px solid var(--рамка);
+    border-radius: 20px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+    background: var(--фон);
+    color: var(--текст);
+}
+.вариант-цвет:hover,
+.вариант-цвет.active {
+    border-color: var(--оранжевый);
+    color: var(--оранжевый);
+}
+
+/* Блок цены */
+.блок-цены {
+    background: var(--фон-серый);
+    border-radius: 8px;
+    padding: 16px;
+}
+.цена-сейчас { font-size: 28px; font-weight: 700; color: var(--оранжевый); }
+.цена-было {
+    font-size: 14px;
+    color: var(--текст-светлый);
+    text-decoration: line-through;
+    margin-left: 10px;
+}
+.цена-рассрочка { font-size: 12px; color: var(--текст-светлый); margin-top: 4px; }
+
+/* Кнопки действий */
+.кнопки-товара { display: flex; gap: 10px; flex-wrap: wrap; }
+.кнопка-купить {
+    flex: 1;
+    min-width: 140px;
+    padding: 13px 20px;
+    background: var(--оранжевый);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.кнопка-купить:hover { background: #d9561a; }
+.кнопка-купить.в-корзине { background: #555; }
+
+.кнопка-избранное-товар {
+    padding: 13px 16px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: var(--фон);
+    color: var(--текст);
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.2s;
+}
+.кнопка-избранное-товар:hover,
+.кнопка-избранное-товар.активно { border-color: var(--оранжевый); color: var(--оранжевый); }
+
+/* Телефон на карточке */
+.телефон-товара {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--текст);
+    text-decoration: none;
+}
+.телефон-товара:hover { color: var(--оранжевый); }
+
+/* ---------- ПРАВАЯ БОКОВАЯ ПАНЕЛЬ: УСЛУГИ ---------- */
+.товар-боковая { display: flex; flex-direction: column; gap: 12px; }
+
+.блок-услуги {
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    padding: 16px;
+}
+.блок-услуги h4 { font-size: 14px; margin-bottom: 12px; }
+
+.услуга-строка {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--рамка);
+    font-size: 13px;
+}
+.услуга-строка:last-child { border-bottom: none; }
+.услуга-иконка { font-size: 22px; flex-shrink: 0; }
+.услуга-подпись { font-size: 11px; color: var(--текст-светлый); }
+
+/* ---------- ТАБЫ ---------- */
+.табы {
+    display: flex;
+    gap: 0;
+    border-bottom: 2px solid var(--рамка);
+    margin-bottom: 24px;
+}
+.таб {
+    padding: 10px 24px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--текст-светлый);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    transition: 0.2s;
+}
+.таб:hover { color: var(--оранжевый); }
+.таб.active { color: var(--оранжевый); border-bottom-color: var(--оранжевый); }
+
+.таб-контент.скрыт { display: none; }
+
+/* ---------- ТАБЛИЦА ХАРАКТЕРИСТИК ---------- */
+.таблица-характеристик {
+    width: 100%;
+    border-collapse: collapse;
+}
+.таблица-характеристик tr:nth-child(even) td {
+    background: var(--фон-серый);
+}
+.таблица-характеристик td {
+    padding: 10px 14px;
+    font-size: 13px;
+    border-bottom: 1px solid var(--рамка);
+}
+.таблица-характеристик td:first-child {
+    color: var(--текст-светлый);
+    width: 40%;
+}
+
+/* ---------- ПОХОЖИЕ ТОВАРЫ ---------- */
+.секция-заголовок { font-size: 20px; font-weight: 700; margin-bottom: 20px; }
+
+/* Карточки похожих товаров — берём из catalog.css */
+.карточка {
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: 0.25s;
+    cursor: pointer;
+}
+.карточка:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-3px); }
+.картинка-товара {
+    background: var(--фон-серый);
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.картинка-товара img { width:100%; height:100%; object-fit:cover; }
+.бейджи-товара { position:absolute; top:8px; left:8px; display:flex; flex-direction:column; gap:4px; z-index:2; }
+.метка { display:inline-block; padding:3px 8px; border-radius:4px; font-size:11px; font-weight:700; color:white; }
+.метка-скидка { background: var(--оранжевый); }
+.метка-новинка { background: #27ae60; }
+.инфо-товара { padding: 12px; }
+.бренд { font-size:11px; color:var(--текст-светлый); text-transform:uppercase; }
+.название-товара { font-size:13px; font-weight:500; margin:6px 0; }
+.звезды { color:var(--звезда); font-size:13px; }
+.цена-ряд { display:flex; justify-content:space-between; align-items:center; margin-top:10px; }
+.цена-текущая { font-size:16px; font-weight:700; }
+.цена-старая { font-size:11px; color:var(--текст-светлый); text-decoration:line-through; }
+.кнопка-корзины {
+    width:34px; height:34px; background:var(--оранжевый);
+    border-radius:50%; display:flex; align-items:center; justify-content:center;
+    color:white; cursor:pointer; font-size:16px; transition:0.2s;
+}
+.кнопка-корзины:hover { background:#d9561a; }
+.кнопка-корзины.в-корзине { background:#555; }
+
+@media (max-width: 768px) {
+    #похожие-товары { grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 480px) {
+    #похожие-товары { grid-template-columns: 1fr !important; }
+}
+
+/* ---------- АНИМАЦИЯ СМЕНЫ ФОТО ПРИ ВЫБОРЕ ЦВЕТА ---------- */
+.главное-фото img {
+    transition: opacity 0.25s ease;
+}
+.главное-фото img.меняется {
+    opacity: 0.3;
+}
+
+/* Активный вариант цвета */
+.вариант-цвет {
+    position: relative;
+    transition: all 0.2s;
+}
+.вариант-цвет.active {
+    border-color: var(--оранжевый);
+    color: var(--оранжевый);
+    font-weight: 600;
+}
+.вариант-цвет.active::after {
+    content: '✓';
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--оранжевый);
+    color: white;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    font-size: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Подсказка «нет фото для этого цвета» */
+.цвет-нет-фото {
+    font-size: 11px;
+    color: var(--текст-светлый);
+    margin-top: 6px;
+    font-style: italic;
+}

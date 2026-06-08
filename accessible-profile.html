@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Дверь.рф (версия для слабовидящих)</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/accessible.css">
+    <style>
+        .а11й-профиль-раскладка {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+        @media (max-width: 800px) {
+            .а11й-профиль-раскладка { grid-template-columns: 1fr; }
+        }
+        
+        .а11й-профиль-сайдбар {
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .а11й-аватар {
+            width: 100px;
+            height: 100px;
+            background: var(--оранжевый);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: white;
+            margin: 0 auto 16px;
+        }
+        .а11й-профиль-имя {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .а11й-профиль-email {
+            font-size: 0.9rem;
+            color: var(--текст-светлый);
+            text-align: center;
+            margin-bottom: 16px;
+        }
+        .а11й-профиль-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .а11й-проф-ссылка {
+            padding: 12px 16px;
+            background: var(--фон);
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            text-decoration: none;
+            color: var(--текст);
+            font-size: 1rem;
+            text-align: center;
+            cursor: pointer;
+        }
+        .а11й-проф-ссылка:hover,
+        .а11й-проф-ссылка.active {
+            background: var(--оранжевый);
+            border-color: var(--оранжевый);
+            color: white;
+        }
+        .а11й-проф-выход {
+            background: #e74c3c;
+            border-color: #e74c3c;
+            color: white;
+        }
+        .а11й-проф-выход:hover {
+            background: #c0392b;
+        }
+        
+        .а11й-проф-раздел {
+            background: var(--фон);
+            border: 2px solid var(--рамка);
+            border-radius: 12px;
+            padding: 24px;
+        }
+        .а11й-проф-заголовок {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--оранжевый);
+        }
+        .а11й-поле-группа {
+            margin-bottom: 16px;
+        }
+        .а11й-поле-лейбл {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .а11й-поле-ввода {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border: 2px solid var(--рамка);
+            border-radius: 6px;
+            background: var(--фон);
+            color: var(--текст);
+        }
+        .а11й-поле-ввода:focus {
+            border-color: var(--оранжевый);
+            outline: none;
+        }
+        .а11й-проф-сетка {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        @media (max-width: 600px) {
+            .а11й-проф-сетка { grid-template-columns: 1fr; }
+        }
+        .а11й-кнопка-сохранить {
+            padding: 12px 24px;
+            background: var(--оранжевый);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .а11й-кнопка-отмена {
+            padding: 12px 24px;
+            background: none;
+            border: 2px solid var(--рамка);
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        
+        .скрыт { display: none; }
+        
+        .а11й-заказ-карточка {
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .а11й-заказ-шапка {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--рамка);
+            margin-bottom: 12px;
+        }
+        .а11й-заказ-статус {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+        }
+        .статус-выполнен { background: #27ae60; color: white; }
+        .статус-ожидает { background: #f39c12; color: white; }
+        
+        .а11й-мини-сетка {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .а11й-мини-карточка {
+            display: flex;
+            gap: 12px;
+            padding: 12px;
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            align-items: center;
+        }
+        .а11й-мини-фото {
+            width: 60px;
+            height: 80px;
+            background: var(--фон);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .а11й-мини-фото img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .а11й-безопасность-блок {
+            background: var(--фон-серый);
+            border: 2px solid var(--рамка);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .а11й-пустая-страница {
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .а11й-пустая-иконка {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body class="а11й-режим">
+
+    <!-- ПАНЕЛЬ УПРАВЛЕНИЯ -->
+    <div class="а11й-панель" role="toolbar">
+        <div class="контейнер а11й-панель-внутри">
+            <span class="а11й-панель-лого">дверь.рф</span>
+            <span class="а11й-разделитель">|</span>
+            <span>Версия для слабовидящих — Личный кабинет</span>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="шрифт-меньше">А−</button>
+                <select class="а11й-селект" id="выбор-шрифта">
+                    <option value="14">14px</option>
+                    <option value="16" selected>16px</option>
+                    <option value="20">20px</option>
+                    <option value="24">24px</option>
+                </select>
+                <button class="а11й-кн" id="шрифт-больше">А+</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн тема-кн" data-тема="normal">Обычная</button>
+                <button class="а11й-кн тема-кн" data-тема="dark">Тёмная</button>
+                <button class="а11й-кн тема-кн" data-тема="contrast">Контраст</button>
+            </div>
+
+            <div class="а11й-группа">
+                <button class="а11й-кн" id="интервал-норм">Норм</button>
+                <button class="а11й-кн" id="интервал-широк">Широкий</button>
+            </div>
+
+            <div class="а11й-группа" style="margin-left:auto;">
+                <a href="profile.html" class="а11й-ссылка">← Обычная версия</a>
+                <button class="а11й-кн" id="а11й-сброс">Сбросить</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ШАПКА -->
+    <header class="а11й-шапка">
+        <div class="контейнер а11й-шапка-внутри">
+            <a href="accessible.html" class="а11й-лого">дверь<span>.рф</span></a>
+            <div class="а11й-контакты">
+                <a href="tel:+78442250300" class="а11й-телефон">📞 +7 (844) 225-03-00</a>
+                <span>Пн–Вс: 9:00 – 19:00</span>
+            </div>
+            <a href="accessible-cart.html" class="а11й-корзина-кн">🛒 Корзина (<span id="счетчик-корзины">0</span>)</a>
+        </div>
+    </header>
+
+    <!-- НАВИГАЦИЯ -->
+    <nav class="а11й-nav">
+        <div class="контейнер">
+            <ul class="а11й-nav-список">
+                <li><a href="accessible.html" class="а11й-nav-ссылка">Главная</a></li>
+                <li><a href="accessible-catalog.html?cat=entrance" class="а11й-nav-ссылка">Входные двери</a></li>
+                <li><a href="accessible-catalog.html?cat=interior" class="а11й-nav-ссылка">Межкомнатные</a></li>
+                <li><a href="accessible-catalog.html?cat=hardware" class="а11й-nav-ссылка">Фурнитура</a></li>
+                <li><a href="accessible-delivery.html" class="а11й-nav-ссылка">Доставка</a></li>
+                <li><a href="accessible-about.html" class="а11й-nav-ссылка">О нас</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ХЛЕБНЫЕ КРОШКИ -->
+    <div class="контейнер">
+        <div style="display: flex; gap: 8px; padding: 14px 0;">
+            <a href="accessible.html" style="color: var(--текст-светлый);">Главная</a>
+            <span>›</span>
+            <span style="color: var(--оранжевый);">Личный кабинет</span>
+        </div>
+    </div>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <div class="контейнер">
+        
+        <!-- Блок: не залогинен -->
+        <div id="блок-не-залогинен" class="а11й-пустая-страница" style="display:none">
+            <div class="а11й-пустая-иконка">🔐</div>
+            <div style="font-size: 1.2rem; margin-bottom: 20px;">Войдите в аккаунт, чтобы открыть личный кабинет</div>
+            <a href="accessible-login.html" class="а11й-кн" style="background: var(--оранжевый); padding: 12px 24px; text-decoration: none;">Войти</a>
+            <span style="margin: 0 12px;">или</span>
+            <a href="accessible-register.html" style="color: var(--оранжевый);">Зарегистрироваться</a>
+        </div>
+
+        <!-- Блок: профиль -->
+        <div id="блок-профиль" style="display:none">
+            <div class="а11й-профиль-раскладка">
+
+                <!-- САЙДБАР -->
+                <aside class="а11й-профиль-сайдбар">
+                    <div class="а11й-аватар" id="профиль-аватар">👤</div>
+                    <div class="а11й-профиль-имя" id="профиль-имя">Загрузка...</div>
+                    <div class="а11й-профиль-email" id="профиль-email"></div>
+                    <div class="а11й-профиль-nav">
+                        <button class="а11й-проф-ссылка active" data-раздел="данные">👤 Мои данные</button>
+                        <button class="а11й-проф-ссылка" data-раздел="заказы">📦 Мои заказы</button>
+                        <button class="а11й-проф-ссылка" data-раздел="избранное">♡ Избранное</button>
+                        <button class="а11й-проф-ссылка" data-раздел="безопасность">🔒 Безопасность</button>
+                        <button class="а11й-проф-ссылка а11й-проф-выход" id="кнопка-выйти">🚪 Выйти</button>
+                    </div>
+                </aside>
+
+                <!-- КОНТЕНТ -->
+                <div class="а11й-проф-раздел" id="раздел-данные">
+                    <h2 class="а11й-проф-заголовок">Мои данные</h2>
+                    <div class="а11й-проф-сетка">
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Имя и фамилия</label>
+                            <input type="text" id="проф-имя" class="а11й-поле-ввода" placeholder="Иван Петров">
+                        </div>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Email</label>
+                            <input type="email" id="проф-email" class="а11й-поле-ввода" placeholder="ivan@mail.ru">
+                        </div>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Телефон</label>
+                            <input type="tel" id="проф-телефон" class="а11й-поле-ввода" placeholder="+7 (999) 000-00-00">
+                        </div>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Адрес доставки</label>
+                            <input type="text" id="проф-адрес" class="а11й-поле-ввода" placeholder="г. Волгоград, ул. Ленина, д. 1">
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 12px; margin-top: 20px;">
+                        <button class="а11й-кнопка-сохранить" id="сохранить-данные">Сохранить изменения</button>
+                        <button class="а11й-кнопка-отмена" id="отмена-данных">Отмена</button>
+                    </div>
+                </div>
+
+                <div id="раздел-заказы" class="а11й-проф-раздел скрыт">
+                    <h2 class="а11й-проф-заголовок">Мои заказы</h2>
+                    <div id="список-заказов"></div>
+                </div>
+
+                <div id="раздел-избранное" class="а11й-проф-раздел скрыт">
+                    <h2 class="а11й-проф-заголовок">Избранное <span id="кол-избранного"></span></h2>
+                    <div id="проф-сетка-избранного" class="а11й-мини-сетка"></div>
+                    <div id="проф-пусто-избранное" class="скрыт" style="text-align:center; padding:40px;">Избранное пусто</div>
+                </div>
+
+                <div id="раздел-безопасность" class="а11й-проф-раздел скрыт">
+                    <h2 class="а11й-проф-заголовок">Безопасность</h2>
+                    <div class="а11й-безопасность-блок">
+                        <h3>Изменить пароль</h3>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Текущий пароль</label>
+                            <input type="password" id="тек-пароль" class="а11й-поле-ввода" placeholder="Введите текущий пароль">
+                        </div>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Новый пароль</label>
+                            <input type="password" id="нов-пароль" class="а11й-поле-ввода" placeholder="Минимум 6 символов">
+                        </div>
+                        <div class="а11й-поле-группа">
+                            <label class="а11й-поле-лейбл">Подтвердите пароль</label>
+                            <input type="password" id="нов-пароль2" class="а11й-поле-ввода" placeholder="Повторите пароль">
+                        </div>
+                        <button class="а11й-кнопка-сохранить" id="сменить-пароль">Сменить пароль</button>
+                    </div>
+                    <div class="а11й-безопасность-блок">
+                        <h3 style="color: #e74c3c;">⚠ Выйти из аккаунта</h3>
+                        <button class="а11й-кнопка-отмена" id="выйти-из-всех" style="border-color: #e74c3c; color: #e74c3c;">Выйти</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ПОДВАЛ -->
+    <footer class="а11й-подвал">
+        <div class="контейнер">
+            <div class="а11й-подвал-ссылки">
+                <a href="accessible.html">Главная</a>
+                <a href="accessible-catalog.html">Каталог</a>
+                <a href="accessible-about.html">О компании</a>
+                <a href="accessible-delivery.html">Доставка</a>
+                <a href="accessible-cart.html">Корзина</a>
+                <a href="accessible-profile.html">Профиль</a>
+            </div>
+            <div class="а11й-подвал-низ">
+                <span>© 2025 Дверь.рф — Версия для слабовидящих</span>
+                <a href="profile.html">Обычная версия сайта</a>
+            </div>
+        </div>
+    </footer>
+
+    <div id="контейнер-уведомлений"></div>
+
+    <script src="js/common.js"></script>
+    <script src="js/accessible.js"></script>
+    <script>
+        // ==================== ЛОГИКА ПРОФИЛЯ ДЛЯ СЛАБОВИДЯЩИХ ====================
+        
+        let пользПроф = null;
+        let всеТоварыПроф = [];
+        
+        function загрузитьПрофиль() {
+            пользПроф = JSON.parse(localStorage.getItem('пользователь') || 'null');
+            
+            if (!пользПроф) {
+                document.getElementById('блок-не-залогинен').style.display = 'block';
+                return;
+            }
+            
+            document.getElementById('блок-профиль').style.display = 'block';
+            
+            // Заполняем данные
+            const имя = пользПроф.name || 'Пользователь';
+            document.getElementById('профиль-аватар').textContent = имя[0].toUpperCase();
+            document.getElementById('профиль-имя').textContent = имя;
+            document.getElementById('профиль-email').textContent = пользПроф.email || '';
+            
+            document.getElementById('проф-имя').value = пользПроф.name || '';
+            document.getElementById('проф-email').value = пользПроф.email || '';
+            document.getElementById('проф-телефон').value = пользПроф.phone || '';
+            document.getElementById('проф-адрес').value = пользПроф.address || '';
+            
+            // Загружаем товары
+            fetch('data/products.json')
+                .then(res => res.json())
+                .then(товары => {
+                    всеТоварыПроф = товары;
+                    отрисоватьИзбранноеПроф();
+                    отрисоватьЗаказыПроф();
+                })
+                .catch(console.error);
+        }
+        
+        function отрисоватьИзбранноеПроф() {
+            const избранное = JSON.parse(localStorage.getItem('избранное') || '[]');
+            const контейнер = document.getElementById('проф-сетка-избранного');
+            const пусто = document.getElementById('проф-пусто-избранное');
+            const кол = document.getElementById('кол-избранного');
+            
+            if (избранное.length === 0 || всеТоварыПроф.length === 0) {
+                контейнер.innerHTML = '';
+                if (пусто) пусто.classList.remove('скрыт');
+                if (кол) кол.textContent = '(0)';
+                return;
+            }
+            if (пусто) пусто.classList.add('скрыт');
+            if (кол) кол.textContent = `(${избранное.length})`;
+            
+            const товары = избранное
+                .map(з => всеТоварыПроф.find(т => т.id === з.idТовара))
+                .filter(т => т);
+            
+            контейнер.innerHTML = товары.map(т => `
+                <div class="а11й-мини-карточка">
+                    <div class="а11й-мини-фото">
+                        <img src="${т.image}" alt="${т.name}" onerror="this.style.display='none'">
+                    </div>
+                    <div style="flex:1">
+                        <div style="font-weight:700">${т.name}</div>
+                        <div style="color:var(--оранжевый); font-weight:700">${форматЦены(т.price)}</div>
+                        <button class="а11й-кнопка-отмена" data-убрать="${т.id}" style="margin-top:8px; padding:4px 12px;">✕ Убрать</button>
+                    </div>
+                </div>
+            `).join('');
+            
+            document.querySelectorAll('[data-убрать]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = +btn.getAttribute('data-убрать');
+                    let изб = JSON.parse(localStorage.getItem('избранное') || '[]');
+                    изб = изб.filter(з => з.idТовара !== id);
+                    localStorage.setItem('избранное', JSON.stringify(изб));
+                    обновитьСчётчики();
+                    отрисоватьИзбранноеПроф();
+                    уведомление('Удалено из избранного');
+                });
+            });
+        }
+        
+        function отрисоватьЗаказыПроф() {
+            const контейнер = document.getElementById('список-заказов');
+            if (!контейнер) return;
+            
+            const заказы = [
+                { номер: 'ЗА-2025-001', дата: '12.04.2025', статус: 'Доставлен', сумма: 35870, товаров: 2 },
+                { номер: 'ЗА-2025-002', дата: '22.04.2025', статус: 'В обработке', сумма: 15500, товаров: 1 },
+                { номер: 'ЗА-2025-003', дата: '01.05.2025', статус: 'Оплачен', сумма: 28000, товаров: 2 }
+            ];
+            
+            if (заказы.length === 0) {
+                контейнер.innerHTML = '<div style="text-align:center;padding:40px;">У вас пока нет заказов</div>';
+                return;
+            }
+            
+            контейнер.innerHTML = заказы.map(з => `
+                <div class="а11й-заказ-карточка">
+                    <div class="а11й-заказ-шапка">
+                        <div><strong>Заказ #${з.номер}</strong> от ${з.дата}</div>
+                        <span class="а11й-заказ-статус статус-${з.статус === 'Доставлен' ? 'выполнен' : 'ожидает'}">${з.статус}</span>
+                    </div>
+                    <div>Товаров: ${з.товаров}</div>
+                    <div style="margin-top:12px; font-size:1.2rem; font-weight:700; color:var(--оранжевый)">${форматЦены(з.сумма)}</div>
+                </div>
+            `).join('');
+        }
+        
+        // Навигация
+        document.querySelectorAll('[data-раздел]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const раздел = btn.getAttribute('data-раздел');
+                document.querySelectorAll('[data-раздел]').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                document.querySelectorAll('.а11й-проф-раздел').forEach(div => div.classList.add('скрыт'));
+                const целевой = document.getElementById(`раздел-${раздел}`);
+                if (целевой) целевой.classList.remove('скрыт');
+                if (раздел === 'избранное') отрисоватьИзбранноеПроф();
+            });
+        });
+        
+        // Сохранение данных
+        document.getElementById('сохранить-данные')?.addEventListener('click', () => {
+            if (!пользПроф) return;
+            пользПроф.name = document.getElementById('проф-имя').value;
+            пользПроф.email = document.getElementById('проф-email').value;
+            пользПроф.phone = document.getElementById('проф-телефон').value;
+            пользПроф.address = document.getElementById('проф-адрес').value;
+            localStorage.setItem('пользователь', JSON.stringify(пользПроф));
+            document.getElementById('профиль-имя').textContent = пользПроф.name;
+            document.getElementById('профиль-аватар').textContent = пользПроф.name[0].toUpperCase();
+            уведомление('Данные сохранены', 'успех');
+        });
+        
+        document.getElementById('отмена-данных')?.addEventListener('click', () => {
+            if (!пользПроф) return;
+            document.getElementById('проф-имя').value = пользПроф.name || '';
+            document.getElementById('проф-email').value = пользПроф.email || '';
+            document.getElementById('проф-телефон').value = пользПроф.phone || '';
+            document.getElementById('проф-адрес').value = пользПроф.address || '';
+            уведомление('Изменения отменены');
+        });
+        
+        // Смена пароля
+        document.getElementById('сменить-пароль')?.addEventListener('click', () => {
+            const тек = document.getElementById('тек-пароль').value;
+            const нов = document.getElementById('нов-пароль').value;
+            const нов2 = document.getElementById('нов-пароль2').value;
+            if (!пользПроф) return;
+            if (тек !== пользПроф.password) {
+                уведомление('Неверный текущий пароль', 'ошибка');
+                return;
+            }
+            if (нов.length < 6) {
+                уведомление('Пароль должен быть не менее 6 символов', 'ошибка');
+                return;
+            }
+            if (нов !== нов2) {
+                уведомление('Пароли не совпадают', 'ошибка');
+                return;
+            }
+            пользПроф.password = нов;
+            localStorage.setItem('пользователь', JSON.stringify(пользПроф));
+            document.getElementById('тек-пароль').value = '';
+            document.getElementById('нов-пароль').value = '';
+            document.getElementById('нов-пароль2').value = '';
+            уведомление('Пароль изменён', 'успех');
+        });
+        
+        // Выход
+        document.getElementById('кнопка-выйти')?.addEventListener('click', () => {
+            localStorage.removeItem('пользователь');
+            уведомление('Вы вышли из аккаунта');
+            setTimeout(() => window.location.href = 'accessible.html', 800);
+        });
+        
+        document.getElementById('выйти-из-всех')?.addEventListener('click', () => {
+            localStorage.removeItem('пользователь');
+            уведомление('Вы вышли');
+            setTimeout(() => window.location.href = 'accessible.html', 800);
+        });
+        
+        function обновитьСчетчикКорзины() {
+            const корзина = JSON.parse(localStorage.getItem('корзина') || '[]');
+            const сумма = корзина.reduce((s, i) => s + (i.quantity || 1), 0);
+            const счетчик = document.getElementById('счетчик-корзины');
+            if (счетчик) счетчик.textContent = сумма;
+        }
+        
+        // Запуск
+        document.addEventListener('DOMContentLoaded', () => {
+            загрузитьПрофиль();
+            обновитьСчетчикКорзины();
+        });
+    </script>
+</body>
+</html>

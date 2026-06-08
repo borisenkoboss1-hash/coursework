@@ -1,0 +1,282 @@
+/* ========================================================
+   profile.css — стили личного кабинета
+   ======================================================== */
+
+/* ---------- ХЛЕБНЫЕ КРОШКИ ---------- */
+.крошки { display:flex; align-items:center; gap:8px; padding:14px 0; font-size:13px; color:var(--текст-светлый); }
+.крошки a { color:var(--текст-светлый); text-decoration:none; }
+.крошки a:hover { color:var(--оранжевый); }
+
+/* ---------- РАСКЛАДКА ---------- */
+.профиль-раскладка {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 28px;
+    align-items: start;
+    margin-bottom: 60px;
+    padding-top: 8px;
+}
+@media (max-width: 860px) { .профиль-раскладка { grid-template-columns: 1fr; } }
+
+/* ---------- САЙДБАР ---------- */
+.профиль-сайдбар {
+    position: sticky;
+    top: 80px;
+}
+
+.профиль-аватар-блок {
+    text-align: center;
+    padding: 24px 20px;
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+.профиль-аватар {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: var(--оранжевый);
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+}
+.профиль-имя   { font-size: 16px; font-weight: 700; }
+.профиль-email { font-size: 12px; color: var(--текст-светлый); margin-top: 4px; }
+.профиль-роль  {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 3px 12px;
+    background: #fef3e2;
+    color: #e67e22;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ---------- НАВИГАЦИЯ ПРОФИЛЯ ---------- */
+.профиль-nav {
+    display: flex;
+    flex-direction: column;
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.проф-ссылка {
+    padding: 13px 18px;
+    font-size: 14px;
+    color: var(--текст);
+    text-decoration: none;
+    cursor: pointer;
+    border-left: 3px solid transparent;
+    border-bottom: 1px solid var(--рамка);
+    transition: 0.2s;
+    display: block;
+}
+.проф-ссылка:last-child { border-bottom: none; }
+.проф-ссылка:hover { background: var(--фон-серый); color: var(--оранжевый); }
+.проф-ссылка.active {
+    border-left-color: var(--оранжевый);
+    background: var(--фон-серый);
+    color: var(--оранжевый);
+    font-weight: 600;
+}
+.проф-выход { color: #e74c3c !important; }
+.проф-выход:hover { background: #fdf0f0 !important; }
+
+/* ---------- КОНТЕНТ РАЗДЕЛОВ ---------- */
+.профиль-контент {
+    background: var(--фон);
+    border: 1px solid var(--рамка);
+    border-radius: 12px;
+    padding: 28px;
+    min-height: 400px;
+}
+.проф-раздел { }
+.проф-раздел.скрыт { display: none; }
+
+.проф-заголовок {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--рамка);
+}
+
+/* ---------- СЕТКА ПОЛЕЙ ПРОФИЛЯ ---------- */
+.проф-сетка {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 600px) { .проф-сетка { grid-template-columns: 1fr; } }
+
+/* Поля из auth.css переиспользуем */
+.поле-группа { margin-bottom: 4px; }
+.поле-лейбл { display:block; font-size:13px; font-weight:600; margin-bottom:6px; }
+.поле-ввода {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid var(--рамка);
+    border-radius: 6px;
+    background: var(--фон);
+    color: var(--текст);
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+.поле-ввода:focus { border-color: var(--оранжевый); }
+.поле-ввода.ошибка { border-color: #e74c3c; }
+.поле-ввода.успех  { border-color: #27ae60; }
+.ошибка-поля { font-size:12px; color:#e74c3c; margin-top:4px; min-height:16px; }
+
+/* Кнопка контур */
+.кнопка-контур {
+    padding: 10px 20px;
+    border: 1px solid var(--рамка);
+    border-radius: 4px;
+    background: none;
+    color: var(--текст);
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s;
+}
+.кнопка-контур:hover { border-color: var(--оранжевый); color: var(--оранжевый); }
+.кнопка-красная { border-color: #e74c3c !important; color: #e74c3c !important; }
+.кнопка-красная:hover { background: #e74c3c !important; color: white !important; }
+
+/* ---------- ЗАКАЗЫ ---------- */
+.заказ-карточка {
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+    transition: 0.2s;
+}
+.заказ-карточка:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.07); }
+
+.заказ-шапка {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.заказ-номер { font-weight: 700; font-size: 15px; }
+.заказ-дата  { font-size: 12px; color: var(--текст-светлый); }
+
+.заказ-статус {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+.статус-выполнен { background: #eafaf1; color: #27ae60; }
+.статус-ожидает  { background: #fef9e7; color: #f39c12; }
+.статус-отменён  { background: #fdf0f0; color: #e74c3c; }
+
+.заказ-товары {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+.заказ-товар-мини {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 10px;
+    background: var(--фон-серый);
+    border-radius: 6px;
+    font-size: 12px;
+}
+.заказ-товар-фото {
+    width: 36px;
+    height: 36px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: var(--рамка);
+}
+
+.заказ-итог {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid var(--рамка);
+    font-size: 14px;
+}
+.заказ-сумма { font-size: 16px; font-weight: 700; color: var(--оранжевый); }
+
+/* ---------- МИНИ-СЕТКА ИЗБРАННОГО ---------- */
+.проф-мини-сетка {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+@media (max-width: 700px) { .проф-мини-сетка { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 460px) { .проф-мини-сетка { grid-template-columns: 1fr; } }
+
+.мини-карточка {
+    border: 1px solid var(--рамка);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.2s;
+    background: var(--фон);
+}
+.мини-карточка:hover { box-shadow: 0 4px 14px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.мини-фото {
+    aspect-ratio: 3/4;
+    background: var(--фон-серый);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 36px;
+    color: var(--рамка);
+}
+.мини-фото img { width:100%; height:100%; object-fit:cover; }
+.мини-инфо { padding: 10px; }
+.мини-название { font-size: 12px; font-weight: 500; line-height: 1.4; margin-bottom: 4px; }
+.мини-цена { font-size: 14px; font-weight: 700; color: var(--оранжевый); }
+.мини-убрать {
+    font-size: 11px;
+    color: var(--текст-светлый);
+    cursor: pointer;
+    margin-top: 4px;
+    display: inline-block;
+}
+.мини-убрать:hover { color: #e74c3c; }
+
+/* ---------- БЕЗОПАСНОСТЬ ---------- */
+.безопасность-блок {
+    border: 1px solid var(--рамка);
+    border-radius: 10px;
+    padding: 20px;
+}
+.безопасность-блок h3 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+
+.опасная-зона { border-color: #fad7d7; }
+body[data-theme="dark"] .опасная-зона { border-color: #4a1a1a; }
+
+.чекбокс-строка {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.чекбокс-строка input[type="checkbox"] {
+    accent-color: var(--оранжевый);
+    width: 16px;
+    height: 16px;
+}
