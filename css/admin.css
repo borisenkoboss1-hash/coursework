@@ -391,3 +391,400 @@ body { margin: 0; }
     border-radius: 4px; 
     transition: width 0.5s;  /* анимация при изменении ширины */
 }
+
+
+/* ========================================================
+   АДАПТАЦИЯ АДМИН-ПАНЕЛИ ДЛЯ ТЕЛЕФОНА 320px
+   ======================================================== */
+
+@media (max-width: 600px) {
+    .адм-раскладка {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .адм-сайдбар {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--рамка) !important;
+        padding: 10px 0 !important;
+    }
+    
+    .адм-сайдбар nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        justify-content: center !important;
+    }
+    
+    .адм-ссылка {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        border-left: none !important;
+        border-bottom: 2px solid transparent !important;
+    }
+    
+    .адм-ссылка.active {
+        border-bottom-color: var(--оранжевый) !important;
+        border-left-color: transparent !important;
+    }
+    
+    .адм-контент {
+        padding: 16px !important;
+    }
+    
+    .адм-заголовок {
+        font-size: 18px !important;
+    }
+    
+    .адм-карточки {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 10px !important;
+    }
+    
+    .стат-число {
+        font-size: 20px !important;
+    }
+    
+    .стат-назв {
+        font-size: 10px !important;
+    }
+    
+    .адм-фильтры {
+        flex-direction: column !important;
+    }
+    
+    .адм-поиск,
+    .адм-селект {
+        width: 100% !important;
+    }
+    
+    .адм-таблица th,
+    .адм-таблица td {
+        padding: 6px 8px !important;
+        font-size: 11px !important;
+    }
+    
+    .адм-кн {
+        padding: 4px 8px !important;
+        font-size: 10px !important;
+    }
+    
+    .адм-кнопка-добавить {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .адм-карточки {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .адм-таблица th,
+    .адм-таблица td {
+        padding: 4px 6px !important;
+        font-size: 10px !important;
+    }
+    
+    .адм-ссылка {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ БОКОВОГО МЕНЮ АДМИНА ДЛЯ ТЕЛЕФОНА
+   ======================================================== */
+
+@media (max-width: 600px) {
+    .адм-раскладка {
+        display: flex !important;
+        flex-direction: column !important;
+    }
+    
+    .адм-сайдбар {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--рамка) !important;
+        padding: 12px 0 !important;
+    }
+    
+    .адм-сайдбар nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+    
+    .адм-ссылка {
+        padding: 8px 12px !important;
+        font-size: 12px !important;
+        border-left: none !important;
+        border-bottom: 2px solid transparent !important;
+    }
+    
+    .адм-ссылка.active {
+        border-bottom-color: var(--оранжевый) !important;
+        border-left-color: transparent !important;
+    }
+    
+    .адм-контент {
+        padding: 16px !important;
+    }
+    
+    .адм-карточки {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    
+    .стат-число {
+        font-size: 20px !important;
+    }
+    
+    .стат-назв {
+        font-size: 10px !important;
+    }
+    
+    /* Таблицы с горизонтальной прокруткой */
+    .адм-таблица-обёртка {
+        overflow-x: auto !important;
+    }
+    
+    .адм-таблица {
+        min-width: 500px !important;
+    }
+    
+    .адм-таблица th,
+    .адм-таблица td {
+        padding: 8px 10px !important;
+        font-size: 11px !important;
+    }
+    
+    .адм-фильтры {
+        flex-direction: column !important;
+    }
+    
+    .адм-поиск,
+    .адм-селект {
+        width: 100% !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .адм-карточки {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .адм-ссылка {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+}
+
+
+/* ========================================================
+   АДАПТАЦИЯ ПОСЛЕДНИХ ПОЛЬЗОВАТЕЛЕЙ ДЛЯ ТЕЛЕФОНА
+   ======================================================== */
+
+/* Список последних пользователей - горизонтально в строку на планшете */
+@media (min-width: 601px) and (max-width: 900px) {
+    #посл-пользователи {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+    }
+    
+    #посл-пользователи > div {
+        flex: 1 1 calc(33.33% - 12px) !important;
+        min-width: 180px !important;
+    }
+}
+
+/* Телефоны (до 600px) - вертикально в колонку */
+@media (max-width: 600px) {
+    #посл-пользователи {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+    }
+    
+    #посл-пользователи > div {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        gap: 12px !important;
+        padding: 10px !important;
+        width: 100% !important;
+    }
+    
+    #посл-пользователи > div > div:first-child {
+        width: 36px !important;
+        height: 36px !important;
+        font-size: 16px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    #посл-пользователи > div > div:first-child + div {
+        flex: 1 !important;
+        text-align: left !important;
+    }
+    
+    #посл-пользователи .бейдж {
+        margin-left: auto !important;
+    }
+}
+
+/* Маленькие телефоны (до 380px) */
+@media (max-width: 380px) {
+    #посл-пользователи > div {
+        flex-wrap: wrap !important;
+    }
+    
+    #посл-пользователи .бейдж {
+        margin-left: 0 !important;
+    }
+}
+/* ========================================================
+   АДАПТАЦИЯ ДИАГРАММЫ КАТЕГОРИЙ ДЛЯ ТЕЛЕФОНА
+   ======================================================== */
+
+@media (max-width: 600px) {
+    /* Блок с двумя колонками (диаграмма + пользователи) */
+    .адм-блок {
+        padding: 16px !important;
+    }
+    
+    .адм-блок h3 {
+        font-size: 14px !important;
+        text-align: center !important;
+    }
+    
+    /* Диаграмма */
+    .кат-строка {
+        margin-bottom: 12px !important;
+    }
+    
+    .кат-лейбл {
+        font-size: 12px !important;
+    }
+    
+    .кат-полоска {
+        height: 6px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Блоки статистики (диаграмма и пользователи) друг под другом */
+    .адм-карточки + div {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ АДМИН-ПАНЕЛИ ДЛЯ ПЛАНШЕТА 768px
+   ======================================================== */
+
+@media (max-width: 768px) {
+    /* Шапка админа */
+    .адм-шапка-внутри {
+        flex-direction: column !important;
+        gap: 10px !important;
+        text-align: center !important;
+    }
+    
+    .адм-шапка-правая {
+        justify-content: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    
+    /* Боковое меню - горизонтально */
+    .адм-раскладка {
+        flex-direction: column !important;
+    }
+    
+    .адм-сайдбар {
+        width: 100% !important;
+        border-right: none !important;
+        border-bottom: 1px solid var(--рамка) !important;
+        padding: 12px 0 !important;
+    }
+    
+    .адм-сайдбар nav {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        gap: 8px !important;
+    }
+    
+    .адм-ссылка {
+        padding: 8px 14px !important;
+        font-size: 13px !important;
+        border-left: none !important;
+        border-bottom: 2px solid transparent !important;
+    }
+    
+    .адм-ссылка.active {
+        border-bottom-color: var(--оранжевый) !important;
+    }
+    
+    /* Карточки статистики - 2 колонки */
+    .адм-карточки {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    /* Блок дашборда (диаграмма + пользователи) - в колонку */
+    .адм-карточки + div {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+    }
+    
+    /* Последние пользователи - сетка 2 колонки */
+    #посл-пользователи {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 12px !important;
+    }
+    
+    #посл-пользователи > div {
+        margin: 0 !important;
+    }
+    
+    /* Таблицы */
+    .адм-таблица-обёртка {
+        overflow-x: auto !important;
+    }
+    
+    .адм-таблица {
+        min-width: 600px !important;
+    }
+    
+    .адм-контент {
+        padding: 16px !important;
+    }
+    
+    .адм-заголовок {
+        font-size: 18px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    #посл-пользователи {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .адм-карточки {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .адм-ссылка {
+        padding: 6px 10px !important;
+        font-size: 11px !important;
+    }
+}

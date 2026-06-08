@@ -280,3 +280,83 @@ body[data-theme="dark"] .опасная-зона { border-color: #4a1a1a; }
     width: 16px;
     height: 16px;
 }
+
+
+/* ========================================================
+   АДАПТАЦИЯ ЛИЧНОГО КАБИНЕТА ДЛЯ ТЕЛЕФОНА 320px
+   ======================================================== */
+
+@media (max-width: 600px) {
+    .профиль-раскладка {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 20px !important;
+    }
+    
+    .профиль-сайдбар {
+        width: 100% !important;
+        padding: 16px !important;
+    }
+    
+    .профиль-nav {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .проф-ссылка {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px !important;
+        font-size: 14px !important;
+    }
+    
+    .проф-заголовок {
+        font-size: 18px !important;
+        text-align: center !important;
+    }
+    
+    .проф-сетка {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .поле-группа {
+        margin-bottom: 12px !important;
+    }
+    
+    .кнопка-оранжевая,
+    .кнопка-контур {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+    
+    .проф-мини-сетка {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .безопасность-блок {
+        padding: 16px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .проф-ссылка {
+        padding: 10px !important;
+        font-size: 13px !important;
+    }
+    
+    .проф-заголовок {
+        font-size: 16px !important;
+    }
+    
+    .поле-лейбл {
+        font-size: 12px !important;
+    }
+    
+    .поле-ввода {
+        padding: 8px 10px !important;
+        font-size: 13px !important;
+    }
+}
+

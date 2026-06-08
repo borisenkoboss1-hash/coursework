@@ -731,3 +731,324 @@ html, body {
         gap: 12px;
     }
 }
+
+
+/* ========================================================
+   ГЛОБАЛЬНАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНА 320px
+   ======================================================== */
+
+@media (max-width: 600px) {
+    html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+    }
+    
+    .контейнер {
+        padding: 0 12px !important;
+    }
+    
+    h1 {
+        font-size: 22px !important;
+    }
+    
+    h2 {
+        font-size: 18px !important;
+    }
+    
+    .кнопка-оранжевая {
+        width: 100% !important;
+        padding: 10px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    h1 {
+        font-size: 20px !important;
+    }
+    
+    h2 {
+        font-size: 16px !important;
+    }
+    
+    .контейнер {
+        padding: 0 10px !important;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ ШАПКИ ДЛЯ ТЕЛЕФОНА 320px
+   ======================================================== */
+
+@media (max-width: 600px) {
+    
+    /* Шапка */
+    .шапка {
+        position: relative;
+    }
+    
+    .верх-шапки {
+        display: none !important;  /* скрываем верхнюю строку с адресом */
+    }
+    
+    .главная-шапка {
+        padding: 10px 0 !important;
+    }
+    
+    .внутри-главной {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 10px !important;
+    }
+    
+    /* Логотип */
+    .лого {
+        order: 1 !important;
+        text-align: center !important;
+        justify-content: center !important;
+    }
+    
+    .лого-текст {
+        font-size: 16px !important;
+    }
+    
+    .лого-подпись {
+        font-size: 8px !important;
+    }
+    
+    /* Поиск */
+    .поиск {
+        order: 2 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    .поле-поиска {
+        font-size: 12px !important;
+        padding: 8px 40px 8px 12px !important;
+    }
+    
+    /* Иконки (корзина, избранное, профиль) */
+    .иконки-шапки {
+        order: 3 !important;
+        display: flex !important;
+        justify-content: center !important;
+        gap: 20px !important;
+        width: 100% !important;
+    }
+    
+    .иконка-ссылка {
+        font-size: 18px !important;
+    }
+    
+    .текст-иконки {
+        font-size: 9px !important;
+    }
+    
+    .счетчик {
+        min-width: 16px !important;
+        height: 16px !important;
+        font-size: 9px !important;
+        top: -6px !important;
+        right: -8px !important;
+    }
+    
+    /* Бургер-меню */
+    .бургер {
+        order: 4 !important;
+        display: flex !important;
+        margin-top: 5px !important;
+    }
+    
+    .бургер span {
+        width: 22px !important;
+        height: 2px !important;
+    }
+}
+
+/* Для очень маленьких телефонов (320px) */
+@media (max-width: 380px) {
+    .иконки-шапки {
+        gap: 14px !important;
+    }
+    
+    .иконка-ссылка {
+        font-size: 16px !important;
+    }
+    
+    .текст-иконки {
+        font-size: 8px !important;
+    }
+    
+    .лого-текст {
+        font-size: 14px !important;
+    }
+}
+
+/* ========================================================
+   АДАПТАЦИЯ ШАПКИ АДМИНА ДЛЯ ТЕЛЕФОНА 320px
+   ======================================================== */
+
+@media (max-width: 600px) {
+    
+    /* Шапка админа */
+    .адм-шапка-внутри {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 12px !important;
+        text-align: center !important;
+    }
+    
+    .адм-шапка-правая {
+        display: flex !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        width: 100% !important;
+    }
+    
+    .адм-шапка-правая span {
+        font-size: 11px !important;
+    }
+    
+    .адм-шапка-правая a,
+    .адм-шапка-правая button {
+        font-size: 11px !important;
+        padding: 4px 8px !important;
+    }
+    
+    /* Логотип в шапке админа */
+    .адм-шапка-внутри .лого {
+        justify-content: center !important;
+        width: 100% !important;
+    }
+    
+    .адм-шапка-внутри .лого span {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .адм-шапка-правая {
+        gap: 8px !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .адм-шапка-правая a,
+    .адм-шапка-правая button {
+        font-size: 10px !important;
+        padding: 3px 6px !important;
+    }
+}
+/* ========================================================
+   АДАПТАЦИЯ КОРЗИНЫ ДЛЯ ПЛАНШЕТА 768px
+   ======================================================== */
+
+@media (max-width: 768px) {
+    /* Раскладка корзины - в колонку */
+    .корзина-раскладка {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px !important;
+    }
+    
+    /* Список товаров */
+    .корзина-товары {
+        width: 100% !important;
+    }
+    
+    /* Блок итого */
+    .корзина-итог {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    
+    /* Строка товара */
+    .корзина-строка {
+        display: grid !important;
+        grid-template-columns: 80px 1fr !important;
+        gap: 12px !important;
+        padding: 16px !important;
+    }
+    
+    .корзина-фото {
+        grid-row: span 4 !important;
+    }
+    
+    .корзина-инфо {
+        grid-column: 2 !important;
+        grid-row: 1 !important;
+    }
+    
+    .корзина-цена {
+        grid-column: 2 !important;
+        grid-row: 2 !important;
+    }
+    
+    .счётчик-кол {
+        grid-column: 2 !important;
+        grid-row: 3 !important;
+        justify-content: flex-start !important;
+    }
+    
+    .корзина-сумма {
+        grid-column: 2 !important;
+        grid-row: 4 !important;
+        text-align: left !important;
+    }
+    
+    .кнопка-удалить {
+        position: absolute !important;
+        top: 16px !important;
+        right: 16px !important;
+    }
+    
+    /* Счётчик */
+    .счётчик-кол {
+        display: flex !important;
+        gap: 8px !important;
+        align-items: center !important;
+    }
+    
+    .счётчик-кнопка {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    
+    .счётчик-значение {
+        width: 50px !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .корзина-строка {
+        display: flex !important;
+        flex-direction: column !important;
+        position: relative !important;
+    }
+    
+    .корзина-фото {
+        margin: 0 auto !important;
+    }
+    
+    .корзина-инфо {
+        text-align: center !important;
+    }
+    
+    .корзина-цена {
+        text-align: center !important;
+    }
+    
+    .счётчик-кол {
+        justify-content: center !important;
+    }
+    
+    .корзина-сумма {
+        text-align: center !important;
+    }
+    
+    .кнопка-удалить {
+        top: 5px !important;
+        right: 5px !important;
+    }
+}
