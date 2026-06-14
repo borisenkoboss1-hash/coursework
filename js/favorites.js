@@ -1,39 +1,72 @@
 /* ========================================================
-   favorites.js — логика страницы избранного
+   favorites.js — логика страницы избранного (АСИНХРОННАЯ ВЕРСИЯ)
    ======================================================== */
 
 async function загрузитьИзбранное() {
     const польз = получитьПользователя();
+    
     if (!польз) {
-        document.getElementById('блок-не-залогинен').style.display = 'block';
-        return;
-    }
-
-    const избранное = получитьИзбранное();
-    document.getElementById('заголовок-кол').textContent = избранное.length ? `(${избранное.length})` : '';
-
-    if (избранное.length === 0) {
-        document.getElementById('блок-пусто').style.display = 'block';
+        const блокНеЗалогинен = document.getElementById('блок-не-залогинен');
+        if (блокНеЗалогинен) блокНеЗалогинен.style.display = 'block';
+        
+        const блокПусто = document.getElementById('блок-пусто');
+        const сетка = document.getElementById('сетка-избранного');
+        if (блокПусто) блокПусто.style.display = 'none';
+        if (сетка) сетка.innerHTML = '';
         return;
     }
 
     try {
-        const resp = await fetch('data/products.json');
-        const всеТовары = await resp.json();
-        const сетка = document.getElementById('сетка-избранного');
+        // Асинхронное получение избранного
+        const избранное = await получитьИзбранное();
+        
+        // Обновляем счётчик
+        const заголовок = document.getElementById('заголовок-кол');
+        if (заголовок) заголовок.textContent = избранное.length ? `(${избранное.length})` : '';
 
+        const блокНеЗалогинен = document.getElementById('блок-не-залогинен');
+        if (блокНеЗалогинен) блокНеЗалогинен.style.display = 'none';
+
+        if (избранное.length === 0) {
+            const блокПусто = document.getElementById('блок-пусто');
+            if (блокПусто) блокПусто.style.display = 'block';
+            const сетка = document.getElementById('сетка-избранного');
+            if (сетка) сетка.innerHTML = '';
+            return;
+        }
+
+        const блокПусто = document.getElementById('блок-пусто');
+        if (блокПусто) блокПусто.style.display = 'none';
+
+        // Загружаем товары с сервера
+        const resp = await fetch(API_URL + '/products');
+        const всеТовары = await resp.json();
+        
+        const сетка = document.getElementById('сетка-избранного');
+        if (!сетка) return;
+
+        // Фильтруем товары по ID из избранного
         const товары = избранное
             .map(з => всеТовары.find(т => т.id === з.idТовара))
             .filter(Boolean);
 
         if (товары.length === 0) {
-            document.getElementById('блок-пусто').style.display = 'block';
+            сетка.innerHTML = '';
+            if (блокПусто) блокПусто.style.display = 'block';
             return;
+        }
+
+        // Генерируем карточки (используем АСИНХРОННЫЕ функции для проверки)
+        // Сначала получаем все состояния корзины и избранного
+        const состоянияКорзины = {};
+        for (const т of товары) {
+            состоянияКорзины[т.id] = await вКорзине(т.id);
         }
 
         сетка.innerHTML = товары.map(т => {
             const скидка = т.oldPrice ? Math.round((1 - т.price / т.oldPrice) * 100) : 0;
-            const вК = вКорзине(т.id);
+            const вК = состоянияКорзины[т.id];
+            
             return `
             <div class="карточка" data-id="${т.id}">
                 <div class="картинка-товара">
@@ -43,13 +76,15 @@ async function загрузитьИзбранное() {
                     </div>
                     <img src="${т.image}" alt="${т.name}" loading="lazy"
                          onerror="this.style.display='none'">
-                    <!-- Кнопка убрать из избранного -->
                     <div class="кнопка-избранного в-избранном" data-убрать="${т.id}" title="Убрать из избранного">♥</div>
                 </div>
                 <div class="инфо-товара">
-                    <div class="бренд">${т.brand}</div>
+                    <div class="бренд">${т.brand || ''}</div>
                     <div class="название-товара">${т.name}</div>
-                    <div><span class="звезды">${звёзды(т.rating)}</span><span class="отзывы-кол">(${т.reviewCount})</span></div>
+                    <div>
+                        <span class="звезды">${звёзды(т.rating)}</span>
+                        <span class="отзывы-кол">(${т.reviewCount})</span>
+                    </div>
                     <div class="цена-ряд">
                         <div>
                             <span class="цена-текущая">${форматЦены(т.price)}</span>
@@ -63,36 +98,53 @@ async function загрузитьИзбранное() {
             </div>`;
         }).join('');
 
-        // Кнопки убрать из избранного
-        сетка.querySelectorAll('[data-убрать]').forEach(кн => {
-            кн.addEventListener('click', e => {
-                e.stopPropagation();
-                const id = +кн.getAttribute('data-убрать');
-                добавитьВИзбранное(id); // toggle — если уже в избранном, удалит
-                загрузитьИзбранное();
-            });
-        });
-
-        // Кнопки корзины
-        сетка.querySelectorAll('[data-корзина]').forEach(кн => {
-            кн.addEventListener('click', e => {
-                e.stopPropagation();
-                const id = +кн.getAttribute('data-корзина');
-                if (вКорзине(id)) { удалитьИзКорзины(id); } else { добавитьВКорзину(id); }
-                загрузитьИзбранное();
-            });
-        });
-
-        // Клик по карточке
-        сетка.querySelectorAll('.карточка').forEach(к => {
-            к.addEventListener('click', () => {
-                window.location.href = `product.html?id=${к.getAttribute('data-id')}`;
-            });
-        });
+        // Навешиваем обработчики
+        навеситьОбработчики();
 
     } catch (e) {
+        console.error('Ошибка в favorites.js:', e);
         уведомление('Ошибка загрузки данных', 'ошибка');
     }
 }
 
-document.addEventListener('DOMContentLoaded', загрузитьИзбранное);
+async function навеситьОбработчики() {
+    const сетка = document.getElementById('сетка-избранного');
+    if (!сетка) return;
+    
+    // Кнопки удаления из избранного
+    for (const кн of сетка.querySelectorAll('[data-убрать]')) {
+        кн.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const id = +кн.getAttribute('data-убрать');
+            await добавитьВИзбранное(id); // Toggle удалит
+            await загрузитьИзбранное();
+            await обновитьСчётчики();
+        });
+    }
+    
+    // Кнопки корзины
+    for (const кн of сетка.querySelectorAll('[data-корзина]')) {
+        кн.addEventListener('click', async (e) => {
+            e.stopPropagation();
+            const id = +кн.getAttribute('data-корзина');
+            if (await вКорзине(id)) {
+                await удалитьИзКорзины(id);
+            } else {
+                await добавитьВКорзину(id);
+            }
+            await загрузитьИзбранное();
+            await обновитьСчётчики();
+        });
+    }
+    
+    // Клик по карточке
+    for (const к of сетка.querySelectorAll('.карточка')) {
+        к.addEventListener('click', () => {
+            window.location.href = `product.html?id=${к.getAttribute('data-id')}`;
+        });
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    загрузитьИзбранное();
+});

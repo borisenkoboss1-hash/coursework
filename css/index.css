@@ -329,3 +329,47 @@
 }
 .соц-кнопка:hover { background: var(--оранжевый); color: white; border-color: var(--оранжевый); }
 .карта-контейнер { border-radius: 8px; overflow: hidden; border: 1px solid var(--рамка); }
+
+
+
+/* ========================================================
+   ИСПРАВЛЕНИЕ КАРТИНОК В СЛАЙДЕРЕ (не вылезают за рамки)
+   ======================================================== */
+
+.слайд-картинка {
+    position: relative;
+    flex-shrink: 0;
+    font-size: 100px;
+    line-height: 1;
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.слайд-картинка img {
+    max-width: 100%;
+    max-height: 280px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    border-radius: 12px;
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .слайд-картинка {
+        max-width: 100%;
+        margin-top: 20px;
+    }
+    
+    .слайд-картинка img {
+        max-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .слайд-картинка img {
+        max-height: 160px;
+    }
+}
